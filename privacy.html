@@ -5,74 +5,155 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>QuitForecast Privacy Policy</title>
 <meta name="description" content="What QuitForecast stores, what never leaves your phone, and how to delete everything.">
+<meta name="theme-color" content="#0C1820">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%237FD9C4' stroke-width='3'/%3E%3Ccircle cx='16' cy='5' r='3.4' fill='%23E5A45C'/%3E%3C/svg%3E">
 <style>
-  body { font-family: -apple-system, system-ui, sans-serif; max-width: 680px;
-         margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #16282e; }
-  h1 { font-size: 1.6em; } h2 { font-size: 1.15em; margin-top: 1.6em; }
-  a { color: #0f6f7a; }
-  footer { margin-top: 3em; font-size: 0.9em; opacity: 0.75; }
-  @media (prefers-color-scheme: dark) {
-    body { background: #0c1820; color: #e9e4d8; }
-    a { color: #6fd3c7; }
-  }
+/* Same ground, same type, same rules as index.html: one site, not two pages
+   that happen to share a domain. Nothing loads from anywhere else here either,
+   which is the least a privacy policy can do. */
+:root {
+  --bg:      #0C1820;
+  --card:    #122530;
+  --line:    #1E3947;
+  --line2:   #2A4A5A;
+  --text:    #E9E4D8;
+  --dim:     #8FA3A8;
+  --accent:  #7FD9C4;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+  --t-micro: clamp(0.8125rem, 0.78rem + 0.16vw, 0.9375rem);
+  --t-small: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+  --t-body:  clamp(1.0625rem, 1.02rem + 0.24vw, 1.1875rem);
+  --t-h2:    clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem);
+  --t-h1:    clamp(1.875rem, 1.5rem + 1.6vw, 2.625rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--sans); font-size: var(--t-body); line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { width: min(100% - 2.5rem, 42rem); margin-inline: auto; }
+
+.masthead { display: flex; align-items: center; justify-content: space-between;
+            gap: 1rem; flex-wrap: wrap; padding-block: 1.5rem; }
+.lockup { display: flex; align-items: center; gap: 0.625rem; font-weight: 600;
+          letter-spacing: -0.01em; color: var(--text); text-decoration: none; }
+.lockup svg { display: block; width: 1.625rem; height: 1.625rem; flex: none; }
+.masthead nav a { color: var(--dim); text-decoration: none;
+                  font-size: var(--t-small); }
+.masthead nav a:hover { color: var(--text); }
+
+main { padding-block: clamp(2rem, 6vw, 3.5rem) clamp(3rem, 8vw, 5rem); }
+h1 { font-size: var(--t-h1); line-height: 1.14; letter-spacing: -0.024em;
+     margin: 0 0 1rem; font-weight: 600; text-wrap: balance; }
+h2 { font-size: var(--t-h2); line-height: 1.2; letter-spacing: -0.01em;
+     margin: 2.5rem 0 0.5rem; font-weight: 600; }
+p { margin: 0 0 0.75rem; text-wrap: pretty; }
+p + p { margin-top: 0; }
+a { color: var(--accent); text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px;
+                 border-radius: 3px; }
+.effective { color: var(--dim); font-size: var(--t-small); }
+.summary { background: var(--card); border: 1px solid var(--line);
+           border-radius: 16px; padding: clamp(1.125rem, 3vw, 1.5rem);
+           margin-top: 1.5rem; }
+.summary h2 { margin-top: 0; }
+footer { border-top: 1px solid var(--line); padding-block: 2rem 3rem;
+         font-size: var(--t-small); color: var(--dim); }
+footer a { color: var(--dim); }
 </style>
 </head>
 <body>
-<h1>QuitForecast Privacy Policy</h1>
-<p>Effective July 27, 2026. QuitForecast is an independently developed iOS
-app. For any question about your data, write to
-<a href="mailto:info@quitforecast.com">info@quitforecast.com</a> and a
-person will answer.</p>
 
-<h2>The short version</h2>
-<p>Your recovery data lives on your phone. Nothing leaves it unless you
-choose one of three things: an iCloud backup, a feedback message, or a
-post to the community board. We run no analytics, no ads, no tracking,
-and no third-party SDKs.</p>
+<div class="wrap">
+  <header class="masthead">
+    <a class="lockup" href="/">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <circle cx="16" cy="16" r="11" fill="none" stroke="#7FD9C4" stroke-width="3"/>
+        <circle cx="16" cy="5" r="3.4" fill="#E5A45C"/>
+      </svg>
+      QuitForecast
+    </a>
+    <nav><a href="/">Back to the app</a></nav>
+  </header>
+</div>
 
-<h2>What stays on your device</h2>
-<p>Your habits and quit dates, craving log, slip history, savings tin,
-challenge progress, settings, and anything read from Apple Health. Health
-data is read-only, displayed to you, and never transmitted anywhere.</p>
+<main>
+  <div class="wrap">
+    <h1>Privacy policy</h1>
+    <p class="effective">Effective July 27, 2026. QuitForecast is an
+    independently developed iOS app. For any question about your data, write to
+    <a href="mailto:info@quitforecast.com">info@quitforecast.com</a> and a
+    person will answer.</p>
 
-<h2>What leaves your device, only if you choose it</h2>
-<p><strong>iCloud backup (off by default).</strong> If you turn it on, a
-copy of your app data is stored in your private iCloud database, which
-Apple secures under your Apple Account. We cannot read it. Deleting all
-data in Settings also deletes this backup.</p>
-<p><strong>Community board posts.</strong> If you post a move to the
-board, its text is stored publicly with an anonymous member identifier (a
-salted one-way hash derived from your iCloud account, never your name or
-email). Posts are reviewed by a person before appearing. To remove what
-you posted, use Settings &gt; Delete all data: it erases every post and
-vote you made on the board.</p>
-<p><strong>Feedback.</strong> If you send feedback, the message you wrote
-is delivered to us by email at info@quitforecast.com.</p>
+    <div class="summary">
+      <h2>The short version</h2>
+      <p>Your recovery data lives on your phone. Nothing leaves it unless you
+      choose one of three things: an iCloud backup, a feedback message, or a
+      post to the community board. We run no analytics, no ads, no tracking,
+      and no third-party SDKs.</p>
+    </div>
 
-<h2>What we never do</h2>
-<p>No advertising, no analytics SDKs, no tracking across apps or
-websites, no sale or sharing of data, no accounts, no passwords.</p>
+    <h2>What stays on your device</h2>
+    <p>Your habits and quit dates, craving log, slip history, savings tin,
+    challenge progress, settings, and anything read from Apple Health. Health
+    data is read-only, displayed to you, and never transmitted anywhere.</p>
 
-<h2>Deleting your data</h2>
-<p>Settings &gt; Delete all data erases everything on the device, your
-iCloud backup, and your community posts. Export your data first from the
-same screen if you want a copy.</p>
+    <h2>What leaves your device, only if you choose it</h2>
+    <p><strong>iCloud backup (off by default).</strong> If you turn it on, a
+    copy of your app data is stored in your private iCloud database, which
+    Apple secures under your Apple Account. We cannot read it. Deleting all
+    data in Settings also deletes this backup.</p>
+    <p><strong>Community board posts.</strong> If you post a move to the board,
+    its text is stored publicly with an anonymous member identifier (a salted
+    one-way hash derived from your iCloud account, never your name or email).
+    Posts are reviewed by a person before appearing. To remove what you posted,
+    use Settings &gt; Delete all data: it erases every post and vote you made on
+    the board.</p>
+    <p><strong>Feedback.</strong> If you send feedback, the message you wrote is
+    delivered to us by email at info@quitforecast.com.</p>
 
-<h2>Children</h2>
-<p>QuitForecast is intended for adults and is rated 18+.</p>
+    <h2>What we never do</h2>
+    <p>No advertising, no analytics SDKs, no tracking across apps or websites,
+    no sale or sharing of data, no accounts, no passwords.</p>
 
-<h2>Your rights</h2>
-<p>Because the app holds no accounts and stores your data on your own
-device, there is nothing for us to look up, correct or hand over: you
-already hold all of it, you can export it from Settings, and you can
-delete it from the same screen. If you have posted to the community board
-and want a post removed without erasing everything, write to
-<a href="mailto:info@quitforecast.com">info@quitforecast.com</a>.</p>
+    <h2>This website</h2>
+    <p>These pages set no cookies and load no fonts, scripts or trackers from
+    any other host. Nothing you do here is measured, and there is no form to
+    fill in.</p>
 
-<h2>Changes</h2>
-<p>If this policy changes, the updated version is posted at this address
-with a new effective date.</p>
+    <h2>Deleting your data</h2>
+    <p>Settings &gt; Delete all data erases everything on the device, your
+    iCloud backup, and your community posts. Export your data first from the
+    same screen if you want a copy.</p>
 
-<footer><p><a href="/">QuitForecast</a></p></footer>
+    <h2>Children</h2>
+    <p>QuitForecast is intended for adults and is rated 18+.</p>
+
+    <h2>Your rights</h2>
+    <p>Because the app holds no accounts and stores your data on your own
+    device, there is nothing for us to look up, correct or hand over: you
+    already hold all of it, you can export it from Settings, and you can delete
+    it from the same screen. If you have posted to the community board and want
+    a post removed without erasing everything, write to
+    <a href="mailto:info@quitforecast.com">info@quitforecast.com</a>.</p>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, the updated version is posted at this address
+    with a new effective date.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="/">QuitForecast</a> &nbsp;·&nbsp;
+       <a href="mailto:info@quitforecast.com">info@quitforecast.com</a></p>
+  </div>
+</footer>
+
 </body>
 </html>
