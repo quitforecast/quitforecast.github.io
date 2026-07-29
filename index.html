@@ -3,14 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>QuitForecast</title>
-<meta name="description" content="Smoking, vaping, alcohol, weed or caffeine. QuitForecast learns the hours your cravings actually come, out of your own log, and tells you before they arrive.">
+<title>QuitForecast: know the hours your cravings come</title>
+<meta name="description" content="QuitForecast learns the two hours your cravings actually come, out of your own log, and tells you before they arrive. For smoking, vaping, alcohol, cannabis or caffeine.">
 <meta name="theme-color" content="#0C1820">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://quitforecast.com/">
-<meta property="og:title" content="QuitForecast">
+<meta property="og:title" content="QuitForecast: know the hours your cravings come">
 <meta property="og:description" content="What you know can’t control you. QuitForecast learns the hours your cravings actually come, out of your own log, and tells you before they arrive.">
-<meta name="twitter:card" content="summary">
+<!-- The share card. Same origin, drawn from the hero's own ring on the Ocean
+     ground, so a link to this page previews as the product rather than as a
+     bare text tile. The url is absolute on purpose: several scrapers drop a
+     relative one and fall back to nothing. -->
+<meta property="og:image" content="https://quitforecast.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A twenty-four hour ring with a craving log drawn on it, an amber arc over 8 to 10 PM.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://quitforecast.com/og.jpg">
+<!-- The real app icon, so a home-screen bookmark carries the mark a visitor
+     has to recognise on the App Store. -->
+<link rel="apple-touch-icon" href="/icon-180.png">
 <!-- The mark, inline: a data URI so the page still asks nothing of any other
      host. Full closed ring, amber now-dot centered on the ring path at twelve
      o'clock, which is the brand canon the app icon and the splash both draw. -->
@@ -59,7 +71,10 @@
   --t-small: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
   --t-body:  clamp(1.0625rem, 1.02rem + 0.24vw, 1.1875rem);
   --t-lead:  clamp(1.1875rem, 1.1rem + 0.5vw, 1.4375rem);
-  --t-h3:    clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem);
+  /* An h3 has to be bigger than the lead paragraph that introduces it. At the
+     old ceiling it computed to 21px against the lede's 23px, so every section
+     heading on the page was smaller than the sentence above it. */
+  --t-h3:    clamp(1.25rem, 1.13rem + 0.55vw, 1.5rem);
   --t-h2:    clamp(1.75rem, 1.4rem + 1.6vw, 2.625rem);
   --t-h1:    clamp(2.25rem, 1.7rem + 2.9vw, 3.75rem);
 
@@ -67,9 +82,19 @@
   --s-xs: 0.25rem; --s-s: 0.5rem;  --s-m: 0.75rem; --s-l: 1rem;
   --s-xl: 1.5rem; --s-xxl: 2rem;  --s-xxxl: 3rem;
 
+  /* The two gaps that open under a section head, named once. They were written
+     inline in four different values across nine blocks, and two of those did
+     not scale with the viewport at all. --gap-block is head to first block,
+     --gap-sub is the wider one before a second block inside the same section. */
+  --gap-block: clamp(2rem, 5vw, 3rem);
+  --gap-sub:   clamp(2.5rem, 6vw, 4rem);
+
   --radius-card: 16px;
   --measure: 34rem;       /* about 66 characters, the reading measure */
 }
+
+.stack-block { margin-top: var(--gap-block); }
+.stack-sub   { margin-top: var(--gap-sub); }
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -95,7 +120,7 @@ body {
 .measure { max-width: var(--measure); }
 
 h1, h2, h3 { line-height: 1.14; margin: 0; font-weight: 600; letter-spacing: -0.015em;
-             text-wrap: balance; }
+             text-wrap: balance; overflow-wrap: break-word; }
 h1 { font-size: var(--t-h1); letter-spacing: -0.028em; }
 h2 { font-size: var(--t-h2); letter-spacing: -0.022em; }
 h3 { font-size: var(--t-h3); letter-spacing: -0.01em; }
@@ -103,6 +128,9 @@ p  { margin: 0; }
 
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
 a:hover { text-decoration-thickness: 2px; }
+/* The support address is one unbreakable word to a browser. At 200% text in a
+   320px window it was the single thing pushing the page sideways. */
+a[href^="mailto:"] { overflow-wrap: anywhere; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
 
 .dim { color: var(--dim); }
@@ -119,21 +147,85 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* --- Header ------------------------------------------------------------- */
 
+/* The bar is the only thing on the page that follows the reader down, so the
+   way out is never more than a glance away. Full width, with the wrap inside
+   it, so the rule underneath spans the window while the lockup and the nav
+   stay in the same column as everything else. */
+.topbar {
+  position: sticky; top: 0; z-index: 5;
+  background: rgba(12, 24, 32, 0.92);   /* --bg, with just enough left to see through */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
 .masthead {
   display: flex; align-items: center; justify-content: space-between;
   gap: var(--s-l); flex-wrap: wrap;
-  padding-block: var(--s-xl);
+  padding-block: var(--s-m);
 }
 .lockup { display: flex; align-items: center; gap: 0.625rem; font-weight: 600;
           letter-spacing: -0.01em; color: var(--text); text-decoration: none; }
 .lockup svg { display: block; width: 1.625rem; height: 1.625rem; flex: none; }
-.masthead nav { display: flex; gap: var(--s-xl); font-size: var(--t-small); }
+/* Wraps, and carries a row gap for when it does: at 200% text the three links
+   and the button ran off the right edge of a 320px window. */
+.masthead nav { display: flex; flex-wrap: wrap; align-items: center;
+                gap: var(--s-s) var(--s-xl); font-size: var(--t-small); }
 .masthead nav a { color: var(--dim); text-decoration: none; }
 .masthead nav a:hover { color: var(--text); }
+/* The one thing in the bar that is not a section link, so it does not look
+   like one. Written at the same specificity as the rule above it, which would
+   otherwise keep it dim. */
+.masthead nav a.navcta { color: var(--bg); background: var(--accent);
+                         padding: 0.4rem 0.85rem; border-radius: 999px;
+                         font-weight: 600; }
+.masthead nav a.navcta:hover { color: var(--bg); opacity: 0.88; }
+/* One row on a phone, and it takes all of this to hold one. Left alone the bar
+   stood 105px tall and took an eighth of the first screen with it, because the
+   lockup and the nav together ask for 323px inside a 280px shell. So: two of
+   the four nav items go, both still reachable from the footer and from the
+   page itself; the rest comes down a size. Price and the download survive,
+   which are the two things a reader is in the bar to find. Measured after: one
+   row, 57px. */
+@media (max-width: 34rem) {
+  .masthead { gap: var(--s-m); }
+  .masthead nav a[href="#window"],
+  .masthead nav a[href="#support"] { display: none; }
+  .masthead nav { gap: var(--s-m); font-size: var(--t-micro); }
+  .masthead nav a.navcta { padding: 0.35rem 0.75rem; }
+  .lockup { font-size: var(--t-small); gap: var(--s-s); }
+  .lockup svg { width: 1.375rem; height: 1.375rem; }
+}
+/* A bar that has grown to a third of the window has stopped being a
+   convenience. The height is measured in rem on purpose, so this trips both on
+   a short window and on a reader who has doubled their text: at 200% the bar
+   wraps to three rows and 251px, and 251px nailed to the top of an 800px
+   screen is a wall. Above that ratio it scrolls away like anything else. */
+@media (max-height: 34rem) {
+  .topbar { position: static; }
+}
 
 /* --- Sections ----------------------------------------------------------- */
 
 section { padding-block: clamp(3rem, 8vw, 6rem); }
+/* Clears the sticky bar, so an anchor lands on its heading and not under it. */
+section { scroll-margin-top: 4.5rem; }
+/* SC 2.4.11 Focus Not Obscured. The offset used to sit on `section` alone, so
+   tabbing BACKWARDS up the page parked the focused link underneath the sticky
+   bar: it had focus, and it could not be seen. Anything focusable carries it
+   now, which is the only version of this rule that survives Shift+Tab. */
+a, button, [tabindex]:not([tabindex="-1"]) { scroll-margin-top: 5.5rem; }
+
+/* 5. Windows High Contrast and forced-colors. The whole palette is replaced by
+   the user's own, and on a LIGHT forced theme two things vanished onto white:
+   the App Store badge, which is white artwork, and the craving-log card, whose
+   only edge was a colour this mode discards. A forced border is the fix, and
+   forced-color-adjust keeps the badge's own artwork intact so it stays the
+   badge Apple requires rather than a repainted approximation. */
+@media (forced-colors: active) {
+  .card, .appcard, .onpage, .topbar { border: 1px solid CanvasText; }
+  .badge img { forced-color-adjust: none; background: Canvas; }
+  .arc, .nowdot, .dot { forced-color-adjust: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid Highlight; }
+}
 section + section { border-top: 1px solid var(--line); }
 .hero { padding-top: clamp(1.5rem, 5vw, 3.5rem); padding-bottom: clamp(2rem, 6vw, 4rem); }
 
@@ -147,7 +239,10 @@ p { text-wrap: pretty; }
    the left, what it means on the right. A single 34rem column of prose down
    the left edge left half of a desktop window empty for six sections running,
    which reads as an unfinished page rather than a restrained one. */
-.sechead { display: grid; gap: var(--s-l); }
+/* The single-column base needs saying out loud: a bare `grid` gives an auto
+   column, which an unbreakable word can widen past the viewport. The 54rem
+   query below replaces it. */
+.sechead { display: grid; gap: var(--s-l); grid-template-columns: minmax(0, 1fr); }
 .sechead-body > * + * { margin-top: var(--s-l); }
 .sechead-body { max-width: var(--measure); }
 @media (min-width: 54rem) {
@@ -157,6 +252,14 @@ p { text-wrap: pretty; }
      21rem the streak-guilt quote broke into five short lines and read as a
      stack rather than a sentence. */
   .sechead.quote { grid-template-columns: minmax(0, 27rem) minmax(0, 1fr); }
+  /* The head rides its own body down instead of stranding it. Nine of these
+     leave between 285px and 456px of empty left column at 1440, which is the
+     head having finished with the section the reader is still in the middle
+     of. A grid item's containing block is its grid area, so it can travel the
+     full height of the row without any script. 5.5rem clears the sticky bar,
+     and under max-height: 34rem that bar goes static anyway, so a short window
+     is unaffected. */
+  .sechead > :first-child { position: sticky; top: 5.5rem; }
 }
 
 /* The App Store badge. White is the sanctioned variant on a dark ground.
@@ -165,10 +268,11 @@ p { text-wrap: pretty; }
    is still a recreation. Apple's marketing guidelines require their supplied
    artwork, so before launch download the badge from
    developer.apple.com/app-store/marketing/guidelines and replace the <svg>
-   inside .badge with it. The href is a placeholder too, and there are two of
-   them on this page. */
+   inside .badge with it. The href is a placeholder too, and there are five of
+   them on this page: the bar, the hero, the end of the window section, the
+   midpoint closer under Health, and the closer. */
 .badge { display: inline-block; line-height: 0; border-radius: 8px; }
-.badge svg { display: block; width: 10.25rem; height: auto; }
+.badge svg { display: block; width: min(10.25rem, 100%); height: auto; }
 .badge:hover { opacity: 0.88; }
 
 /* --- The hero figure ---------------------------------------------------- */
@@ -184,12 +288,20 @@ p { text-wrap: pretty; }
 }
 .figure { margin: 0; display: flex; flex-direction: column; align-items: center;
           gap: var(--s-l); }
-.figure svg.ring { display: block; width: min(76vw, 23.5rem); height: auto; }
+/* The floor is in rem on purpose. A px inside a viewBox is a user unit scaled
+   by the element's width, not by the reader's text setting, so the only way the
+   hour labels grow with a larger default is for the ring itself to grow. At
+   76vw alone they measured 8.69px in a 320px window, under the page's floor. */
+.figure svg.ring { display: block; width: min(76vw, 23.5rem);
+                   min-width: min(100%, 17.5rem); height: auto; }
 .figure-label { font-size: var(--t-micro); color: var(--dim); letter-spacing: 0.01em; }
 /* Capped to the ring's own width. Left wider, the caption became the widest
    thing in the figure column and stole the space the headline needed beside
    it, which is how a two-line headline turned into three. */
-.caps { display: grid; text-align: center; width: min(76vw, 23.5rem); }
+/* Same width as the ring, floor included, so the caption stays the ring's own
+   width and not a narrower column under a wider drawing. */
+.caps { display: grid; text-align: center; width: min(76vw, 23.5rem);
+        min-width: min(100%, 17.5rem); }
 .caps > p { grid-area: 1 / 1; font-size: var(--t-small); line-height: 1.5; }
 .caps .final { color: var(--text); }
 .caps .staged { color: var(--dim); }
@@ -201,11 +313,11 @@ p { text-wrap: pretty; }
 .track  { fill: none; stroke: var(--line2); stroke-width: 5; }
 .tick   { stroke: var(--line); stroke-width: 1; }
 .tick.major { stroke: var(--line2); stroke-width: 1.5; }
-.hourlabel { fill: var(--dim); font-family: var(--sans); font-size: 13px;
+.hourlabel { fill: var(--dim); font-family: var(--sans); font-size: 15px;
              text-anchor: middle; dominant-baseline: middle; }
 .dot    { fill: var(--text); opacity: 0.55; }
 .arc    { fill: none; stroke: var(--amber); stroke-width: 5; stroke-linecap: round; }
-.arclabel { fill: var(--amber); font-family: var(--sans); font-size: 13px;
+.arclabel { fill: var(--amber); font-family: var(--sans); font-size: 15px;
             font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
 .nowhalo { fill: var(--bg); }
 .nowdot  { fill: var(--text); }
@@ -224,22 +336,28 @@ p { text-wrap: pretty; }
 @keyframes capShow  { 0% { opacity: 0; } 14% { opacity: 1; }
                       82% { opacity: 1; } 100% { opacity: 0; } }
 
-.track { stroke-dasharray: 1; animation: drawRing 0.9s ease-out 0.1s both; }
-.tick  { animation: tickIn 0.6s ease-out 0.85s both; }
-.hourlabel { animation: fadeIn 0.6s ease-out 0.95s both; }
+/* The whole sequence lands at about 3.35 seconds, not 5.75. The amber arc, its
+   label and the now-dot are the entire visual payload of this figure, and at
+   the old timings they did not exist until 5.35s: a reader who scrolled inside
+   six seconds got a bare circle with nine faint specks and never saw the one
+   picture the product has. The scaffolding moved forward with the log, so the
+   ring and its hours are still there before a craving lands on them. */
+.track { stroke-dasharray: 1; animation: drawRing 0.8s ease-out 0.05s both; }
+.tick  { animation: tickIn 0.5s ease-out 0.4s both; }
+.hourlabel { animation: fadeIn 0.5s ease-out 0.5s both; }
 .dot   { transform-box: fill-box; transform-origin: center;
          animation: dotIn 0.45s ease-out both; }
 .arc   { stroke-dasharray: 1;
-         animation: drawArc 0.85s ease-out 4.5s both,
-                    arcBreath 1.8s ease-in-out 5.7s infinite alternate; }
-.arclabel { animation: fadeIn 0.6s ease-out 5.05s both; }
+         animation: drawArc 0.85s ease-out 2.3s both,
+                    arcBreath 1.8s ease-in-out 3.15s infinite alternate; }
+.arclabel { animation: fadeIn 0.6s ease-out 2.75s both; }
 .now   { transform-box: fill-box; transform-origin: center;
-         animation: popIn 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) 5.3s both; }
-.cap-a { animation: capShow 2.1s ease-in-out 1.0s both; }
-.cap-b { animation: capShow 1.5s ease-in-out 3.15s both; }
+         animation: popIn 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) 2.9s both; }
+.cap-a { animation: capShow 1.2s ease-in-out 0.6s both; }
+.cap-b { animation: capShow 1.0s ease-in-out 1.75s both; }
 /* Picks up as the second caption finishes, not after it: a third of a second
    with the whole caption line empty read as the animation having broken. */
-.cap-c { animation: fadeIn 0.6s ease-out 4.65s both; }
+.cap-c { animation: fadeIn 0.6s ease-out 2.5s both; }
 
 /* --- Cards -------------------------------------------------------------- */
 
@@ -254,6 +372,7 @@ p { text-wrap: pretty; }
    square corners are clipped to the device radius. */
 
 .phone {
+  position: relative;
   width: min(100%, 16.5rem);
   padding: 0.4rem;
   border-radius: 2.6rem;
@@ -263,6 +382,17 @@ p { text-wrap: pretty; }
   flex: none;
 }
 .phone img { display: block; width: 100%; height: auto; border-radius: 2.25rem; }
+/* HOLDING PATCH, not the fix. Seven of the eleven shots were caught mid-scroll
+   and end in a strip of sheared half-lines under the floating tab bar. The
+   real answer is a re-shoot with each scroll position composed so a card edge,
+   not a text line, meets the bottom of the frame. Until then this fades the
+   last 5.5% of every shot into the page, which lands below every tab bar and
+   eats all seven at once. Delete it the day the new captures land. */
+.phone::after {
+  content: ""; position: absolute; left: 0.4rem; right: 0.4rem; bottom: 0.4rem;
+  height: 5.5%; border-radius: 0 0 2.25rem 2.25rem; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(12, 24, 32, 0), var(--bg) 70%);
+}
 
 /* Two devices reading left to right: the glance, then the sentence behind it.
    Offset rather than overlapped, because overlapping devices read as a stock
@@ -278,22 +408,50 @@ p { text-wrap: pretty; }
 
 .shotnote { font-size: var(--t-micro); color: var(--dim); line-height: 1.5;
             max-width: 16.5rem; }
+/* The line that says what the shots are and are not. Written twice, verbatim,
+   before it was a class. */
+.shotcaption { font-size: var(--t-micro); color: var(--dim); line-height: 1.5;
+               margin-top: var(--s-xl); max-width: var(--measure);
+               margin-inline: auto; text-align: center; }
 
 /* The last thing on the page before the practical sections. */
+/* flex-start with a gap, not space-between: in a 60rem shell space-between
+   opened a 240px void between the sentence and the badge, and the argument and
+   its way out read as two unrelated objects sitting at opposite edges. */
 .closer { margin-top: clamp(3rem, 8vw, 5rem); padding-top: clamp(2rem, 5vw, 3rem);
           border-top: 1px solid var(--line);
-          display: flex; flex-wrap: wrap; gap: var(--s-xl) var(--s-xxl);
-          align-items: center; justify-content: space-between; }
+          display: flex; flex-wrap: wrap;
+          gap: var(--s-xl) clamp(1.5rem, 5vw, 3.5rem);
+          align-items: center; justify-content: flex-start; }
 
-/* One feature, one screen, alternating sides on a wide window. */
+/* The index of the page, in plain nouns. The h2s are deliberately poetic and
+   carry no scent for a reader hunting for Apple Health or the price, so this is
+   where the ordinary words live and the headings stay as written. Anchors, so
+   it costs no script and works with the page's own smooth scrolling. */
+.onpage { margin-top: var(--gap-block); }
+.onpage ul { list-style: none; margin: var(--s-m) 0 0; padding: 0;
+             display: flex; flex-wrap: wrap; gap: var(--s-s); }
+.onpage a { display: inline-block; font-size: var(--t-small); color: var(--text);
+            text-decoration: none; border: 1px solid var(--line2);
+            border-radius: 999px; padding: 0.35rem 0.8rem; }
+.onpage a:hover { border-color: var(--accent); color: var(--accent); }
+
+/* One feature, one screen. The sides used to alternate, and the cost was four
+   different left edges for four blocks of prose, 160px then 480px then 160px
+   again down a desktop window. Copy on the left every time, device on the
+   right every time: one edge, and the eye stops re-finding it. */
 .feature { display: grid; gap: clamp(1.75rem, 5vw, 3.5rem); align-items: center;
            justify-items: center; }
 .feature-copy { max-width: var(--measure); }
 .feature-copy > * + * { margin-top: var(--s-l); }
 @media (min-width: 54rem) {
-  .feature { grid-template-columns: minmax(0, 1fr) auto; justify-items: start; }
-  .feature.flip { grid-template-columns: auto minmax(0, 1fr); }
-  .feature.flip .feature-copy { order: 2; }
+  /* The device track is named, not left to `auto`. An <img> with width="520"
+     carries a 520px max-content, so the auto track measured 532.8px to hold a
+     264px phone: 268px of dead column on every one of the seven feature
+     blocks, and the copy squeezed to 371px when it asks for --measure. At
+     16.5rem the track is the phone's own width, the copy gets its measure
+     back, and the device's right edge lands on the wrap's right margin. */
+  .feature { grid-template-columns: minmax(0, 1fr) 16.5rem; justify-items: start; }
 }
 
 /* Scroll-driven, and pure CSS: no script runs on this page, so this is an
@@ -336,27 +494,54 @@ blockquote { margin: 0; }
 .ladder h3 { grid-column: 2; }
 .ladder p  { grid-column: 2; font-size: var(--t-small); color: var(--dim); }
 
+/* min() on the track floor, not a bare rem: at 200% text a 15rem minimum is
+   wider than a 320px window, and auto-fit honours it anyway. */
 .grid { display: grid; gap: var(--s-l);
-        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+        grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr)); }
 .grid h3 { margin-bottom: var(--s-xs); }
 .grid p { font-size: var(--t-small); color: var(--dim); }
 
 .split { display: grid; gap: var(--s-l);
-         grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+         grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr)); }
 .plainlist { list-style: none; margin: var(--s-m) 0 0; padding: 0;
              font-size: var(--t-small); }
 .plainlist li { padding-block: 0.3rem; padding-left: 1.1rem; position: relative; }
+/* --dim, not --line2. At #2A4A5A on #0C1820 the dashes measured 1.87:1 and
+   simply were not there, which is the whole Premium feature list. */
 .plainlist li::before { content: ""; position: absolute; left: 0; top: 0.85em;
-                        width: 0.375rem; height: 1px; background: var(--line2); }
+                        width: 0.375rem; height: 1px; background: var(--dim); }
 
 
 /* --- Price -------------------------------------------------------------- */
 
-.prices { display: flex; flex-wrap: wrap; gap: var(--s-m); margin-top: var(--s-l); }
-.price { border: 1px solid var(--line2); border-radius: 12px;
-         padding: var(--s-m) var(--s-l); font-size: var(--t-small); }
-.price b { font-weight: 600; }
-.price span { color: var(--dim); }
+/* Cards, not chips. Ghosted outlines on the page ground read as three disabled
+   controls, and the number, the one thing a reader came here for, was set
+   smaller than the paragraph above it. */
+/* A grid, not a flex row: the yearly card carries two more clauses than the
+   lifetime one and sized itself to 364px against 193px, which read as three
+   different kinds of thing rather than three prices. Equal columns, same
+   auto-fit shape as .split above. */
+.prices { display: grid; gap: var(--s-m); margin-top: var(--s-l);
+          grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr)); }
+.price { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+         padding: var(--s-l) var(--s-xl); font-size: var(--t-small); }
+/* The two cards with no tag reserve the tag's slot, so all three numbers sit on
+   one baseline. Without it the $39.99 started 28px lower than its neighbours
+   and the three prices read as two rows. */
+.price:not(.best)::before { content: ""; display: block;
+                            height: calc(var(--t-micro) * 1.6);
+                            margin-bottom: var(--s-xs); }
+/* Its own scale, not the heading scale: the number is the one thing a reader
+   came to this section for, and at --t-h3 it was smaller than the paragraph
+   above it. */
+.price b { display: block; font-weight: 600;
+           font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+           font-variant-numeric: tabular-nums; }
+.price span { display: block; font-size: var(--t-micro); color: var(--dim); }
+/* The app's own `best: true`, on the same tier PaywallView marks. */
+.price.best { border-color: var(--accent); }
+.price .tag { display: block; font-size: var(--t-micro); color: var(--accent);
+              font-weight: 600; margin-bottom: var(--s-xs); }
 
 /* --- Footer ------------------------------------------------------------- */
 
@@ -382,8 +567,8 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<div class="wrap">
-  <header class="masthead">
+<header class="topbar">
+  <div class="wrap masthead">
     <a class="lockup" href="/">
       <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
         <circle cx="16" cy="16" r="11" fill="none" stroke="#7FD9C4" stroke-width="3"/>
@@ -392,12 +577,18 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       QuitForecast
     </a>
     <nav aria-label="Page sections">
-      <a href="#substances">What it covers</a>
+      <!-- "How it works", not "What it covers": the old label pointed at a
+           section headed "Five things, five forecasts.", which gave a reader
+           no scent of what they would land on. That heading has since been
+           rewritten and the section moved below the proof ladder; this link
+           goes where it always should have, to the window itself. -->
+      <a href="#window">How it works</a>
       <a href="#price">Price</a>
       <a href="#support">Support</a>
+      <a class="navcta" href="https://apps.apple.com/app/quitforecast/id0000000000">Get the app</a>
     </nav>
-  </header>
-</div>
+  </div>
+</header>
 
 <main id="main">
 
@@ -407,15 +598,20 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <div class="hero-copy">
         <div class="head-stack">
           <h1>What you know can’t control you.</h1>
-          <p class="lede">Smoking, vaping, alcohol, weed or caffeine.
-          QuitForecast learns the hours your cravings actually come, out of
-          your own log, and tells you before they arrive.</p>
+          <!-- The promise first, the list of habits behind it. Led by the
+               five nouns, the first thing the page said was a category and
+               not a claim. "Two hours" is what the product actually names:
+               PatternEngine picks the hardest two hours and the ring beside
+               this draws exactly two. -->
+          <p class="lede">QuitForecast learns the two hours your cravings
+          actually come, out of your own log, and tells you before they
+          arrive. For smoking, vaping, alcohol, cannabis or caffeine.</p>
         </div>
         <div>
           <!-- PLACEHOLDER LINK: swap 0000000000 for the real App Store id once
-               the listing exists. Both badges on this page carry it. -->
+               the listing exists. Every badge on this page carries it. -->
           <a class="badge" href="https://apps.apple.com/app/quitforecast/id0000000000"
-             aria-label="Download QuitForecast on the App Store">
+             aria-label="Download on the App Store">
             <svg viewBox="0 0 120 40" role="img" aria-hidden="true" focusable="false">
               <rect width="120" height="40" rx="6.5" fill="#FFFFFF"/>
               <g transform="translate(10.6 10.6) scale(0.2311)">
@@ -425,6 +621,18 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
               <text x="31" y="31.6" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16.8" font-weight="500" letter-spacing="-0.35">App Store</text>
             </svg>
           </a>
+          <!-- Both halves, named here rather than eleven sections down. A list
+               of free things under a download button reads as the whole app
+               being free, and the next thing this page sells is the window. -->
+          <p class="micro" style="margin-top: var(--s-m);">Free to download. Your
+          clean-time counter, the SOS tools and the crisis lines stay free
+          permanently. The craving window is the paid part, along with the
+          depth behind it: the hour-by-hour timeline, the recovery curves and
+          the full catalogue.</p>
+          <!-- The second path. A reader who is interested and not ready to
+               install had no directed next step from here at all. -->
+          <p class="small" style="margin-top: var(--s-s);"><a href="#window">See
+          how the window is found</a></p>
         </div>
       </div>
 
@@ -477,22 +685,31 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <text class="hourlabel" x="15" y="170">6pm</text>
 
           <!-- The log. Scattered hours first, then the seven that gather. -->
-          <circle class="dot" cx="260.8" cy="199.5" r="3.6" style="animation-delay:0.95s"/>
-          <circle class="dot" cx="248.1" cy="233.2" r="3.6" style="animation-delay:1.08s"/>
-          <circle class="dot" cx="197.1" cy="261.6" r="3.6" style="animation-delay:1.21s"/>
-          <circle class="dot" cx="159.5" cy="269.9" r="3.6" style="animation-delay:1.34s"/>
-          <circle class="dot" cx="135.8" cy="259.2" r="3.6" style="animation-delay:1.47s"/>
-          <circle class="dot" cx="85.7"  cy="224.7" r="3.6" style="animation-delay:1.60s"/>
-          <circle class="dot" cx="76.1"  cy="187.4" r="3.6" style="animation-delay:1.73s"/>
-          <circle class="dot" cx="69.6"  cy="164.7" r="3.6" style="animation-delay:1.86s"/>
-          <circle class="dot" cx="155.1" cy="75.7"  r="3.6" style="animation-delay:1.99s"/>
-          <circle class="dot" cx="86.4"  cy="118.8" r="3.6" style="animation-delay:2.20s"/>
-          <circle class="dot" cx="87.5"  cy="111.7" r="3.6" style="animation-delay:2.36s"/>
-          <circle class="dot" cx="98.6"  cy="107.4" r="3.6" style="animation-delay:2.51s"/>
-          <circle class="dot" cx="101.5" cy="105.0" r="3.6" style="animation-delay:2.67s"/>
-          <circle class="dot" cx="100.2" cy="98.4"  r="3.6" style="animation-delay:2.82s"/>
-          <circle class="dot" cx="108.6" cy="96.2"  r="3.6" style="animation-delay:2.98s"/>
-          <circle class="dot" cx="110.3" cy="87.9"  r="3.6" style="animation-delay:3.13s"/>
+          <!-- Every dot on one radius, 106. They were scattered across 94.96
+               to 107.02, and a 12-unit wobble in a drawing of a clock reads as
+               a swarm rather than as a log: the eye takes the radius for
+               meaning and there is none in it. One radius also closes the ink
+               gap between the gather and the arc explaining it, from 11.9
+               units to 5.9, so the seven sit visibly under their own band.
+               The cluster is 20:03 through 21:57, spaced 8.3 to 9.2 units so
+               none of them touch at r=3.6, and all seven fall inside the
+               8 to 10 PM arc. -->
+          <circle class="dot" cx="271.0" cy="202.3" r="3.6" style="animation-delay:0.60s"/>
+          <circle class="dot" cx="252.7" cy="236.3" r="3.6" style="animation-delay:0.695s"/>
+          <circle class="dot" cx="200.1" cy="271.6" r="3.6" style="animation-delay:0.79s"/>
+          <circle class="dot" cx="158.9" cy="275.4" r="3.6" style="animation-delay:0.885s"/>
+          <circle class="dot" cx="132.4" cy="269.1" r="3.6" style="animation-delay:0.98s"/>
+          <circle class="dot" cx="81.1"  cy="227.7" r="3.6" style="animation-delay:1.075s"/>
+          <circle class="dot" cx="65.8"  cy="189.3" r="3.6" style="animation-delay:1.17s"/>
+          <circle class="dot" cx="64.1"  cy="164.5" r="3.6" style="animation-delay:1.265s"/>
+          <circle class="dot" cx="153.4" cy="65.3"  r="3.6" style="animation-delay:1.36s"/>
+          <circle class="dot" cx="78.9"  cy="115.8" r="3.6" style="animation-delay:1.48s"/>
+          <circle class="dot" cx="84.0"  cy="108.1" r="3.6" style="animation-delay:1.55s"/>
+          <circle class="dot" cx="89.1"  cy="101.5" r="3.6" style="animation-delay:1.62s"/>
+          <circle class="dot" cx="95.0"  cy="95.0"  r="3.6" style="animation-delay:1.69s"/>
+          <circle class="dot" cx="101.5" cy="89.1"  r="3.6" style="animation-delay:1.76s"/>
+          <circle class="dot" cx="108.4" cy="83.7"  r="3.6" style="animation-delay:1.83s"/>
+          <circle class="dot" cx="115.8" cy="78.9"  r="3.6" style="animation-delay:1.90s"/>
 
           <!-- The verdict. A faint band across the dots was tried here and cut:
                at any opacity that registered it read as a grey quadrilateral
@@ -527,32 +744,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
     </div>
   </section>
 
-  <!-- ===================== WHAT YOU ARE QUITTING ===================== -->
-  <section id="substances">
-    <div class="wrap">
-      <div class="feature flip reveal">
-        <div class="feature-copy">
-          <h2>Five things, five forecasts.</h2>
-          <p class="lede dim">Smoking, vaping, alcohol, cannabis, caffeine.
-          Each written separately, because they are not the same withdrawal.</p>
-          <p>Nicotine leaves in days while the receptors take weeks. Alcohol
-          withdrawal can be a medical emergency, so that timeline opens with
-          the warning signs and the number to call rather than a milestone.
-          Cannabis takes sleep and appetite with it for a fortnight. Caffeine
-          is a headache with a deadline. You can run more than one at a time,
-          and each keeps its own clock, its own timeline and its own colour.</p>
-        </div>
-        <div class="phone">
-          <img src="shots/habits.jpg" width="520" height="1130" loading="lazy"
-               decoding="async"
-               alt="The setup screen asking What are you quitting, listing
-                    Smoking, Vaping, Alcohol, Cannabis and Caffeine, each with
-                    its own icon.">
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===================== THE WINDOW ===================== -->
   <section id="window">
     <div class="wrap">
@@ -565,10 +756,22 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         separate days, QuitForecast names the two hours yours gather in, and
         arms about three hours before they open. Not a mood, not a score: a
         count you could have made yourself, out of your own log.</p>
+        <p>The alert lands about 45 minutes ahead of the hours, close enough to
+        be a prompt rather than a forecast, and it arrives with the play and not
+        just the warning. This is the app's own line, unchanged: <b>A walk, some
+        water, or the SOS breath is enough to get through it.</b></p>
+        <!-- How long until this works for me, at the size of the question. It
+             was set in the smallest and dimmest type on the page, inside a
+             hundred-word block about the statistical bar, which is where an
+             answer goes to not be read. -->
+        <p>In our own backtest, a pattern that shows up on most days cleared
+        the bar on the third or fourth day of logging. One that only shows on
+        Fridays took about a month, because it needs four or five Fridays
+        before it can say anything about Fridays.</p>
         </div>
       </div>
 
-      <div class="phones reveal" style="margin-top: clamp(2rem, 5vw, 3rem);">
+      <div class="phones reveal stack-block">
         <div>
           <div class="phone">
             <img src="shots/today.jpg" width="520" height="1130" loading="lazy"
@@ -596,22 +799,28 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           log.</p>
         </div>
       </div>
-      <p class="micro" style="margin-top: var(--s-xl); max-width: 34rem;
-      margin-inline: auto; text-align: center;">Real
-      screens, from a real build, on a log that happens to peak in the early
-      evening. Yours will name different hours, or none at all. A day with two
-      genuine patterns gets two arcs; almost nobody has two.</p>
+      <!-- Seeded, and said so. Settings calls the same seed "Fake data, for
+           testing" on the user's own screen, so the page cannot call it a
+           person's log. -->
+      <p class="shotcaption">Real
+      screens, from a real build, on a seeded demo log rather than a person's,
+      one that happens to peak in the early evening. Yours will name different
+      hours, or none at all. A day with two genuine patterns gets two arcs;
+      almost nobody has two.</p>
 
-      <div class="split reveal" style="margin-top: var(--s-xxl);">
+      <div class="split reveal stack-block">
         <div>
-          <h3>It stays quiet when it does not know</h3>
+          <h3>What it takes before it says anything</h3>
           <p class="small dim" style="margin-top: var(--s-s);">A window has to
-          clear a statistical bar before the app will speak, measured across
-          your last eight weeks. In our own backtest, across twelve simulated
-          logs, 97 percent of the warnings it gave were for hours a craving
-          really did arrive in, and for the person whose cravings had no
-          pattern to find it stayed silent for good. An app that admits when it
-          does not know is worth more than one that guesses.</p>
+          clear a statistical bar before the app will speak. The everyday
+          reading is counted across your last thirty days; a pattern that only
+          shows on one weekday is counted across your last eight of that
+          weekday, so it takes longer to earn. The floor either way is four
+          separate days holding a craving in the same two hours, and the reading
+          before it has to have named those same two hours already. For some
+          logs it never clears, and the app says nothing rather than invent one.
+          The counter, the milestone timeline and the SOS tools work from the
+          first minute.</p>
         </div>
         <div>
           <h3>The dial predicts nothing</h3>
@@ -623,6 +832,123 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           pattern. There is no score in it, no colour scale, and no red.</p>
         </div>
       </div>
+
+      <!-- The second way out. The reader has just been shown the one thing the
+           app does that nothing else does, and the next chance to act on it was
+           twenty screens away. -->
+      <div class="closer reveal">
+        <!-- A price and a route, on the one CTA a reader reaches already sold.
+             They have just seen the two window shots, and the nearest number
+             was the sticky bar and a hunt. The health closer below already
+             does this; this one only said what was free. -->
+        <p class="small" style="max-width: 26rem;">That is the whole product. The
+        rest of this page is the evidence for it. The window is the paid part,
+        with the hour-by-hour depth behind it. The counter, the SOS tools and
+        the crisis lines never are. <a href="#price">$39.99 a year.</a></p>
+        <a class="badge" href="https://apps.apple.com/app/quitforecast/id0000000000"
+           aria-label="Download on the App Store">
+          <svg viewBox="0 0 120 40" role="img" aria-hidden="true" focusable="false">
+            <rect width="120" height="40" rx="6.5" fill="#FFFFFF"/>
+            <g transform="translate(10.6 10.6) scale(0.2311)">
+              <path fill="#000000" d="M44.63,18.31Q45.70,18.31 48.29,18.65Q50.88,18.99 53.98,20.58Q57.08,22.17 59.62,25.83Q59.47,25.98 58.20,26.88Q56.93,27.78 55.37,29.52Q53.81,31.25 52.64,33.91Q51.46,36.57 51.46,40.23Q51.46,44.43 52.95,47.36Q54.44,50.29 56.42,52.08Q58.40,53.86 59.94,54.69Q61.47,55.52 61.57,55.57Q61.52,55.76 60.33,59.03Q59.13,62.30 56.40,66.31Q54.00,69.78 51.25,72.71Q48.49,75.63 44.63,75.63Q42.04,75.63 40.38,74.88Q38.72,74.12 36.96,73.36Q35.21,72.61 32.23,72.61Q29.35,72.61 27.42,73.39Q25.49,74.17 23.75,74.95Q22.02,75.73 19.68,75.73Q16.11,75.73 13.43,72.90Q10.74,70.07 7.91,66.11Q4.64,61.43 2.32,54.66Q0.00,47.90 0.00,41.02Q0.00,33.64 2.78,28.64Q5.57,23.63 9.94,21.07Q14.31,18.51 18.99,18.51Q21.48,18.51 23.68,19.31Q25.88,20.12 27.81,20.95Q29.74,21.78 31.30,21.78Q32.81,21.78 34.81,20.90Q36.82,20.02 39.31,19.17Q41.80,18.31 44.63,18.31ZM41.94,12.11Q40.04,14.40 37.16,15.94Q34.28,17.48 31.69,17.48Q31.15,17.48 30.66,17.38Q30.62,17.24 30.57,16.85Q30.52,16.46 30.52,16.02Q30.52,13.09 31.79,10.33Q33.06,7.57 34.67,5.76Q36.72,3.32 39.84,1.71Q42.97,0.10 45.80,0.00Q45.95,0.63 45.95,1.51Q45.95,4.44 44.82,7.20Q43.70,9.96 41.94,12.11Z"/>
+            </g>
+            <text x="31.5" y="16.4" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="7.6">Download on the</text>
+            <text x="31" y="31.6" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16.8" font-weight="500" letter-spacing="-0.35">App Store</text>
+          </svg>
+        </a>
+      </div>
+
+      <!-- The index, at the moment the page says the rest of it is evidence,
+           which turns that line into a menu. Anchors only: no script runs here,
+           and none is needed. -->
+      <nav class="onpage" aria-label="Sections of this page">
+        <p class="micro">The evidence, if you want to pick which part:</p>
+        <ul role="list">
+          <li><a href="#proof">Why believe the window</a></li>
+          <li><a href="#substances">The five habits</a></li>
+          <li><a href="#streaks">No streak to lose</a></li>
+          <li><a href="#recovery">Recovery timeline</a></li>
+          <li><a href="#health">Apple Health proof</a></li>
+          <li><a href="#sos">Craving SOS</a></li>
+          <li><a href="#log">The craving log</a></li>
+          <li><a href="#inside">Catalogue, Watch, widgets</a></li>
+          <li><a href="#voice">Voice and daily passages</a></li>
+          <li><a href="#privacy">Privacy</a></li>
+          <li><a href="#price">Price</a></li>
+          <li><a href="#support">Crisis lines and the alcohol rule</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===================== THE PROOF LADDER =====================
+       Directly after the window, because the sentence it defends is the one
+       the reader has just read. Filed at position nine it was answering a
+       doubt that had already settled. -->
+  <section id="proof">
+    <div class="wrap">
+      <div class="sechead">
+        <h2>Four reasons to believe your window.</h2>
+        <ol class="ladder" role="list">
+        <li>
+          <h3>It is your data, not an average</h3>
+          <p>The window comes out of your log and nobody else’s. No population
+          average is ever borrowed to fill a gap.</p>
+        </li>
+        <li>
+          <h3>It stays quiet when it does not know</h3>
+          <p>Below the bar, it says nothing. In our own backtest, across twelve
+          simulated logs, 97 percent of the warnings it gave were for hours a
+          craving really did arrive in, and for the person whose cravings had no
+          pattern to find it stayed silent for good. Most apps guess and hope,
+          because silence looks like a broken feature.</p>
+        </li>
+        <li>
+          <h3>Every claim names its source</h3>
+          <p>The physiology is cited on the screen that makes the claim, and
+          the catalogue admits which moves have no study behind them.</p>
+        </li>
+        <li>
+          <h3>Nothing leaves your phone</h3>
+          <p>No accounts, no ads, no analytics, no third-party SDKs. The parts
+          that can leave are three, and each is a thing you choose.</p>
+        </li>
+      </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHAT YOU ARE QUITTING =====================
+       After the window and the reasons to believe it, not before them. A
+       reader who has just been told what the app does is ready to hear which
+       five things it does it for; ahead of that it was a list of nouns with
+       nothing to attach to. -->
+  <section id="substances">
+    <div class="wrap">
+      <div class="feature reveal">
+        <div class="feature-copy">
+          <h2>Five habits, five different withdrawals.</h2>
+          <p class="lede dim">Smoking, vaping, alcohol, cannabis, caffeine.
+          Each written separately, because they are not the same withdrawal.</p>
+          <p>Nicotine leaves in days while the receptors take weeks. Alcohol
+          withdrawal can be a medical emergency, so that timeline opens with
+          the warning signs and the number to call rather than a milestone.
+          Cannabis takes sleep and appetite with it for a fortnight. Caffeine
+          is a headache with a deadline. You can run more than one at a time,
+          and each keeps its own clock, its own timeline and its own colour.</p>
+          <p class="small dim">The app opens the alcohol path with a warning you
+          have to acknowledge before it asks you anything else. The exact
+          wording, and the five signs that mean 911, are at the foot of this
+          page.</p>
+        </div>
+        <div class="phone">
+          <img src="shots/habits.jpg" width="520" height="1130" loading="lazy"
+               decoding="async"
+               alt="The setup screen asking What are you quitting, listing
+                    Smoking, Vaping, Alcohol, Cannabis and Caffeine, each with
+                    its own icon.">
+        </div>
+      </div>
     </div>
   </section>
 
@@ -630,13 +956,23 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="streaks">
     <div class="wrap">
       <div class="sechead quote">
-        <blockquote class="pull">A counter that resets to zero has told you the
-      last forty days did not happen. They happened.</blockquote>
+        <!-- The section's own line, promoted to a heading. It was the only one
+             of fourteen with no h2, which left it out of the outline, out of
+             the index and out of Reader mode, and it stacked a serif quote
+             directly against the next section's serif quote with nothing
+             between them. The sentence was already in the body below; it is
+             said once now, here. -->
+        <div>
+          <h2>There is no streak to lose.</h2>
+          <blockquote class="pull" style="margin-top: var(--s-l);">A counter
+          that resets to zero has told you the last forty days did not happen.
+          They happened.</blockquote>
+        </div>
         <div class="sechead-body">
         <p>A slip restarts the clock and nothing else. Your timeline keeps
         every run you have made, the savings tin never resets, and the lessons
         stay in the log where the next window can use them. Nobody is scored
-        and nobody is scolded. There is no streak to lose.</p>
+        and nobody is scolded.</p>
         </div>
       </div>
     </div>
@@ -646,11 +982,16 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="recovery">
     <div class="wrap">
       <div class="sechead">
-        <h2>Only you, uninterrupted.</h2>
+        <!-- The sentence whole, in the app's own order. HealthView ships the
+             headline and the body's first words as one unit, and the page had
+             them the other way round with an attribution wedged between: the
+             second half first, then the first half, then who said it. One
+             head now, and the attribution sits with the prose it introduces. -->
+        <h2>There is no improved you at the end of this. Only you,
+        uninterrupted.</h2>
         <div class="sechead-body">
-          <blockquote class="pull">There is no
-      improved you at the end of this.</blockquote>
-          <p class="attrib">In the app, at the top of the Health tab.</p>
+          <p class="attrib" style="margin-top: 0;">The app's own words, at the
+          top of the Health tab.</p>
         <p>Nothing is being added. Something is being removed. Nicotine did not
         add a self, and quitting does not build one. It only sets down a weight
         you had stopped noticing you carried, and what remains was always what
@@ -662,7 +1003,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
       </div>
 
-      <div class="feature reveal" style="margin-top: clamp(2.5rem, 6vw, 4rem);">
+      <div class="feature reveal stack-sub">
         <div class="feature-copy">
           <h3>Every hour of it, and the evidence for each one</h3>
           <p class="small dim">Open any milestone and it holds three things:
@@ -672,11 +1013,11 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           claim rests on are printed right under it. All 54 sources are listed inside the app with
           working links, and a catalogue move with no study behind it says so
           on its own page.</p>
-          <p class="small dim">Connect Apple Health and five measures chart
-          themselves against your own average from the fourteen days before you
-          quit: resting heart rate, heart rate variability, cardio fitness,
-          respiratory rate, blood oxygen. That data is read on your device,
-          shown to you, and transmitted nowhere.</p>
+          <!-- Which half this is, said where the reader is looking at it. The
+               price section was revealing the split for the first time, ten
+               sections after the things in it. -->
+          <p class="micro">The hour-by-hour timeline is Premium. The day-level
+          milestones are free.</p>
         </div>
         <div class="phone">
           <img src="shots/timeline.jpg" width="520" height="1130" loading="lazy"
@@ -708,37 +1049,64 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="micro">Read on your device, shown to you, transmitted
           nowhere. Health data is the one category this app reads and the one
           it is most careful with.</p>
+          <p class="micro">The five Health cards are Premium.</p>
         </div>
       </div>
 
-      <div class="phones reveal" style="margin-top: clamp(2rem, 5vw, 3rem);">
+      <div class="phones reveal stack-block">
         <div>
           <div class="phone">
             <img src="shots/health.jpg" width="520" height="1130" loading="lazy"
                  decoding="async"
                  alt="The Health tab. A heading reading There is no improved you
-                      at the end of this, and under it a resting heart rate card
-                      marked 9.0 better, charting a dashed pre-quit baseline, a
-                      marker at the day you stopped, and a falling line after
-                      it.">
+                      at the end of this, and under it a resting heart rate
+                      card, charting a dashed pre-quit baseline, a marker at the
+                      day you stopped, and a falling line after it.">
           </div>
-          <p class="shotnote" style="margin-top: var(--s-m);">Nine beats a
-          minute lower than this person's own baseline, on their own watch.</p>
+          <p class="shotnote" style="margin-top: var(--s-m);">A demonstration
+          chart. The five cards read Apple Health live and store no series, so
+          there was nothing to photograph without seeding readings. The chart,
+          the baseline line and the citation are real; the numbers are not
+          somebody's.</p>
         </div>
         <div>
           <div class="phone">
             <img src="shots/health-metric.jpg" width="520" height="1130"
                  loading="lazy" decoding="async"
-                 alt="A heart rate variability card marked 12.8 better, with its
-                      chart, and beneath it a block headed What research expects
-                      reading: nicotine suppresses HRV, studies show it climbing
-                      within days to weeks of stopping, one of the earliest
-                      measurable wins. Evidence 26.">
+                 alt="A heart rate variability card with its chart, and beneath
+                      it a block headed What research expects reading: nicotine
+                      suppresses HRV, studies show it climbing within days to
+                      weeks of stopping, one of the earliest measurable wins.
+                      Evidence 26.">
           </div>
-          <p class="shotnote" style="margin-top: var(--s-m);">What the research
-          expects sits under the chart, with its source, so the two can be read
-          against each other.</p>
+          <p class="shotnote" style="margin-top: var(--s-m);">The structure is
+          the point: what the research expects sits under the chart, with its
+          source, so the two can be read against each other.</p>
         </div>
+      </div>
+      <p class="shotcaption">Real screens, from a real build,
+      on seeded Health readings rather than a person's watch. Your own five
+      cards will show your own numbers, whatever they turn out to be.</p>
+
+      <!-- The midpoint of the run. Nine sections stand between the window's
+           closer and the price, and neither reader had anywhere to go in them:
+           the sold one gets the badge, the unsold one gets the price without
+           hunting for the bar. -->
+      <div class="closer reveal">
+        <p class="small" style="max-width: 26rem;">Everything above is a claim
+        you can check. <a href="#price">The price is further down this
+        page.</a></p>
+        <a class="badge" href="https://apps.apple.com/app/quitforecast/id0000000000"
+           aria-label="Download on the App Store">
+          <svg viewBox="0 0 120 40" role="img" aria-hidden="true" focusable="false">
+            <rect width="120" height="40" rx="6.5" fill="#FFFFFF"/>
+            <g transform="translate(10.6 10.6) scale(0.2311)">
+              <path fill="#000000" d="M44.63,18.31Q45.70,18.31 48.29,18.65Q50.88,18.99 53.98,20.58Q57.08,22.17 59.62,25.83Q59.47,25.98 58.20,26.88Q56.93,27.78 55.37,29.52Q53.81,31.25 52.64,33.91Q51.46,36.57 51.46,40.23Q51.46,44.43 52.95,47.36Q54.44,50.29 56.42,52.08Q58.40,53.86 59.94,54.69Q61.47,55.52 61.57,55.57Q61.52,55.76 60.33,59.03Q59.13,62.30 56.40,66.31Q54.00,69.78 51.25,72.71Q48.49,75.63 44.63,75.63Q42.04,75.63 40.38,74.88Q38.72,74.12 36.96,73.36Q35.21,72.61 32.23,72.61Q29.35,72.61 27.42,73.39Q25.49,74.17 23.75,74.95Q22.02,75.73 19.68,75.73Q16.11,75.73 13.43,72.90Q10.74,70.07 7.91,66.11Q4.64,61.43 2.32,54.66Q0.00,47.90 0.00,41.02Q0.00,33.64 2.78,28.64Q5.57,23.63 9.94,21.07Q14.31,18.51 18.99,18.51Q21.48,18.51 23.68,19.31Q25.88,20.12 27.81,20.95Q29.74,21.78 31.30,21.78Q32.81,21.78 34.81,20.90Q36.82,20.02 39.31,19.17Q41.80,18.31 44.63,18.31ZM41.94,12.11Q40.04,14.40 37.16,15.94Q34.28,17.48 31.69,17.48Q31.15,17.48 30.66,17.38Q30.62,17.24 30.57,16.85Q30.52,16.46 30.52,16.02Q30.52,13.09 31.79,10.33Q33.06,7.57 34.67,5.76Q36.72,3.32 39.84,1.71Q42.97,0.10 45.80,0.00Q45.95,0.63 45.95,1.51Q45.95,4.44 44.82,7.20Q43.70,9.96 41.94,12.11Z"/>
+            </g>
+            <text x="31.5" y="16.4" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="7.6">Download on the</text>
+            <text x="31" y="31.6" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16.8" font-weight="500" letter-spacing="-0.35">App Store</text>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
@@ -746,7 +1114,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <!-- ===================== SOS ===================== -->
   <section id="sos">
     <div class="wrap">
-      <div class="feature flip reveal">
+      <div class="feature reveal">
         <div class="feature-copy">
           <h2>A craving is a wave.</h2>
           <p class="lede dim">It crests and fades in a few minutes whether or
@@ -756,9 +1124,12 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           than they feel. There is a breath pacer, a body scan, a grounding
           exercise, a passage to read, and two games for when thinking is not
           on the table.</p>
+          <!-- Split, because the second sentence is the best line in the
+               section and it was set in the smallest and dimmest type on the
+               page, riding on the back of a policy note. -->
           <p class="small dim">Every one of these is free, permanently, along
-          with the crisis lines. Nobody should have to buy a subscription in
-          the middle of the worst ten minutes of their week.</p>
+          with the crisis lines.</p>
+          <p>The worst ten minutes of your week are not a sales moment.</p>
         </div>
         <div class="phone">
           <img src="shots/sos.jpg" width="520" height="1130" loading="lazy"
@@ -776,32 +1147,33 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="log">
     <div class="wrap">
       <div class="sechead">
-        <h2>Know it first.</h2>
+        <h2>The log is not homework.</h2>
         <div class="sechead-body">
-        <p class="lede dim">The log is not homework. It is where the hours
-        came from, and it takes two taps.</p>
+        <p class="lede dim">It is where every hour on your dial came from, and
+        it costs you two taps.</p>
         </div>
       </div>
 
-      <div class="feature reveal" style="margin-top: clamp(2rem, 5vw, 3rem);">
+      <div class="feature reveal stack-block">
         <div class="feature-copy">
           <p>Two taps records a craving, from the phone or from your wrist. What
           comes back are facts in your own numbers, each one a thing you could
           have counted by hand:</p>
           <div class="card">
-            <ul class="plainlist" style="margin-top: 0;">
-              <li>Boredom and Stress often fire together, 32 times so far. Plan
+            <ul class="plainlist" role="list" style="margin-top: 0;">
+              <li>Boredom and Stress often fire together, 31 times so far. Plan
               for the pair, not just each one.</li>
-              <li>Your cravings are holding a steady rhythm, about every
-              8 hrs.</li>
+              <li>Your cravings are spacing out: about every 8 hrs two weeks
+              ago, about every 10 hrs now.</li>
               <li>Your last 6 timed SOS rides ended in about 3 minutes.</li>
               <li>Your log holds 164 cravings since you quit, and no slip at
               all.</li>
             </ul>
           </div>
-          <p class="micro">Four sentences off one real log, copied from the
-          screens beside them. Each appears only once the log holds enough to
-          support it, and goes quiet again if it stops being true.</p>
+          <p class="micro">Four sentences the engine renders, off the same
+          seeded demo log as the screenshots, not a person's. Each appears only
+          once the log holds enough to support it, and goes quiet again if it
+          stops being true.</p>
         </div>
         <div class="phone">
           <img src="shots/log.jpg" width="520" height="1130" loading="lazy"
@@ -815,52 +1187,22 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
     </div>
   </section>
 
-  <!-- ===================== THE PROOF LADDER ===================== -->
-  <section id="proof">
-    <div class="wrap">
-      <div class="sechead">
-        <h2>Four reasons to believe the sentence.</h2>
-        <ol class="ladder">
-        <li>
-          <h3>It is your data, not an average</h3>
-          <p>The window comes out of your log and nobody else’s. No population
-          average is ever borrowed to fill a gap.</p>
-        </li>
-        <li>
-          <h3>It stays quiet when it does not know</h3>
-          <p>Below the bar, it says nothing. Most apps guess and hope, because
-          silence looks like a broken feature.</p>
-        </li>
-        <li>
-          <h3>Every claim names its source</h3>
-          <p>The physiology is cited on the screen that makes the claim, and
-          the catalogue admits which moves have no study behind them.</p>
-        </li>
-        <li>
-          <h3>Nothing leaves your phone</h3>
-          <p>No accounts, no ads, no analytics, no third-party SDKs. The parts
-          that can leave are three, and each is a thing you choose.</p>
-        </li>
-      </ol>
-      </div>
-    </div>
-  </section>
-
   <!-- ===================== WHAT IS IN IT ===================== -->
   <section id="inside">
     <div class="wrap">
-      <div class="feature flip reveal">
+      <div class="feature reveal">
         <div class="feature-copy">
           <h2>What is in it.</h2>
           <p class="lede dim">The weeks between cravings are the ones that
           decide it, and they are the ones nothing else helps with.</p>
-          <p>71 curated moves for those weeks, across reward, connection,
-          meaning, competence and spirit. Every one states two plain facts
+          <p>The Rebuild catalogue: 71 moves for those weeks, across reward,
+          connection, meaning, competence and spirit. Every one states two plain facts
           before you commit to it: how long it takes, and how exposed it feels.
           Quiet means nobody else is involved. Real nerve means it costs
           something socially, or it puts you somewhere you would normally
           avoid. Nothing is colour-coded, because Real nerve is an invitation
           and a red badge would make it a warning.</p>
+          <p class="micro">The full catalogue is Premium.</p>
         </div>
         <div class="phone">
           <img src="shots/catalogue.jpg" width="520" height="1130" loading="lazy"
@@ -871,28 +1213,12 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
       </div>
 
-      <div class="grid reveal" style="margin-top: clamp(2.5rem, 6vw, 4rem);">
-        <div>
-          <h3>Five substances</h3>
-          <p>Smoking, vaping, alcohol, cannabis, caffeine. One forecast each,
-          written separately, and you can run more than one at a time.</p>
-        </div>
+      <div class="grid reveal stack-sub">
         <div>
           <h3>Two ways to keep going</h3>
           <p>Challenges you set yourself, and a savings tin that counts what you
           have not spent. A slip restarts the clock and neither of them
           resets.</p>
-        </div>
-        <div>
-          <h3>54 sources</h3>
-          <p>Numbered on the claim they support, listed in full inside the app,
-          every link working.</p>
-        </div>
-        <div>
-          <h3>SOS, free forever</h3>
-          <p>A breath pacer, a body scan, a grounding exercise, a study
-          passage, and two games for the minutes a craving actually lasts.
-          Crisis lines are one tap away and never behind a price.</p>
         </div>
         <div>
           <h3>Wrist, Home Screen, Lock Screen</h3>
@@ -921,7 +1247,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
       </div>
 
-      <div class="feature reveal" style="margin-top: clamp(2rem, 5vw, 3rem);">
+      <div class="feature reveal stack-block">
         <div class="feature-copy">
           <div class="card">
             <p class="micro">Normal</p>
@@ -950,7 +1276,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
       </div>
 
-      <div class="feature flip reveal" style="margin-top: clamp(2.5rem, 6vw, 4rem);">
+      <div class="feature reveal stack-sub">
         <div class="feature-copy">
           <h3>And a daily passage, if you want one</h3>
           <p>Four packs, off by default: Stoic wisdom, Christian scripture,
@@ -986,11 +1312,12 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         savings, your settings and anything read from Apple Health live on your
         phone. There are no accounts and no passwords, because there is nothing
         to sign in to.</p>
-        <p>Three things can leave, and each is a thing you choose: an iCloud
+        <p>Four things can leave, and each is a thing you choose: an iCloud
         backup, into your own private database that we cannot read; a post to
         the community board, under an anonymous identifier that is never your
-        name; and a feedback message, if you write one. That is the whole
-        list.</p>
+        name; a vote on somebody else's post, stored under that same anonymous
+        identifier so a tap can be taken back; and a feedback message, if you
+        write one. That is the whole list.</p>
         <p class="micro">This page is part of the same promise. It loads no
         fonts, no scripts and no trackers from anywhere, and it sets no
         cookies. <a href="/privacy.html">Read the privacy policy</a>, which is
@@ -1005,39 +1332,57 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
     <div class="wrap">
       <div class="head-stack measure">
         <h2>What it costs.</h2>
+        <p class="lede dim">Every safety surface is in the free half,
+        deliberately. Nobody should have to buy a subscription to find out that
+        alcohol withdrawal can be dangerous.</p>
       </div>
-      <div class="split" style="margin-top: var(--s-xl);">
-        <div>
+      <div class="prices">
+        <p class="price best"><b class="tag">Best value</b><b>$39.99</b>
+        <span>a year. 77 cents a week, and 67% less than paying by the
+        month.</span></p>
+        <p class="price"><b>$9.99</b> <span>a month. Cancel any month.</span></p>
+        <p class="price"><b>$99.99</b> <span>once. Nothing renews.</span></p>
+      </div>
+
+      <div class="split stack-block">
+        <!-- A card, like its neighbour. Bare text on the page ground against a
+             padded card put the two headings 24px out of line and started the
+             two lists at different left edges, at the moment the reader is
+             comparing them. The accent border stays the only difference,
+             which is the device .price.best already uses. -->
+        <div class="card">
           <h3>Free, no matter what</h3>
-          <ul class="plainlist">
-            <li>Your clean-time counter and milestone timeline</li>
+          <ul class="plainlist" role="list">
+            <li>Your clean-time counter and the day-level milestone
+            timeline</li>
             <li>SOS craving tools and crisis lines</li>
             <li>Faith and philosophy packs</li>
           </ul>
         </div>
-        <div>
-          <h3>Premium keeps</h3>
-          <ul class="plainlist">
-            <li>The full hour-by-hour forecast</li>
+        <!-- The half being paid for, given the weight of it. Two identical
+             columns made the sold half read as an equal-weight list. Same
+             accent border .price.best already uses on the yearly tier. -->
+        <div class="card" style="border-color: var(--accent);">
+          <h3>Premium</h3>
+          <ul class="plainlist" role="list">
+            <li><strong>Your craving window:</strong> the two hours, the dial, and the
+            heads-up before they open</li>
+            <li>The hour-by-hour timeline, with the studies under each
+            milestone</li>
             <li>Every recovery curve and your Health proof</li>
             <li>The full Rebuild catalogue</li>
           </ul>
         </div>
       </div>
-      <div class="prices">
-        <p class="price"><b>$39.99</b> <span>a year</span></p>
-        <p class="price"><b>$9.99</b> <span>a month</span></p>
-        <p class="price"><b>$99.99</b> <span>once, for good</span></p>
-      </div>
-      <p class="micro measure" style="margin-top: var(--s-l);">Every safety
-      surface is in the free half, deliberately. Nobody should have to buy a
-      subscription to find out that alcohol withdrawal can be dangerous.</p>
-
+      <!-- The badge follows the cards, and the fine print follows the badge.
+           A hundred words of it standing between the decision and the way to
+           act on it made the reader hunt for the thing they had just chosen. -->
       <div class="closer reveal">
         <p class="pull" style="max-width: 26rem;">Your cravings are already on a
         schedule. You may as well have a copy of it.</p>
+        <div>
         <a class="badge" href="https://apps.apple.com/app/quitforecast/id0000000000"
-           aria-label="Download QuitForecast on the App Store">
+           aria-label="Download on the App Store">
           <svg viewBox="0 0 120 40" role="img" aria-hidden="true" focusable="false">
             <rect width="120" height="40" rx="6.5" fill="#FFFFFF"/>
             <g transform="translate(10.6 10.6) scale(0.2311)">
@@ -1047,7 +1392,20 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
             <text x="31" y="31.6" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16.8" font-weight="500" letter-spacing="-0.35">App Store</text>
           </svg>
         </a>
+          <p class="micro" style="margin-top: var(--s-m); max-width: 20rem;">Free
+          to download. Your clean-time counter, the SOS tools and the crisis
+          lines stay free permanently.</p>
+        </div>
       </div>
+
+      <p class="micro" style="margin-top: var(--s-xl);">Subscriptions renew until
+      you cancel, in your Apple account settings. Nothing renews on the one-time
+      purchase.</p>
+      <p class="micro measure" style="margin-top: var(--s-l);">If your log never
+      clears the bar, no window ever appears, and it is not being withheld from
+      you, it does not exist. Premium is still the hour-by-hour timeline, the
+      recovery curves, your Health proof and the full catalogue. The window is
+      the one part the app will not fake to look like it is working.</p>
     </div>
   </section>
 
@@ -1063,9 +1421,13 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         <p class="small dim">If you are in crisis, please do not wait on an
         email. In the US, call or text 988 for the Suicide and Crisis Lifeline,
         or 1-800-662-4357 for the SAMHSA National Helpline, which is free,
-        confidential and open every day. Alcohol withdrawal in particular can
-        be dangerous: seizures, confusion or hallucinations after stopping are
-        a medical emergency, so call 911.</p>
+        confidential and open every day.</p>
+        <p class="small dim">Alcohol withdrawal in particular can be dangerous,
+        and this is the app's own wording, unchanged: <b>Confusion, seeing or
+        hearing things that are not there, fever, bad shaking, or a seizure
+        means 911, immediately.</b> If you drink heavily every day, a
+        supervised taper is the safe route, so talk to a doctor before you
+        stop.</p>
         <p class="small dim">QuitForecast is not a medical device and does not
         diagnose or treat anything. It holds no advice your own doctor should
         not overrule.</p>
@@ -1079,7 +1441,11 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
 <footer>
   <div class="wrap row">
     <p>QuitForecast</p>
-    <p><a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
+    <!-- A text link, not a badge. A badge directly under the crisis lines
+         reads as a pitch attached to 988. -->
+    <p><a href="https://apps.apple.com/app/quitforecast/id0000000000">Get the
+       app</a> &nbsp;·&nbsp;
+       <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
        <a href="#support">Support</a> &nbsp;·&nbsp;
        <a href="mailto:info@quitforecast.com">info@quitforecast.com</a></p>
   </div>
