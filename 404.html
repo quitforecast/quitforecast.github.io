@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not here. QuitForecast</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0C1820">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%237FD9C4' stroke-width='3'/%3E%3Ccircle cx='16' cy='5' r='3.4' fill='%23E5A45C'/%3E%3C/svg%3E">
+<!-- GitHub Pages serves this file for any path it cannot resolve on the custom
+     domain. Without it, a mistyped URL got GitHub's own error page: a different
+     typeface, a different ground, no mark, and no route back here. Same tokens as
+     index.html, deliberately: a 404 is still the product talking. Anyone who
+     lands here mid-craving gets the crisis lines on this page rather than one
+     click away, which is the only reason this page has content at all. -->
+<style>
+  :root {
+    --bg: #0C1820; --card: #122530; --line: #1E3947;
+    --text: #E9E4D8; --dim: #8FA3A8; --accent: #7FD9C4; --amber: #E5A45C;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto,
+            "Helvetica Neue", Arial, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: var(--sans); font-size: 1.0625rem; line-height: 1.55;
+    -webkit-text-size-adjust: 100%;
+    display: grid; place-items: center;
+    padding: 2rem 1.25rem calc(2rem + env(safe-area-inset-bottom));
+  }
+  main { max-width: 30rem; width: 100%; }
+  .lockup {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-weight: 600; letter-spacing: -0.01em; margin-bottom: 2rem;
+  }
+  .lockup svg { width: 1.5rem; height: 1.5rem; flex: none; }
+  h1 {
+    font-family: ui-serif, "New York", Georgia, "Times New Roman", serif;
+    font-size: clamp(1.9rem, 1.5rem + 2vw, 2.6rem); font-weight: 600;
+    line-height: 1.15; letter-spacing: -0.015em; margin: 0 0 0.75rem;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; }
+  .dim { color: var(--dim); }
+  .small { font-size: 0.9375rem; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px;
+  }
+  .routes {
+    list-style: none; margin: 1.5rem 0 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem;
+  }
+  .crisis {
+    margin-top: 2.25rem; padding: 1rem 1.15rem;
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  }
+  .crisis p { margin: 0; }
+  .crisis p + p { margin-top: 0.6rem; }
+  .crisis a { color: var(--amber); }
+  @media (forced-colors: active) {
+    .crisis { border: 1px solid CanvasText; }
+    a:focus-visible { outline: 2px solid Highlight; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="lockup">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+      <circle cx="16" cy="16" r="11" fill="none" stroke="#7FD9C4" stroke-width="3"/>
+      <circle cx="16" cy="5" r="3.4" fill="#E5A45C"/>
+    </svg>
+    QuitForecast
+  </div>
+
+  <h1>There is nothing at this address.</h1>
+  <p class="dim">Not a broken promise, just a wrong turn. The site is two pages
+  and they are both below.</p>
+
+  <ul class="routes">
+    <li><a href="/">The main page</a></li>
+    <li><a href="/#price">Price</a></li>
+    <li><a href="/privacy.html">Privacy policy</a></li>
+    <li><a href="/#support">Support</a></li>
+  </ul>
+
+  <div class="crisis">
+    <p class="small"><strong>If you came here looking for help right now, do not
+    go hunting through a website.</strong></p>
+    <p class="small">In the US: <a href="tel:988">call 988</a> or
+    <a href="sms:988">text 988</a> for the Suicide and Crisis Lifeline.
+    <a href="tel:18006624357">1-800-662-4357</a> is the SAMHSA National Helpline,
+    free and open every day. <a href="tel:18007848669">1-800-784-8669</a> is
+    1-800-QUIT-NOW. If someone is in immediate danger,
+    <a href="tel:911">call 911</a>.</p>
+    <p class="small dim">Outside the US, your local emergency number works the
+    same way, and <a href="https://findahelpline.com">findahelpline.com</a> lists
+    crisis lines by country.</p>
+  </div>
+</main>
+</body>
+</html>

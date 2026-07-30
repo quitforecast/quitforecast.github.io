@@ -4,8 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>QuitForecast: know the hours your cravings come</title>
-<meta name="description" content="QuitForecast learns the two hours your cravings actually come, out of your own log, and tells you before they arrive. For smoking, vaping, alcohol, cannabis or caffeine.">
+<!-- 169 characters truncated mid-list in the SERP, cutting the habit names, which
+     are the words a searcher actually typed. 133 now, and it puts the reader in
+     the learner's seat rather than the app: "QuitForecast learns" was the wrong
+     subject for a page whose whole thesis is that YOU come to know this. -->
+<meta name="description" content="Your cravings gather in two hours. Find yours in your own log, and know before they open. Smoking, vaping, alcohol, cannabis, caffeine.">
 <meta name="theme-color" content="#0C1820">
+<!-- The page commits to Ocean dark in both browser appearances (see rule 2 in
+     the stylesheet header), so declare it. Without this the browser paints its
+     own furniture, form controls and scrollbars, in light. -->
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://quitforecast.com/">
+<!-- Rule 1 of this page is that nothing loads from anywhere else, and the privacy
+     section stakes the product's credibility on it. Until now nothing enforced
+     it: one stray <img src="https://..."> in a future edit would have made that
+     section false and silently shipped. This turns the promise into something the
+     browser refuses to break. 'unsafe-inline' is required for the inline <style>
+     and the style attributes. No script-src is granted at all: the only <script>
+     on the page is the ld+json data block below, which the HTML spec treats as
+     data rather than as code and never executes, so it needs no grant. If a real
+     script is ever added here, this line has to be revisited deliberately rather
+     than loosened in passing. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://quitforecast.com/">
 <meta property="og:title" content="QuitForecast: know the hours your cravings come">
@@ -18,8 +38,14 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="A twenty-four hour ring with a craving log drawn on it, an amber arc over 8 to 10 PM.">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:site_name" content="QuitForecast">
+<meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://quitforecast.com/og.jpg">
+<!-- twitter:image:alt does NOT fall back to og:image:alt, so without this the
+     card ships to screen readers with no description at all. -->
+<meta name="twitter:image:alt" content="A twenty-four hour ring with a craving log drawn on it, an amber arc over 8 to 10 PM.">
 <!-- The real app icon, so a home-screen bookmark carries the mark a visitor
      has to recognise on the App Store. -->
 <link rel="apple-touch-icon" href="/icon-180.png">
@@ -27,6 +53,46 @@
      host. Full closed ring, amber now-dot centered on the ring path at twelve
      o'clock, which is the brand canon the app icon and the splash both draw. -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%237FD9C4' stroke-width='3'/%3E%3Ccircle cx='16' cy='5' r='3.4' fill='%23E5A45C'/%3E%3C/svg%3E">
+<!-- Structured data. Every value here is stated in visible copy further down the
+     page, which is the rule: Google treats JSON-LD that describes something the
+     reader cannot see as spam. Deliberately absent: aggregateRating and review.
+     The app has no ratings yet, and inventing them is the one thing this page is
+     built not to do (messaging doc, section 10). If the price section ever comes
+     down, the offers below come down with it in the same commit. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "QuitForecast",
+  "url": "https://quitforecast.com/",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "iOS",
+  "description": "Finds the two hours your cravings gather in, out of your own log, and says so before they open. Separate withdrawal timelines and recovery evidence for smoking, vaping, alcohol, cannabis and caffeine.",
+  "isAccessibleForFree": true,
+  "featureList": [
+    "Craving window: the two hours your own log says your cravings gather in",
+    "Hour-by-hour withdrawal timeline per habit, with cited sources",
+    "Apple Health comparison against your own pre-quit baseline",
+    "Rebuild catalogue of moves that repair what the habit was faking",
+    "Craving SOS: wave timer, breath pacer, body scan, grounding",
+    "Crisis lines, free permanently"
+  ],
+  "offers": [
+    { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD",
+      "description": "Clean-time counter, day-level milestone timeline, SOS craving tools, crisis lines, faith and philosophy packs." },
+    { "@type": "Offer", "name": "Premium, monthly", "price": "9.99", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "Premium, annual", "price": "39.99", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "Premium, one-time", "price": "99.99", "priceCurrency": "USD" }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "QuitForecast",
+    "url": "https://quitforecast.com/",
+    "email": "info@quitforecast.com"
+  },
+  "privacyPolicy": "https://quitforecast.com/privacy.html"
+}
+</script>
 <style>
 /* ---------------------------------------------------------------------------
    QuitForecast, quitforecast.com
@@ -169,7 +235,14 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
    and the button ran off the right edge of a 320px window. */
 .masthead nav { display: flex; flex-wrap: wrap; align-items: center;
                 gap: var(--s-s) var(--s-xl); font-size: var(--t-small); }
-.masthead nav a { color: var(--dim); text-decoration: none; }
+/* SC 2.5.8 Target Size (Minimum), AA: 24 by 24 CSS px. These are the only short
+   controls on the page that cannot take the criterion's inline exception, because
+   they sit in a <nav> rather than inside a sentence. The text box alone measured
+   49 by 21, so the padding is doing real work rather than decorating: it takes
+   the hit area to 24px without moving anything, since the bar's own align-items
+   keeps the baseline where it was. Kept off .navcta, which already measures 32. */
+.masthead nav a { color: var(--dim); text-decoration: none;
+                  display: inline-flex; align-items: center; min-height: 1.5rem; }
 .masthead nav a:hover { color: var(--text); }
 /* The one thing in the bar that is not a section link, so it does not look
    like one. Written at the same specificity as the rule above it, which would
@@ -182,17 +255,42 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
    stood 105px tall and took an eighth of the first screen with it, because the
    lockup and the nav together ask for 323px inside a 280px shell. So: two of
    the four nav items go, both still reachable from the footer and from the
-   page itself; the rest comes down a size. Price and the download survive,
-   which are the two things a reader is in the bar to find. Measured after: one
-   row, 57px. */
+   page itself; the rest comes down a size. Measured after: one row, 57px.
+
+   WHICH TWO GO, CORRECTED. This used to drop #window and #support and keep
+   Price. That got the priority exactly backwards on the one device it applies
+   to. Support is where the crisis lines live, and a phone is what somebody
+   holds in the worst ten minutes of their week: it was the only persistent
+   route to those numbers, and it was the route being hidden. Price is a
+   decision a reader makes with a scroll and a moment, and it is still in the
+   footer, in the on-page index, and in its own section. So Support stays and
+   Price goes. This also retires the SC 2.5.8 target-size failure on the Price
+   link, which measured 30.9 by 21.0 px, under the 24px minimum, and was the
+   only one of the ten short controls on the page not covered by the inline
+   exception. */
 @media (max-width: 34rem) {
   .masthead { gap: var(--s-m); }
   .masthead nav a[href="#window"],
-  .masthead nav a[href="#support"] { display: none; }
+  .masthead nav a[href="#price"] { display: none; }
   .masthead nav { gap: var(--s-m); font-size: var(--t-micro); }
   .masthead nav a.navcta { padding: 0.35rem 0.75rem; }
   .lockup { font-size: var(--t-small); gap: var(--s-s); }
   .lockup svg { width: 1.375rem; height: 1.375rem; }
+}
+/* THE NARROWEST CASE, measured rather than guessed. Keeping Support instead of
+   Price cost width, because "Support" sets 48.7px against "Price" at 31px. At a
+   320px window the shell is 280px and the row then asks for 291px: lockup 121,
+   nav 158, one 12px gap. Eleven pixels over, so the bar wrapped to two rows and
+   93px where it had been 57px.
+   The wordmark is what goes, not the route to the crisis lines and not the
+   download. The mark itself stays, the name is one line below it in the lede, and
+   the text is only visually hidden, so the link still announces "QuitForecast".
+   That returns 99px, which is headroom rather than a coin toss. */
+@media (max-width: 22.5rem) {
+  .lockup .wordmark {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
 }
 /* A bar that has grown to a third of the window has stopped being a
    convenience. The height is measured in rem on purpose, so this trips both on
@@ -220,10 +318,25 @@ a, button, [tabindex]:not([tabindex="-1"]) { scroll-margin-top: 5.5rem; }
    only edge was a colour this mode discards. A forced border is the fix, and
    forced-color-adjust keeps the badge's own artwork intact so it stays the
    badge Apple requires rather than a repainted approximation. */
+/* CORRECTED. Two of the three rules here were wrong, in opposite directions.
+   `.badge img` matched NO ELEMENT: the badge is an inline <svg>, not an <img>, so
+   the rule that was supposed to protect Apple's artwork had never once applied.
+   And `forced-color-adjust: none` on the ring was actively harmful. It told the
+   browser to keep the AUTHORED colours, which are tuned for a #0C1820 ground, so
+   on a LIGHT forced theme the craving log measured 1.03:1 against white and the
+   window arc 2.14:1. The opt-out was erasing the one graphic the whole page is
+   about. Naming system colours instead lets the ring adopt the reader's own
+   palette, which is the entire point of the mode. */
 @media (forced-colors: active) {
   .card, .appcard, .onpage, .topbar { border: 1px solid CanvasText; }
-  .badge img { forced-color-adjust: none; background: Canvas; }
-  .arc, .nowdot, .dot { forced-color-adjust: none; }
+  .badge svg { forced-color-adjust: none; background: Canvas; }
+  /* The log, in the reader's own ink, at full strength: 0.55 opacity is a
+     legibility choice against a dark ground, not against an unknown one. */
+  .dot { fill: CanvasText; opacity: 1; }
+  /* The window and the now-dot are the two things carrying meaning, so they take
+     the accent the reader's theme reserves for exactly that. */
+  .arc { stroke: Highlight; }
+  .nowdot { fill: Highlight; }
   a:focus-visible, button:focus-visible { outline: 2px solid Highlight; }
 }
 section + section { border-top: 1px solid var(--line); }
@@ -574,7 +687,11 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         <circle cx="16" cy="16" r="11" fill="none" stroke="#7FD9C4" stroke-width="3"/>
         <circle cx="16" cy="5" r="3.4" fill="#E5A45C"/>
       </svg>
-      QuitForecast
+      <!-- Wrapped so the narrowest breakpoint can hide it visually while it stays
+           in the accessible name. It must stay in the name: the svg beside it is
+           aria-hidden, so with the text gone this link would announce as nothing
+           at all. -->
+      <span class="wordmark">QuitForecast</span>
     </a>
     <nav aria-label="Page sections">
       <!-- "How it works", not "What it covers": the old label pointed at a
@@ -752,14 +869,23 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         <div class="sechead-body">
         <p class="lede dim">Cravings are not random, and yours are not a
         mystery. They arrive at hours, and hours can be counted.</p>
+        <!-- TWO LEAD TIMES, and the page gave both without saying they belong to
+             different surfaces, so three hours and forty-five minutes read as a
+             contradiction two sentences apart. They are both right and they are
+             not the same thing: PatternEngine.armLeadHours is 3.0 and moves the
+             DIAL into "Window soon"; NotificationManager sends the single
+             check-in 45 minutes out. Named now. -->
         <p>Log a craving in two taps. Once enough of them have landed on enough
-        separate days, QuitForecast names the two hours yours gather in, and
-        arms about three hours before they open. Not a mood, not a score: a
-        count you could have made yourself, out of your own log.</p>
-        <p>The alert lands about 45 minutes ahead of the hours, close enough to
-        be a prompt rather than a forecast, and it arrives with the play and not
-        just the warning. This is the app's own line, unchanged: <b>A walk, some
-        water, or the SOS breath is enough to get through it.</b></p>
+        separate days, the app names the two hours yours gather in. Not a mood,
+        not a score: a count you could have made yourself, out of your own
+        log.</p>
+        <p>Two things then happen, at two different distances. The dial turns to
+        "Window soon" about three hours out, so a glance tells you what kind of
+        evening is coming. The notification is separate and lands about 45
+        minutes ahead, close enough to be a prompt rather than a forecast, and it
+        arrives with the play and not just the warning. This is the app's own
+        line, unchanged: <b>A walk, some water, or the SOS breath is enough to get
+        through it.</b></p>
         <!-- How long until this works for me, at the size of the question. It
              was set in the smallest and dimmest type on the page, inside a
              hundred-word block about the statistical bar, which is where an
@@ -910,8 +1036,12 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </li>
         <li>
           <h3>Nothing leaves your phone</h3>
-          <p>No accounts, no ads, no analytics, no third-party SDKs. The parts
-          that can leave are three, and each is a thing you choose.</p>
+          <!-- Said "three" while the privacy section said "four" and the build
+               did five. Rung four of a ladder about believing the app cannot be
+               the rung that contradicts the section it points at. -->
+          <p>No accounts, no ads, no analytics, no third-party SDKs. Five things
+          can leave, and each one is a thing you do on purpose. They are
+          <a href="#privacy">named in full further down</a>.</p>
         </li>
       </ol>
       </div>
@@ -930,12 +1060,26 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <h2>Five habits, five different withdrawals.</h2>
           <p class="lede dim">Smoking, vaping, alcohol, cannabis, caffeine.
           Each written separately, because they are not the same withdrawal.</p>
-          <p>Nicotine leaves in days while the receptors take weeks. Alcohol
-          withdrawal can be a medical emergency, so that timeline opens with
-          the warning signs and the number to call rather than a milestone.
-          Cannabis takes sleep and appetite with it for a fortnight. Caffeine
-          is a headache with a deadline. You can run more than one at a time,
-          and each keeps its own clock, its own timeline and its own colour.</p>
+          <!-- The heading promised five different withdrawals and this paragraph
+               described four, because smoking and vaping were collapsed into
+               "nicotine". They are two timelines in the build, 33 stages and 23,
+               and they genuinely differ: smoking clears carbon monoxide across
+               the first day and vaping never put any there, so vaping is written
+               around an all-day drip rather than twenty discrete doses. Fifth
+               habit named now.
+               Also: "takes sleep and appetite with it for a fortnight" put the
+               outer edge of the range where the typical case belongs. The app's
+               own cannabis timeline says appetite finds its level at 36 hours,
+               REM rebound starts at 48, and by ten days real hunger is back on
+               schedule and you fall asleep faster. Ten days, from the content. -->
+          <p>Nicotine leaves in days while the receptors take weeks, and it leaves
+          smoking and vaping differently: smoking spends its first day clearing
+          carbon monoxide that vaping never put there. Alcohol withdrawal can be a
+          medical emergency, so that timeline opens with the warning signs and the
+          number to call rather than a milestone. Cannabis takes sleep and
+          appetite, and hands them back over the first ten days. Caffeine is a
+          headache with a deadline. You can run more than one at a time, and each
+          keeps its own clock, its own timeline and its own colour.</p>
           <p class="small dim">The app opens the alcohol path with a warning you
           have to acknowledge before it asks you anything else. The exact
           wording, and the five signs that mean 911, are at the foot of this
@@ -1005,14 +1149,38 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
 
       <div class="feature reveal stack-sub">
         <div class="feature-copy">
-          <h3>Every hour of it, and the evidence for each one</h3>
-          <p class="small dim">Open any milestone and it holds three things:
-          what is healing, what you might feel today, and what actually helps
-          right now. At two hours it says nicotine’s half-life is about two
-          hours, so half of it is already gone, and the studies that
-          claim rests on are printed right under it. All 54 sources are listed inside the app with
-          working links, and a catalogue move with no study behind it says so
-          on its own page.</p>
+          <h3>Every hour of it, what to do about it, and the evidence for each
+          one</h3>
+          <!-- THE SCALE, CORRECTED, and promoted out of `small dim`. This said
+               "Open ANY milestone and it holds three things", and 42 of the 109
+               milestones ship no countermeasure at all, so the sentence was false
+               on 39% of the thing it described. Counted from RecoveryContent:
+               67 of 109 carry one, and the 67 are not arbitrary, they are the
+               acute window. Smoking has one at all 15 stages through 72 hours and
+               none after 4 days; vaping 11 of 23, same shape; alcohol 6 hours
+               through 6 days; cannabis 17 of 17 and caffeine 15 of 15, complete.
+               Stating the real pattern is a better sentence than the false one,
+               and this section also had no EXAMPLE of a move anywhere, which is
+               why the mitigation half read as an afterthought. There is one now,
+               verbatim from the 20-minute smoking stage. -->
+          <p>Open a milestone and it holds what is healing, and what you might
+          feel today. Through the acute window it holds a third thing: what
+          actually helps, at that hour, not in general. That is 67 of the 109
+          stages, and they are the 67 that need it. Cannabis and caffeine carry a
+          move at every stage they have, out to a year. Smoking, vaping and
+          alcohol carry one at every hour through the first three days, then
+          stop, because by the second week there is nothing left to get
+          through.</p>
+          <p class="small dim">Twenty minutes in, the smoking timeline says this,
+          and it is the app's own wording: <b>You feel fine now, so use it. Clear
+          them out first: the pack, the spare in the car, the lighters, the
+          ashtrays.</b> Then it tells you to decide, while you are calm, exactly
+          what you will do when the first craving lands.</p>
+          <p class="small dim">At two hours it says nicotine’s half-life is about
+          two hours, so half of it is already gone, and the studies that the
+          claim rests on are printed right under it. All 54 sources are listed
+          inside the app with working links, and a catalogue move with no study
+          behind it says so on its own page.</p>
           <!-- Which half this is, said where the reader is looking at it. The
                price section was revealing the split for the first time, ten
                sections after the things in it. -->
@@ -1020,12 +1188,24 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           milestones are free.</p>
         </div>
         <div class="phone">
+          <!-- Rewritten against the actual pixels. The old text named the
+               two-hour milestone, the title "Nicotine halved", and Evidence
+               5, 22, 50. The image shows none of those: 2 hours is one of the
+               COLLAPSED rows below. A sighted reader and a screen reader reader
+               were being told about two different products. -->
           <img src="shots/timeline.jpg" width="520" height="1130" loading="lazy"
                decoding="async"
-               alt="The recovery timeline with the two-hour milestone open,
-                    reading Nicotine halved, with sections for what's healing,
-                    what you might feel and what helps now, and a line beneath
-                    reading Evidence 5, 22, 50.">
+               alt="The recovery timeline for the first day, with the twenty-minute
+                    milestone open and titled The healing begins. Inside it: What's
+                    healing, heart rate and blood pressure begin dropping back
+                    toward your true baseline. What you might feel, you feel fine,
+                    still riding the decision. What helps now, a paragraph telling
+                    you to clear out the pack, the spare in the car, the lighters
+                    and the ashtrays while you still feel fine, and to decide now
+                    what you will do when the first craving lands. A line beneath
+                    reads Evidence 1, 2, 21. Collapsed below it: one hour,
+                    circulation waking up; two hours, nicotine halved; four hours,
+                    three-quarters gone.">
         </div>
       </div>
     </div>
@@ -1046,9 +1226,23 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           day you stopped. Every card says what published research expects and
           cites it, then shows what actually happened to you, which is not
           always the same thing and is never edited to agree.</p>
-          <p class="micro">Read on your device, shown to you, transmitted
-          nowhere. Health data is the one category this app reads and the one
-          it is most careful with.</p>
+          <!-- THE PRECONDITION, said here rather than discovered after install.
+               All five measures come off a wearable, and a watch writes about one
+               average a day, so day one shows nothing. A reader who learns that
+               from this page is not disappointed by the app tomorrow morning. -->
+          <p>All five come off a wearable. An Apple Watch writes them to Apple
+          Health, usually overnight, so nothing appears the moment you connect and
+          the first point can take until tomorrow morning. What research expects is
+          written per habit, not in general: the HRV card says something different
+          for cannabis than it does for smoking.</p>
+          <!-- PROMOTED out of a photograph's footnote, which is where the best
+               privacy fact in the product had been sitting. Verified before
+               promoting: HealthKitManager persists nothing but a connected
+               boolean, and CloudBackup.swift contains no health field at all. -->
+          <p class="micro">The app keeps no copy. Every visit to the Health tab
+          reads Apple Health fresh and stores none of it, so there is no health
+          series on your phone, none in the iCloud backup, and nothing to leak.
+          It is read, shown to you, and let go.</p>
           <p class="micro">The five Health cards are Premium.</p>
         </div>
       </div>
@@ -1084,9 +1278,13 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           source, so the two can be read against each other.</p>
         </div>
       </div>
-      <p class="shotcaption">Real screens, from a real build,
-      on seeded Health readings rather than a person's watch. Your own five
-      cards will show your own numbers, whatever they turn out to be.</p>
+      <!-- The third statement of "seeded" inside one section. The shotnote above
+           already discloses it at the point of the claim, which is where the rule
+           says it belongs, and it says it more precisely. This caption keeps only
+           the idea the others do not carry. -->
+      <p class="shotcaption">Your own five cards will show your own numbers,
+      whatever they turn out to be, including the ones that disagree with the
+      research printed beside them.</p>
 
       <!-- The midpoint of the run. Nine sections stand between the window's
            closer and the price, and neither reader had anywhere to go in them:
@@ -1119,25 +1317,43 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <h2>A craving is a wave.</h2>
           <p class="lede dim">It crests and fades in a few minutes whether or
           not you fight it. The whole job is to still be there afterwards.</p>
+          <!-- THE QUALIFIER, restored. The app ships it in the same card that
+               makes this claim, and the page had dropped it. It matters: a reader
+               whose craving runs twenty minutes and was promised "a few" concludes
+               the app does not know them, which is the one conclusion this product
+               cannot afford. SOSView's own wording is the source. -->
           <p>SOS times the wave while you ride it, and after a few rides it can
           tell you how long yours actually last, which is almost always shorter
-          than they feel. There is a breath pacer, a body scan, a grounding
-          exercise, a passage to read, and two games for when thinking is not
-          on the table.</p>
+          than they feel. The app is careful about this and so is the page: most
+          cravings crest and pass within a few minutes, a stubborn one can run
+          longer, and that is still normal. There is a breath pacer, a body scan,
+          a grounding exercise, a passage to read, and two games for when thinking
+          is not on the table.</p>
           <!-- Split, because the second sentence is the best line in the
                section and it was set in the smallest and dimmest type on the
                page, riding on the back of a policy note. -->
-          <p class="small dim">Every one of these is free, permanently, along
-          with the crisis lines.</p>
+          <!-- "the crisis lines" was a bare phrase with no route to the lines it
+               names, four thousand pixels above the only place they appear. Named
+               and linked now, because a reader who needs them should not have to
+               guess that this page has them. -->
+          <p class="small dim">Every one of these is free, permanently. So are the
+          lines: 988 to call or text, the SAMHSA helpline, 1-800-QUIT-NOW, and
+          911, all of them <a href="#support">dialable from the foot of this
+          page</a>.</p>
           <p>The worst ten minutes of your week are not a sales moment.</p>
         </div>
         <div class="phone">
+          <!-- The timer in the image reads 4:51, not 4 minutes 53 seconds. -->
           <img src="shots/sos.jpg" width="520" height="1130" loading="lazy"
                decoding="async"
-               alt="The Craving SOS screen, timing the current wave at 4 minutes
-                    53 seconds, with the line: your last 6 timed SOS rides ended
-                    in about 3 minutes. Below it the tools: Breathe, Body scan,
-                    5 senses and Study.">
+               alt="The Craving SOS screen. It opens: this wave will crest and fade
+                    in a few minutes whether or not you fight it. Stay busy while it
+                    dies. Pick a tool. A card headed This wave, timed shows 4:51
+                    running, and under it the line: your last 6 timed SOS rides
+                    ended in about 3 minutes, with Evidence 25, 22, 29, 30. Then a
+                    group headed Sit with it holding four tools: Breathe, Body scan,
+                    5 senses and Study. A second group below reads Distract
+                    yourself.">
         </div>
       </div>
     </div>
@@ -1176,12 +1392,16 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           stops being true.</p>
         </div>
         <div class="phone">
+          <!-- The old text said the risk window read 4 PM to 6 PM. The card in
+               the image reads 6 PM to 8 PM. -->
           <img src="shots/log.jpg" width="520" height="1130" loading="lazy"
                decoding="async"
-               alt="The Craving log screen. A thesis reading: a craving is not a
-                    command. Below it, past 7 days at 20, a risk window of 4 PM
-                    to 6 PM, and a craving strength chart averaging 2.9 out
-                    of 5.">
+               alt="The Craving log screen. A Log a craving button, then a thesis
+                    headed What a craving is, reading: a craving is not a command.
+                    It is a learned response, built by repetition. Below it two
+                    cards, past 7 days at 20 and rising from 17, and a risk window
+                    of 6 PM to 8 PM. Then a craving strength chart over four weeks
+                    averaging 2.9 out of 5, captioned Holding steady this week.">
         </div>
       </div>
     </div>
@@ -1284,11 +1504,24 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           your Today screen each day, from the tradition you chose and no
           other. Each carries a plain reading of what it is broadly taken to
           mean, offered as reflection and never as instruction.</p>
-          <p class="small dim">They are free, permanently, and they are not a
-          fifth of the app hidden behind a belief: switch all four off and
-          nothing else changes. The passages are set in a serif, because a
-          passage should read as a passage and not as an app telling you
-          something.</p>
+          <!-- "switch all four off and nothing else changes" was false, and
+               false in the direction that matters, because it was reassuring a
+               reader about something the build does not do. Counted:
+               ChallengeContent carries 8 moves with requiresPack: true, all of
+               them in the Spirit section, and AppStore.catalogueChallenges()
+               filters them out when the pack is none. SOSView adds a fifth tool,
+               Study, only when a pack is on. So packs off costs you 8 of the 71
+               moves and one SOS tool. The point the sentence was reaching for
+               still stands and is stronger stated honestly: the spiritual part is
+               additive and opt-in, not a fifth of the app held hostage. -->
+          <p class="small dim">They are free, permanently, and no part of the
+          product is held behind a belief. With every pack off you keep the
+          window, the timeline, the health cards, the SOS tools and 63 of the 71
+          catalogue moves. Turning one on adds a daily passage, a fifth SOS tool
+          that reads you a short story, and the 8 moves in the Spirit section.
+          Nothing is taken away for saying no. The passages are set in a serif,
+          because a passage should read as a passage and not as an app telling
+          you something.</p>
         </div>
         <div class="phone">
           <img src="shots/packs.jpg" width="520" height="1130" loading="lazy"
@@ -1312,12 +1545,28 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         savings, your settings and anything read from Apple Health live on your
         phone. There are no accounts and no passwords, because there is nothing
         to sign in to.</p>
-        <p>Four things can leave, and each is a thing you choose: an iCloud
-        backup, into your own private database that we cannot read; a post to
-        the community board, under an anonymous identifier that is never your
-        name; a vote on somebody else's post, stored under that same anonymous
-        identifier so a tap can be taken back; and a feedback message, if you
-        write one. That is the whole list.</p>
+        <!-- THE COUNT IS DERIVED FROM THE CODE, and it has to stay that way,
+             because this sentence closes a CLOSED LIST and a closed list is an
+             express representation. It read "four" here and "three" one section
+             up and "three" again in privacy.html, and the build sent five. The
+             fifth is `report`, which writes a CKRecord in
+             CloudKitCommunityBackend.report(submissionID:reporterID:reason:) and
+             was on no list anywhere. Blocking is NOT on this list, correctly:
+             CommunityView keeps it in @AppStorage("communityBlockedAuthors") and
+             it never leaves. If a sixth thing is ever added to the app, it is
+             added to this sentence, to the proof ladder, and to the policy, in
+             the same commit. -->
+        <p>Five things can leave, and each one is a thing you do on purpose: an
+        iCloud backup, into your own private database that we cannot read; a
+        post to the community board, under an anonymous identifier that is never
+        your name; a vote on somebody else's post, stored under that same
+        identifier so a tap can be taken back; a report, if you flag a post for
+        review; and a feedback message, if you write one. That is the whole
+        list.</p>
+        <p>Reading the board sends nothing and needs no account. Opening it does
+        ask iCloud who you are, so the board can show you which posts are yours
+        and which ones you have already backed. Nothing is written unless you
+        post, vote, report, or write to us.</p>
         <p class="micro">This page is part of the same promise. It loads no
         fonts, no scripts and no trackers from anywhere, and it sets no
         cookies. <a href="/privacy.html">Read the privacy policy</a>, which is
@@ -1392,9 +1641,14 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
             <text x="31" y="31.6" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16.8" font-weight="500" letter-spacing="-0.35">App Store</text>
           </svg>
         </a>
+          <!-- CUT: this was word for word the hero's own micro-copy, and it sat
+               forty lines under a card headed "Free, no matter what" that lists
+               the same three things. Saying it a third time inside the section
+               that already itemises it reads as protesting. The hero keeps it,
+               because there the list is load-bearing: free things under a
+               download button need the paid half named in the same breath. -->
           <p class="micro" style="margin-top: var(--s-m); max-width: 20rem;">Free
-          to download. Your clean-time counter, the SOS tools and the crisis
-          lines stay free permanently.</p>
+          to download.</p>
         </div>
       </div>
 
@@ -1418,10 +1672,26 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         <p>Questions, bugs, or anything the app got wrong about you: write to
         <a href="mailto:info@quitforecast.com">info@quitforecast.com</a> and a
         person will answer.</p>
+        <!-- DIALABLE, and the full set. This page is the Support URL on every App
+             Store storefront, so somebody will arrive here in the worst ten
+             minutes of their week, on a phone, and plain text is a number they
+             have to memorise and retype. tel: and sms: now match what
+             CrisisResourcesView already ships, including the two lines the page
+             was dropping (1-800-QUIT-NOW and 911 as a line rather than only as
+             part of the alcohol rule) and the international fallback, which was
+             the one that made the page US-only when the app is not. -->
         <p class="small dim">If you are in crisis, please do not wait on an
-        email. In the US, call or text 988 for the Suicide and Crisis Lifeline,
-        or 1-800-662-4357 for the SAMHSA National Helpline, which is free,
-        confidential and open every day.</p>
+        email. In the US: <a href="tel:988">call 988</a> for the Suicide and
+        Crisis Lifeline, or <a href="sms:988">text 988</a> if talking is not on
+        the table. <a href="tel:18006624357">1-800-662-4357</a> is the SAMHSA
+        National Helpline, free, confidential and open every day.
+        <a href="tel:18007848669">1-800-784-8669</a> is 1-800-QUIT-NOW, for the
+        quit itself. If someone is in immediate danger,
+        <a href="tel:911">call 911</a>.</p>
+        <p class="small dim">Outside the US, your local emergency number works
+        the same way, and <a href="https://findahelpline.com">findahelpline.com</a>
+        lists crisis lines by country. That is the same link the app opens, and
+        it is the only address on this page that points anywhere but here.</p>
         <p class="small dim">Alcohol withdrawal in particular can be dangerous,
         and this is the app's own wording, unchanged: <b>Confusion, seeing or
         hearing things that are not there, fever, bad shaking, or a seizure
