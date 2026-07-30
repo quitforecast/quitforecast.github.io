@@ -787,7 +787,129 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         <p class="small"><a href="#seeing">Start with what it can see</a></p>
       </div>
 
+      <!-- THE FIRST IMAGE IS THE APP. It used to be the ring diagram, which is an
+           explanation of a mechanism, and an explanation is not a product. A
+           visitor's first picture should be the thing they would be installing.
+           The diagram is not wasted, it has moved down to the section that
+           actually explains the five tests, which is where a drawing belongs.
+           No loading="lazy" here, deliberately: this is above the fold and is now
+           the largest element on first paint, so it gets fetchpriority instead.
+           Cost is honest, 115KB, taking first visit from 23KB to about 138KB,
+           still inside the 170KB critical-path budget. -->
       <div class="figure">
+        <div class="phone">
+          <img src="shots/today.jpg" width="520" height="1130"
+               decoding="async" fetchpriority="high"
+               alt="The Today screen. A ring counting 56 days clean, and
+                    beside it a twenty-four hour clock face with hour marks,
+                    an amber arc over the coming window, a cream dot at the
+                    current time, and the words Window soon.">
+        </div>
+        <p class="figure-label">Your clean time, and the two hours your own log
+        named. Real screens, on a seeded demo log rather than a person's.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 1. FIVE HABITS ===================== -->
+  <!-- SECTION ONE IS ABOUT FIVE HABITS, NOT ABOUT ALCOHOL. It led with "Alcohol
+       stops the setup." and 911 twice, which meant a visitor quitting caffeine met
+       emergency medicine before they met the product. That was a compliance
+       instinct driving a marketing decision, and it was the wrong instinct: the
+       APP is where safety lives, and it handles it thoroughly. This page needs it
+       once, at the bottom, for somebody who arrives needing it. -->
+  <section id="habits">
+    <div class="wrap">
+      <div class="sechead">
+        <h2>Five habits, five different withdrawals.</h2>
+        <div class="sechead-body">
+          <p class="lede dim">Written five times over, because caffeine's clock has
+          nothing in common with alcohol's.</p>
+          <p>Smoking, vaping, alcohol, cannabis and caffeine each get their own
+          timeline: 109 milestones between them, 33 for smoking down to 15 for
+          caffeine. Nothing is shared except the two nicotine rails, which say
+          where they lean on cigarette research. Quit two things at once and each
+          keeps its own clock, its own timeline and its own colour.</p>
+          <p class="small dim">Nicotine leaves in days while the receptors take
+          weeks, and it leaves smoking and vaping differently: smoking spends its
+          first day clearing carbon monoxide that vaping never put there. Cannabis
+          takes sleep and appetite, and hands them back over the first ten days.
+          Caffeine is a headache with a deadline. Alcohol is the one the app treats
+          as medical, and it says so on its own path rather than on this page.</p>
+        </div>
+      </div>
+      <div class="phone reveal stack-block">
+        <img src="shots/habits.jpg" width="520" height="1130" loading="lazy"
+             decoding="async"
+             alt="The setup screen asking What are you quitting, listing
+                  Smoking, Vaping, Alcohol, Cannabis and Caffeine, each with
+                  its own icon.">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ACT ONE ===================== -->
+  <section class="actdiv" id="seeing">
+    <div class="wrap">
+      <p class="eyebrow">Act one</p>
+      <h2>Seeing</h2>
+      <p>Eight sections, and not one of them tells you what to do. This half is
+      only the reading.</p>
+      <!-- THE INDEX BELONGS HERE, not four thousand pixels down where the old one
+           sat. Twenty sections need it more than thirteen did, and a reader who can
+           choose does not have to be carried. Both acts are listed, so the second
+           half is visible from the top of the first. -->
+      <nav class="onpage" aria-label="Sections of this page" style="margin-top: var(--s-l);">
+        <a href="#window">Your hours</a>
+        <a href="#wholeday">The whole day</a>
+        <a href="#triggers">What it costs you</a>
+        <a href="#fourlogs">The line at four logs</a>
+        <a href="#health">Your before</a>
+        <a href="#recovery">What comes back</a>
+        <a href="#silence">Silence</a>
+        <a href="#privacy">Nothing leaves</a>
+        <a href="#plays">The move, decided early</a>
+        <a href="#ahead">Three hours before</a>
+        <a href="#sos">Craving right now</a>
+        <a href="#rebuild">The void</a>
+        <a href="#reason">Your reason</a>
+        <a href="#community">Other people</a>
+        <a href="#slip">After a slip</a>
+        <a href="#limits">What it will not claim</a>
+        <a href="#price">Price</a>
+        <a href="#crisis">Crisis lines</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===================== 2. YOUR HOURS ===================== -->
+  <section id="window">
+    <div class="wrap">
+      <div class="sechead">
+        <h2>Your habit has a shape.</h2>
+        <div class="sechead-body">
+          <p class="lede dim">Two hours out of your own log, and five separate
+          tests before the app will name them.</p>
+          <p>The window is two hours of your own day, counted off days you lived
+          rather than guessed from a type. It clears five clauses before it
+          speaks: four comparable days occupied, a statistical floor at 0.50, a
+          recurrence lift of half again over your own base rate, a scan-corrected
+          tail under 0.05, and a previous reading that already named the same
+          hour. For some logs it never clears, and the app says nothing rather
+          than invent one.</p>
+          <p>The dial has five states and five words: Outside it, Window soon, In
+          window, Held, and Day N of 3 after a slip. This is the app's own line,
+          unchanged: <b>there is no score in it, no colour scale, and no red.</b></p>
+          <p class="small dim">If you have a second real peak it gets its own
+          scan, with everything within four hours of the first removed, and it
+          has to clear all five clauses on its own. Almost nobody has two.</p>
+          <p class="micro">The window and the dial are Premium. The counter, the
+          day-level timeline and every SOS tool are not.</p>
+        </div>
+      </div>
+      <!-- The diagram lives here now, beside the five tests it illustrates,
+           rather than in the hero where it was standing in for the product. -->
+      <div class="figure reveal stack-block">
         <p class="figure-label">How the window is found</p>
         <svg class="ring" viewBox="-12 -12 364 364" role="img"
              aria-labelledby="ringTitle ringDesc">
@@ -889,118 +1011,8 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <li><b>7 of your last 9 days had a craving between 8 PM and 10 PM.</b></li>
         </ul>
       </div>
-    </div>
-  </section>
-
-  <!-- ===================== 1. FIVE HABITS ===================== -->
-  <!-- MOVED TO THE FRONT, and this is the most consequential ordering decision
-       on the page. It used to sit third, after the window and the proof ladder,
-       which meant a heavy drinker met the 911 signs somewhere around screen
-       nineteen. Nobody reads a word of act one until they know it was written
-       for their substance, and one of the five can kill you. -->
-  <section id="habits">
-    <div class="wrap">
-      <div class="sechead">
-        <h2>Alcohol stops the setup.</h2>
-        <div class="sechead-body">
-          <p class="lede dim">Five separately written withdrawals. The one that
-          can be a medical emergency says so before it asks you anything else.</p>
-          <p>Smoking, vaping, alcohol, cannabis and caffeine each get their own
-          timeline: 109 milestones between them, 33 for smoking down to 15 for
-          caffeine. Nothing is shared except the two nicotine rails, which say
-          where they lean on cigarette research. Choose alcohol and one screen
-          names the five signs that mean 911 before setup continues. Quit two
-          things at once and each keeps its own clock, its own timeline and its
-          own colour.</p>
-          <p class="small dim">Nicotine leaves in days while the receptors take
-          weeks, and it leaves smoking and vaping differently: smoking spends its
-          first day clearing carbon monoxide that vaping never put there. Cannabis
-          takes sleep and appetite, and hands them back over the first ten days.
-          Caffeine is a headache with a deadline.</p>
-          <p class="micro">The exact wording, and the five signs that mean 911,
-          are <a href="#crisis">at the foot of this page</a>.</p>
-        </div>
-      </div>
-      <div class="phone reveal stack-block">
-        <img src="shots/habits.jpg" width="520" height="1130" loading="lazy"
-             decoding="async"
-             alt="The setup screen asking What are you quitting, listing
-                  Smoking, Vaping, Alcohol, Cannabis and Caffeine, each with
-                  its own icon.">
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== ACT ONE ===================== -->
-  <section class="actdiv" id="seeing">
-    <div class="wrap">
-      <p class="eyebrow">Act one</p>
-      <h2>Seeing</h2>
-      <p>Eight sections, and not one of them tells you what to do. This half is
-      only the reading.</p>
-      <!-- THE INDEX BELONGS HERE, not four thousand pixels down where the old one
-           sat. Twenty sections need it more than thirteen did, and a reader who can
-           choose does not have to be carried. Both acts are listed, so the second
-           half is visible from the top of the first. -->
-      <nav class="onpage" aria-label="Sections of this page" style="margin-top: var(--s-l);">
-        <a href="#window">Your hours</a>
-        <a href="#wholeday">The whole day</a>
-        <a href="#triggers">What it costs you</a>
-        <a href="#fourlogs">The line at four logs</a>
-        <a href="#health">Your before</a>
-        <a href="#recovery">What comes back</a>
-        <a href="#silence">Silence</a>
-        <a href="#privacy">Nothing leaves</a>
-        <a href="#plays">The move, decided early</a>
-        <a href="#ahead">Three hours before</a>
-        <a href="#sos">Craving right now</a>
-        <a href="#rebuild">The void</a>
-        <a href="#reason">Your reason</a>
-        <a href="#community">Other people</a>
-        <a href="#slip">After a slip</a>
-        <a href="#limits">What it will not claim</a>
-        <a href="#price">Price</a>
-        <a href="#crisis">Crisis lines</a>
-      </nav>
-    </div>
-  </section>
-
-  <!-- ===================== 2. YOUR HOURS ===================== -->
-  <section id="window">
-    <div class="wrap">
-      <div class="sechead">
-        <h2>Your habit has a shape.</h2>
-        <div class="sechead-body">
-          <p class="lede dim">Two hours out of your own log, and five separate
-          tests before the app will name them.</p>
-          <p>The window is two hours of your own day, counted off days you lived
-          rather than guessed from a type. It clears five clauses before it
-          speaks: four comparable days occupied, a statistical floor at 0.50, a
-          recurrence lift of half again over your own base rate, a scan-corrected
-          tail under 0.05, and a previous reading that already named the same
-          hour. For some logs it never clears, and the app says nothing rather
-          than invent one.</p>
-          <p>The dial has five states and five words: Outside it, Window soon, In
-          window, Held, and Day N of 3 after a slip. This is the app's own line,
-          unchanged: <b>there is no score in it, no colour scale, and no red.</b></p>
-          <p class="small dim">If you have a second real peak it gets its own
-          scan, with everything within four hours of the first removed, and it
-          has to clear all five clauses on its own. Almost nobody has two.</p>
-          <p class="micro">The window and the dial are Premium. The counter, the
-          day-level timeline and every SOS tool are not.</p>
-        </div>
-      </div>
-      <div class="phone reveal stack-block">
-        <img src="shots/today.jpg" width="520" height="1130" loading="lazy"
-             decoding="async"
-             alt="The Today screen. A ring counting 56 days clean, and
-                  beside it a twenty-four hour clock face with hour marks,
-                  an amber arc over the coming window, a cream dot at the
-                  current time, and the words Window soon.">
-      </div>
-      <p class="shotnote">Real screens, from a real build, on a seeded demo log
-      rather than a person's, one that happens to peak in the early evening.
-      Yours will name different hours, or none at all.</p>
+      <p class="shotnote">A seeded demo log, one that happens to peak in the early
+      evening. Yours will name different hours, or none at all.</p>
     </div>
   </section>
 
@@ -1643,10 +1655,15 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <div class="sechead">
         <h2>The floor is free.</h2>
         <div class="sechead-body">
-          <p class="lede dim">Every safety surface sits in the free half,
-          deliberately.</p>
-          <p>Nobody should have to buy a subscription to find out that alcohol
-          withdrawal can be dangerous.</p>
+          <!-- The alcohol framing came out. It was the fourth time the page had
+               raised it by this point, and a price section is not the place to
+               argue about danger. The idea stands on its own: the things you reach
+               for on a bad night cost nothing. -->
+          <p class="lede dim">Everything you reach for on a bad night costs
+          nothing, permanently.</p>
+          <p>Not a trial, not a teaser. The counter, every SOS tool, the day-level
+          timeline and the crisis lines are free because that is where they belong,
+          and they stay free whether or not you ever pay for anything.</p>
         </div>
       </div>
 
@@ -1711,14 +1728,15 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           same way, and <a href="https://findahelpline.com">findahelpline.com</a> lists
           crisis lines by country. That is the same link the app opens, and it is the
           only address on this page that points anywhere but here.</p>
-          <p>Alcohol withdrawal in particular can be dangerous, and this is the app's
-          own wording, unchanged: <strong>Confusion, seeing or hearing things that are
-          not there, fever, bad shaking, or a seizure means 911,
-          immediately.</strong> If you drink heavily every day, a supervised taper is
-          the safe route, so talk to a doctor before you stop.</p>
-          <p class="small dim">The app's own line about calling one:
-          <b>These lines are free, confidential, and staffed by people who do this
-          every day. Calling one is a strong move, not a weak one.</b></p>
+          <!-- The alcohol rule stays, once, here, at the bottom, in the app's own
+               wording. It is the one piece of safety content this page genuinely
+               owes a reader, because the page is the Support URL on every App Store
+               storefront and somebody may land on it before they ever install. The
+               app carries the rest, repeatedly and in context. -->
+          <p class="small dim">If you drink heavily every day, stopping suddenly can
+          be medically dangerous, so talk to a doctor first. The app's own wording,
+          unchanged: <strong>Confusion, seeing or hearing things that are not there,
+          fever, bad shaking, or a seizure means 911, immediately.</strong></p>
         </div>
       </div>
     </div>
