@@ -359,7 +359,7 @@ p { text-wrap: pretty; }
 .sechead-body > * + * { margin-top: var(--s-l); }
 .sechead-body { max-width: var(--measure); }
 @media (min-width: 54rem) {
-  .sechead { grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+  .sechead { grid-template-columns: minmax(0, 27rem) minmax(0, 1fr);
              gap: clamp(2rem, 5vw, 4rem); align-items: start; }
   /* A serif pull quote needs more column than a three-word head does: at
      21rem the streak-guilt quote broke into five short lines and read as a
@@ -395,7 +395,7 @@ p { text-wrap: pretty; }
 /* Side by side once there is room for both without squeezing the headline.
    Below that the ring drops under the copy, which is the same reading order. */
 @media (min-width: 62rem) {
-  .hero .wrap { grid-template-columns: minmax(0, 1fr) auto; align-items: center;
+  .hero .wrap { grid-template-columns: minmax(0, 1fr) 16.5rem; align-items: center;
                 gap: clamp(2rem, 5vw, 4rem); }
   .hero-copy { max-width: 33rem; }
 }
@@ -1023,11 +1023,15 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="wholeday">
     <div class="wrap">
       <div class="sechead">
-        <h2>You know roughly when it gets bad. You have never seen the whole
-        day.</h2>
+        <!-- Was "You know roughly when it gets bad. You have never seen the whole
+             day." at 77 characters, which stood four lines and 239px tall in the
+             head column. The first half belongs in the slogan anyway: the heading
+             should carry the refusal, and the setup should carry the setup. -->
+        <h2>You have never seen the whole day.</h2>
         <div class="sechead-body">
-          <p class="lede dim">Twenty-four bars, thirty days, weighted by how hard
-          each craving hit rather than by how many there were.</p>
+          <p class="lede dim">You know roughly when it gets bad. Here are all
+          twenty-four hours of it, weighted by how hard each craving hit rather
+          than by how many there were.</p>
           <p>The window is a summary of this. Show the surface it summarises and
           the two hours stop reading like a horoscope: they are the tallest part
           of a shape you can see the rest of.</p>
@@ -1061,7 +1065,10 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="triggers">
     <div class="wrap">
       <div class="sechead">
-        <h2>Ranked by what it costs you, not by how often it happens.</h2>
+        <!-- Tightened from "Ranked by what it costs you, not by how often it
+             happens." The short form is the same antithesis with half the words,
+             which is the whole point of the figure. -->
+        <h2>Ranked by what it costs, not how often.</h2>
         <div class="sechead-body">
           <p class="lede dim">And the one number that tells you whether this is
           getting easier.</p>
