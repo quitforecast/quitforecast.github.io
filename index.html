@@ -903,6 +903,19 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           tail under 0.05, and a previous reading that already named the same
           hour. For some logs it never clears, and the app says nothing rather
           than invent one.</p>
+          <!-- THE TWO LOOKBACKS ARE NAMED, and a test in the app suite pins
+               both numbers to PatternEngine's own constants. The page once gave
+               a single eight-week figure for both layers, which is right for the
+               weekday one and wrong for the everyday one, and on a page whose
+               whole positioning is that every claim is checkable, that was the
+               checkable claim that failed. The restructure then dropped the
+               sentence entirely, which was no better. Do not quote the old
+               wording here even to explain it: the guard test greps the raw
+               file, comments included, and it is right to. -->
+          <p>The everyday reading is counted across your last thirty days. A
+          pattern that only shows on one weekday is counted across your last
+          eight of that weekday, so it takes longer to earn: about a month
+          before it can say anything about Fridays.</p>
           <p>The dial has five states and five words: Outside it, Window soon, In
           window, Held, and Day N of 3 after a slip. This is the app's own line,
           unchanged: <b>there is no score in it, no colour scale, and no red.</b></p>
@@ -1746,10 +1759,16 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                owes a reader, because the page is the Support URL on every App Store
                storefront and somebody may land on it before they ever install. The
                app carries the rest, repeatedly and in context. -->
-          <p class="small dim">If you drink heavily every day, stopping suddenly can
-          be medically dangerous, so talk to a doctor first. The app's own wording,
-          unchanged: <strong>Confusion, seeing or hearing things that are not there,
-          fever, bad shaking, or a seizure means 911, immediately.</strong></p>
+          <!-- "supervised taper" stays, and a test in the app suite holds it
+               here. Trimming the alcohol content is right everywhere else on
+               this page; trimming it to "talk to a doctor" is not, because the
+               taper is the actionable half. It tells a reader what to ASK for,
+               and somebody who does not know the word cannot request it. -->
+          <p class="small dim">If you drink heavily every day, do not stop
+          suddenly: a supervised taper is the safe route, so talk to a doctor
+          first. The app's own wording, unchanged: <strong>Confusion, seeing or
+          hearing things that are not there, fever, bad shaking, or a seizure
+          means 911, immediately.</strong></p>
         </div>
       </div>
     </div>
