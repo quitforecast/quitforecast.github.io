@@ -480,8 +480,16 @@ p { text-wrap: pretty; }
           gap: var(--s-xl) clamp(1.5rem, 5vw, 3.5rem);
           align-items: center; justify-content: flex-start; }
 
+/* The plain-noun kicker above each oblique h2: the headline keeps its voice,
+   the skimmer gets the noun. Same shape as the hero eyebrow, in dim. */
+.kicker { font-size: var(--t-micro); font-weight: 650; letter-spacing: 0.14em;
+          text-transform: uppercase; color: var(--dim); margin: 0 0 var(--s-m); }
+
 /* The index of the page, in plain nouns. The h2s carry no scent for a reader
-   hunting for the price or Apple Health, so the ordinary words live here. */
+   hunting for the price or Apple Health, so the ordinary words live here.
+   In the hero it spans the full grid row, under the figure, so a phone reader
+   meets the product shot one swipe sooner. */
+.hero .onpage { grid-column: 1 / -1; margin-top: 0; }
 .onpage { margin-top: var(--gap-block); }
 .onpage ul { list-style: none; margin: var(--s-m) 0 0; padding: 0;
              display: flex; flex-wrap: wrap; gap: var(--s-s); }
@@ -641,10 +649,11 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
              font-weight: 650; letter-spacing: 0.14em; text-transform: uppercase;
              margin: 0 0 var(--s-m);">Observation, not willpower.</p>
           <h1>See your recovery coming.</h1>
-          <p class="lede">109 dated milestones, from 20 minutes to 15 years,
-          written separately for smoking, vaping, alcohol, cannabis and
-          caffeine, with the studies printed under them. On iPhone, with an
-          Apple Watch app.</p>
+          <p class="lede">The whole road back, dated and cited, from 20 minutes
+          to 15 years. For quitting smoking, vaping, alcohol, cannabis or
+          caffeine. On iPhone.</p>
+          <p class="small dim" style="margin-top: var(--s-m);">If this is
+          attempt three or four, you are who it was built for.</p>
         </div>
 
         <div>
@@ -659,25 +668,11 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
               <text x="31" y="31.6" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16.8" font-weight="500" letter-spacing="-0.35">App Store</text>
             </svg>
           </a>
-          <p class="micro" style="margin-top: var(--s-m);">Free to download. The
-          clean-time counter, every SOS tool, the crisis lines and all four faith
-          and philosophy packs stay free permanently.</p>
+          <p class="micro" style="margin-top: var(--s-m);">Free to download.
+          The counter, every SOS tool and the crisis lines stay free
+          permanently.</p>
         </div>
 
-        <nav class="onpage" aria-label="Sections of this page" style="margin-top: var(--s-l);">
-          <ul role="list">
-            <li><a href="#ethos">The idea</a></li>
-            <li><a href="#counter">The counter</a></li>
-            <li><a href="#timeline">The timeline</a></li>
-            <li><a href="#sos">SOS</a></li>
-            <li><a href="#rebuild">Rebuild</a></li>
-            <li><a href="#health">Apple Health</a></li>
-            <li><a href="#log">The log</a></li>
-            <li><a href="#settings">Settings</a></li>
-            <li><a href="#price">Price</a></li>
-            <li><a href="#crisis">Crisis lines</a></li>
-          </ul>
-        </nav>
       </div>
 
       <!-- THE FIRST IMAGE IS THE APP: counter, next milestone, recovery
@@ -692,8 +687,19 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                     current time, and the words Window soon.">
         </div>
         <p class="figure-label">Your clean time, and the two hours your own log
-        named. Real screens, on a seeded demo log rather than a person's.</p>
+        named. Real screens; the log is a demonstration, not a person's.</p>
       </div>
+
+      <nav class="onpage" aria-label="Sections of this page">
+        <ul role="list">
+          <li><a href="#timeline">The timeline</a></li>
+          <li><a href="#sos">SOS</a></li>
+          <li><a href="#health">Apple Health</a></li>
+          <li><a href="#log">The log</a></li>
+          <li><a href="#price">Price</a></li>
+          <li><a href="#crisis">Crisis lines</a></li>
+        </ul>
+      </nav>
     </div>
   </section>
 
@@ -701,32 +707,20 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="ethos">
     <div class="wrap">
       <div class="sechead">
-        <h2>Quitting isn't a fight you white-knuckle.</h2>
+        <div>
+          <p class="kicker">The idea</p>
+          <h2>Quitting isn't a fight you white-knuckle.</h2>
+        </div>
         <div class="sechead-body">
           <p class="lede dim">It's a chance to finally know yourself, and this
           whole app is built for that.</p>
-          <p>Nothing is being added. Something is being removed. The substance
-          spent years running a chemistry your body already knew how to run,
-          and when it goes, the original comes back on a documented schedule.
-          Nicotine's crowded receptors thin back toward normal over weeks of
-          abstinence (Cosgrove, 2009). Cannabis receptors recover with time
-          away (Hirvonen, 2012). Mood after quitting improves with effects
-          comparable to antidepressants (Taylor, BMJ 2014). You are not
-          building a better you. You are getting yours back.</p>
-          <p>So the order of this app is fixed: see first, correct second.
-          <b>Correction that skips the watching is just willpower, and
-          willpower is what you already tried four times.</b> Everything here
-          is an instrument for the seeing, and every move it hands you was
-          decided while you were calm.</p>
-          <ul class="instr" role="list">
-            <li><b>5 habits</b><span>Smoking, vaping, alcohol, cannabis and
-            caffeine, each with its own separately written withdrawal.</span></li>
-            <li><b>109 milestones</b><span>33 for smoking down to 15 for
-            caffeine. Caffeine's clock has nothing in common with
-            alcohol's.</span></li>
-            <li><b>54 sources</b><span>Listed inside the app with working
-            links, printed under the claims they back.</span></li>
-          </ul>
+          <p>Watch a craving move through you. What it's made of, how it rises
+          and breaks. <b>What you understand can't own you.</b></p>
+          <p>Nothing is being added. Something is being removed. Receptors
+          reset, sleep returns, mood lifts. You are not building a better you.
+          You are getting yours back.</p>
+          <p>See first. Correct second. Correction that skips the watching is
+          just willpower, and willpower is what you already tried.</p>
         </div>
       </div>
       <div class="phone reveal stack-block optional">
@@ -743,31 +737,37 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="counter">
     <div class="wrap">
       <div class="sechead">
-        <h2>It is a clock, not a scoreboard.</h2>
-        <div class="sechead-body">
-          <p class="lede dim">Your clean time on top, and every system that
-          heals underneath it.</p>
-          <p>The counter runs from the day you actually quit, and under it,
-          once there has been more than one attempt, a quiet line: attempt
-          number, best run. A counter that resets to zero has told you the
-          last forty days did not happen. They happened. After a slip the
-          button says what it does: <b>Restart my clock, keep my
-          history.</b></p>
-          <p>The savings tin counts what you have stopped spending, at the
-          pace you actually paid, and a slip never empties it: your dream
-          should never pay for one hard night.</p>
-          <ul class="instr" role="list">
-            <li><b>28 recovery systems</b><span>Heart, lungs, sleep, taste and
-            smell, each on its own dated road, bent by how heavily you
-            used.</span></li>
-            <li><b>One caveat, printed</b><span>Drawn from cited findings and
-            interpolated between them, not a measurement of your body.</span></li>
-            <li><b>Next milestone</b><span>Always in view, with how far along
-            you are and how close the next one is.</span></li>
-          </ul>
-          <p class="micro">The counter, the tin and the day-level timeline sit
-          on the hero screen above: one shot, because it is one screen.</p>
+        <div>
+          <p class="kicker">The counter</p>
+          <h2>A clock, not a scoreboard.</h2>
         </div>
+        <div class="sechead-body">
+          <p class="lede dim">Your clean time, your money back, and every
+          system healing underneath.</p>
+          <p>A counter that resets to zero has told you the last forty days
+          did not happen. They happened. After a slip the button says what it
+          does: <b>Restart my clock, keep my history.</b></p>
+          <p>A tin counts the money you stopped spending. A slip never
+          empties it: what you are saving for should never pay for one hard
+          night.</p>
+          <p class="micro">Recovery curves are drawn from cited findings and
+          interpolated between them, not a measurement of your body.</p>
+        </div>
+      </div>
+      <div class="figure reveal stack-block">
+        <div class="phone">
+          <img src="shots/recovery.jpg" width="520" height="1130" loading="lazy"
+               decoding="async"
+               alt="The Recovery systems card on Today. Carbon monoxide
+                    clearance, heart rate and blood pressure, sleep quality
+                    and taste and smell are marked Recovered. Nicotinic
+                    receptor reset, at 92 percent, is open to its curve from
+                    day zero to day ninety with a marker labelled you at day
+                    56. Below it, What it was doing and What's healing explain
+                    the extra receptors and their reset.">
+        </div>
+        <p class="figure-label">One system opened to its road. A demonstration
+        history, not a person's.</p>
       </div>
     </div>
   </section>
@@ -776,30 +776,24 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="timeline">
     <div class="wrap">
       <div class="sechead">
-        <h2>From 20 minutes to 15 years.</h2>
+        <div>
+          <p class="kicker">The timeline</p>
+          <h2>From 20 minutes to 15 years.</h2>
+        </div>
         <div class="sechead-body">
-          <p class="lede dim">The whole road, dated, before you take the first
-          step.</p>
-          <p>Open any stage and it holds what is healing and what you might
-          feel, with the studies printed under it. Through the acute window it
-          carries a third block, what helps now: the move for that hour,
-          decided before the hour arrives. Twenty minutes into a smoking quit
-          it reads, in the app's own words: <b>You feel fine now, so use it.
-          Clear them out first: the pack, the spare in the car, the lighters,
-          the ashtrays.</b></p>
-          <p class="small dim">At two hours it says nicotine's half-life is
-          about two hours, so half of it is already gone, and the studies the
-          claim rests on are printed right under it. Cannabis and caffeine
-          carry a move at every stage they have, out to a year.</p>
+          <p class="lede dim">Read day three before you live it.</p>
+          <p>Open any stage: what is healing, what you might feel, and in the
+          hard early hours, what helps now. The studies sit under each
+          one.</p>
+          <p class="small dim">Twenty minutes in you still feel fine, and the
+          app puts that to work: <b>Clear them out first: the pack, the spare
+          in the car, the lighters, the ashtrays.</b></p>
         </div>
       </div>
       <div class="feature reveal stack-block">
         <div class="feature-copy">
-          <h3>Every hour of it, what to do about it, and the evidence for each
-          one</h3>
-          <p class="small dim">The full rail is there on minute one. It needs
-          no watch, no logging and no account: only a quit date. And it never
-          scolds.</p>
+          <h3>Every hour of it</h3>
+          <p class="small dim">There on minute one, and it never scolds.</p>
         </div>
         <div class="phone">
           <img src="shots/timeline.jpg" width="520" height="1130" loading="lazy"
@@ -839,28 +833,22 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="sos">
     <div class="wrap">
       <div class="sechead">
-        <h2>The wave, timed.</h2>
+        <div>
+          <p class="kicker">Craving SOS</p>
+          <h2>The wave, timed.</h2>
+        </div>
         <div class="sechead-body">
           <p class="lede dim">One five-minute clock, shared by every tool, and
           no button that says it passed.</p>
-          <p>A craving crests and fades in a few minutes whether or not you
-          fight it (Better Health Channel, 2024). Riding it out beats
-          wrestling it: urge surfing is the studied frame (Bowen, 2009;
-          Marlatt, 2005). A simple game measurably blunts the urge
-          (Skorka-Brown, 2015), and movement helps at the peak (Haasova,
-          2013). So: a breath pacer, a body scan, a grounding count, and two
-          games for when thinking is not on the table.</p>
-          <p>One 300-second clock anchored to wall time, shared across every
-          tool, so switching from breathing to a game does not restart the
-          wave. At zero it says Outlasted. Once five timed rides exist it
-          quotes the median of your last ten, which is almost always shorter
-          than they feel.</p>
-          <p class="small dim">During the body scan, one of the prompts reads:
-          <b>You're the one watching. It's the one passing.</b></p>
-          <p class="small dim">Every one of these is free, permanently. So are
-          the four crisis lines, <a href="#crisis">dialable at the foot of this
-          page</a>. The worst ten minutes of your week are not a sales
-          moment.</p>
+          <p>A craving crests and breaks in minutes whether or not you fight
+          it. So ride it: breathe, scan, ground, or play a game until it dies.
+          At zero the clock says Outlasted.</p>
+          <p class="small dim">Urge surfing and game distraction are studied
+          technique, and every tool cites its sources in the app.</p>
+          <p><b>You're the one watching. It's the one passing.</b></p>
+          <p class="small dim">Every tool here is free, and so are the crisis
+          lines, <a href="#crisis">dialable at the foot of this page</a>. The
+          worst ten minutes of your week are not a sales moment.</p>
         </div>
       </div>
       <div class="phone reveal stack-block">
@@ -882,28 +870,20 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="rebuild">
     <div class="wrap">
       <div class="sechead">
-        <h2>The void has four names.</h2>
+        <div>
+          <p class="kicker">Rebuild</p>
+          <h2>The void has four names.</h2>
+        </div>
         <div class="sechead-body">
           <p class="lede dim">Reward, connection, meaning, competence. The
-          habit was faking all four, and 71 moves rebuild the real thing.</p>
-          <p>Substances counterfeit natural reward, which is why early
-          abstinence feels blunted and why distraction is not an answer. The
-          four names are basic human needs, not slogans (Ryan and Deci, 2000).
-          Rats in an enriched cage mostly leave the morphine alone (Alexander,
-          1978). Savoring practice restores a blunted reward response
-          (Garland, 2023). Cold water measurably raises dopamine (Sramek,
-          2000). The catalogue turns that shelf of findings into 71 concrete
-          moves for the weeks between cravings, which are the weeks that
-          decide it.</p>
-          <p>Every move states two plain facts before you commit: how long it
-          takes, and how exposed it feels. The scale rates the move and never
-          you, so a two-hour solo hike is Quiet and a thirty-second phone call
-          can be Real nerve. Forty-six cite a study. Twenty-five say on their
-          own page that they carry none.</p>
+          habit was faking all four.</p>
+          <p>The weeks between cravings decide this. A catalogue of real
+          moves rebuilds each one, stating two
+          plain facts before you commit: how long it takes, and how much
+          nerve it asks. The scale rates the move, never you.</p>
           <p class="small dim">One ladder is the whole idea made literal: sit
-          with yourself for ten minutes, then twenty, then an hour. Its own
-          obstacle note reads <b>That restlessness is the exercise, not a sign
-          to stop.</b></p>
+          with yourself for ten minutes, then twenty, then an hour. <b>That
+          restlessness is the exercise, not a sign to stop.</b></p>
         </div>
       </div>
       <div class="phone reveal stack-block">
@@ -920,24 +900,20 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="health">
     <div class="wrap">
       <div class="sechead">
-        <h2>You already have a before.</h2>
+        <div>
+          <p class="kicker">Apple Health</p>
+          <h2>You already have a before.</h2>
+        </div>
         <div class="sechead-body">
           <p class="lede dim">Fourteen days you did not know you were
           recording.</p>
-          <p>Five measures chart themselves against your own average from the
-          fourteen days before your quit date: resting heart rate, heart rate
-          variability, cardio fitness, respiratory rate and blood oxygen.
-          Under each chart sits what published research expects, with its
-          sources: HRV climbs within days to weeks of a nicotine quit (Dinas,
-          2013); a month off alcohol moves cardiovascular risk factors (Mehta,
-          BMJ Open 2018). Then your own line shows what actually happened to
-          you, and it is never edited to agree.</p>
-          <p>All five come off a wearable such as an Apple Watch. Under five
-          pre-quit days, no baseline is drawn and the card says why rather
-          than drawing a line it cannot support.</p>
-          <p class="micro">The app keeps no copy. Every visit reads Apple
-          Health fresh and stores none of it: no series on your phone, none in
-          the iCloud backup, nothing to leak.</p>
+          <p>Heart, lungs, breath and blood chart themselves against your own
+          baseline from the two weeks before you quit, with what research
+          expects printed beside your line. <b>Your chart is allowed to
+          disagree.</b></p>
+          <p class="micro">Needs an Apple Watch or similar. Read fresh from
+          Apple Health on every visit, stored never: no series on your phone,
+          none in the backup, nothing to leak.</p>
         </div>
       </div>
 
@@ -952,10 +928,9 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                       day you stopped, and a falling line after it.">
           </div>
           <p class="shotnote" style="margin-top: var(--s-m);">A demonstration
-          chart. The five cards read Apple Health live and store no series, so
-          there was nothing to photograph without seeding readings. The chart, the
-          baseline line and the citation are real; the numbers are not
-          somebody's.</p>
+          chart: nothing is stored, so there was no saved series to
+          photograph. The chart, the baseline and the citation are real; the
+          numbers are not somebody's.</p>
         </div>
         <div class="optional">
           <div class="phone">
@@ -972,10 +947,8 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           so the two can be read against each other.</p>
         </div>
       </div>
-      <p class="shotcaption">Your own five cards will show your own numbers,
-      whatever they turn out to be, including the ones that disagree with the
-      research printed beside them. The heading at the top of that tab is the
-      app's own: there is no improved you at the end of this. Only you,
+      <p class="shotcaption">The heading at the top of that tab is the app's
+      own: there is no improved you at the end of this. Only you,
       uninterrupted.</p>
       <div class="closer reveal">
         <p class="small" style="max-width: 26rem;">Your watch has been keeping
@@ -999,31 +972,28 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="log">
     <div class="wrap">
       <div class="sechead">
-        <h2>Your habit has a shape.</h2>
+        <div>
+          <p class="kicker">The craving log</p>
+          <h2>Your habit has a shape.</h2>
+        </div>
         <div class="sechead-body">
-          <p class="lede dim">Two hours out of your own log, and five separate
-          tests before the app will name them.</p>
-          <p>Log a craving in two taps, at the hour it happened. The engine
-          reads the record and refuses to speak early: your two hours are
-          named only after five separate tests pass, from four occupied days
-          to a scan-corrected tail. For some logs the bar never clears, and
-          the app says nothing rather than invent a window. <b>Silence is a
-          reading.</b> When it does speak, it has been measured at 97 percent
-          precision.</p>
+          <p class="lede dim">Two hours out of your own log, and it would
+          rather say nothing than guess.</p>
+          <p>Two taps to log a craving. The app finds the hours yours gather,
+          the triggers that cost you most, and the pair that arrives together.
+          Nothing is borrowed from an average: it is your record speaking, or
+          nothing. <b>Silence is a reading.</b> When it speaks, it is right
+          about 97 times in 100. Measured, not promised.</p>
           <!-- THE TWO LOOKBACKS ARE NAMED, and a test in the app suite pins
                both numbers to PatternEngine's own constants. Do not quote the
                retired eight-week wording here even to explain it: the guard
                test greps the raw file, comments included, and it is right
                to. -->
-          <p>The everyday reading is counted across your last thirty days. A
-          pattern that only shows on one weekday is counted across your last
-          eight of that weekday, so it takes longer to earn: about a month
-          before it can say anything about Fridays.</p>
-          <p>When your two hours are real, the card arms three hours ahead,
-          and an optional check-in lands about 45 minutes before they open,
-          carrying the move you picked while calm. Triggers rank by what they
-          cost you, not how often they fire, and the app names which two keep
-          arriving together: <b>Plan for the pair, not just each one.</b></p>
+          <p class="small dim">The everyday reading counts your last thirty
+          days; a weekday pattern needs your last eight of that weekday.</p>
+          <p>When your hours are real, you hear three hours ahead, then 45
+          minutes before they open, carrying the move you picked while calm.
+          Get ahead of the hour, instead of wrestling inside it.</p>
         </div>
       </div>
       <div class="figure reveal stack-block">
@@ -1107,15 +1077,14 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           </g>
         </svg>
         <ul class="plainlist small dim" role="list" style="margin-top: var(--s-l);">
-          <li>Every craving you log lands at the hour it happened.</li>
-          <li>Until the pattern clears five separate tests, the app says nothing
-          at all.</li>
+          <li>Until your pattern clears five separate tests, the app says
+          nothing at all.</li>
           <li>There is no red on the dial. Only your hours, and now.</li>
           <li><b>7 of your last 9 days had a craving between 8 PM and 10 PM.</b></li>
         </ul>
       </div>
-      <p class="shotnote">A seeded demo log, one that happens to peak in the early
-      evening. Yours will name different hours, or none at all.</p>
+      <p class="shotnote">A demonstration log, one that happens to peak in the
+      early evening. Yours will name different hours.</p>
       <div class="phone reveal stack-block">
         <img src="shots/window.jpg" width="520" height="1130" loading="lazy"
              decoding="async"
@@ -1123,6 +1092,21 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                   This is the stretch that has been hardest. It builds, it
                   peaks, it passes. Below it, a Patterns card listing four
                   measured facts from the same log.">
+      </div>
+      <div class="closer reveal">
+        <p class="small" style="max-width: 26rem;">The log is free, and the
+        two hours come from your own taps.</p>
+        <a class="badge" href="https://apps.apple.com/app/quitforecast/id0000000000"
+           aria-label="Download on the App Store">
+          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false">
+            <rect width="120" height="40" rx="6.5" fill="#FFFFFF"/>
+            <g transform="translate(10.6 10.6) scale(0.2311)">
+              <path fill="#000000" d="M44.63,18.31Q45.70,18.31 48.29,18.65Q50.88,18.99 53.98,20.58Q57.08,22.17 59.62,25.83Q59.47,25.98 58.20,26.88Q56.93,27.78 55.37,29.52Q53.81,31.25 52.64,33.91Q51.46,36.57 51.46,40.23Q51.46,44.43 52.95,47.36Q54.44,50.29 56.42,52.08Q58.40,53.86 59.94,54.69Q61.47,55.52 61.57,55.57Q61.52,55.76 60.33,59.03Q59.13,62.30 56.40,66.31Q54.00,69.78 51.25,72.71Q48.49,75.63 44.63,75.63Q42.04,75.63 40.38,74.88Q38.72,74.12 36.96,73.36Q35.21,72.61 32.23,72.61Q29.35,72.61 27.42,73.39Q25.49,74.17 23.75,74.95Q22.02,75.73 19.68,75.73Q16.11,75.73 13.43,72.90Q10.74,70.07 7.91,66.11Q4.64,61.43 2.32,54.66Q0.00,47.90 0.00,41.02Q0.00,33.64 2.78,28.64Q5.57,23.63 9.94,21.07Q14.31,18.51 18.99,18.51Q21.48,18.51 23.68,19.31Q25.88,20.12 27.81,20.95Q29.74,21.78 31.30,21.78Q32.81,21.78 34.81,20.90Q36.82,20.02 39.31,19.17Q41.80,18.31 44.63,18.31ZM41.94,12.11Q40.04,14.40 37.16,15.94Q34.28,17.48 31.69,17.48Q31.15,17.48 30.66,17.38Q30.62,17.24 30.57,16.85Q30.52,16.46 30.52,16.02Q30.52,13.09 31.79,10.33Q33.06,7.57 34.67,5.76Q36.72,3.32 39.84,1.71Q42.97,0.10 45.80,0.00Q45.95,0.63 45.95,1.51Q45.95,4.44 44.82,7.20Q43.70,9.96 41.94,12.11Z"/>
+            </g>
+            <text x="31.5" y="16.4" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="7.6">Download on the</text>
+            <text x="31" y="31.6" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16.8" font-weight="500" letter-spacing="-0.35">App Store</text>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
@@ -1136,13 +1120,13 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section class="band" id="privacy">
     <div class="wrap">
       <div class="sechead">
-        <h2>Nothing leaves.</h2>
+        <div>
+          <p class="kicker">Privacy</p>
+          <h2>Nothing leaves.</h2>
+        </div>
         <div class="sechead-body">
           <p class="lede dim">No account, because there is nothing to sign in
-          to.</p>
-          <p>Your habits and quit dates, your craving log, your slips, your savings,
-          your settings and anything read from Apple Health live on your phone.
-          Nothing is ever written back to Health.</p>
+          to. Your record lives on your phone.</p>
           <p>Six things can leave, and each one is a thing you do on purpose: an
           iCloud backup, into your own private database that we cannot read; a post
           to the community board, under an anonymous identifier that is never your
@@ -1151,8 +1135,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           feedback message, if you write one; and a support conversation, if you
           start one, addressed by a random ID that is never your name. That is the
           whole list.</p>
-          <p>Reading the board sends nothing and needs no account. Nothing is
-          written unless you post, vote, report, or write to us.</p>
+          <p>Reading the board sends nothing.</p>
           <p class="micro">This page is part of the same promise. It loads no fonts,
           no executable script and no trackers, and sets no cookies. Its own content
           policy tells the browser to refuse them, so it is enforced rather than
@@ -1167,7 +1150,10 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="settings">
     <div class="wrap">
       <div class="sechead">
-        <h2>Everything loud is off by default.</h2>
+        <div>
+          <p class="kicker">Settings</p>
+          <h2>Everything loud is off by default.</h2>
+        </div>
         <div class="sechead-body">
           <p class="lede dim">The rest of the box, one line each.</p>
         </div>
@@ -1175,38 +1161,37 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <div class="grid stack-block" role="list" style="list-style: none; padding: 0; margin-top: var(--gap-block);">
         <div role="listitem">
           <h3>Three voices</h3>
-          <p>Normal, Cheeky, Strict coach. No voice is allowed to claim more
-          than the quiet one.</p>
+          <p>Normal, Cheeky, Strict coach.</p>
         </div>
         <div role="listitem">
           <h3>Four packs</h3>
-          <p>Stoic, Christian, Islamic and Jewish: 54 passages, off by
-          default, and the first row of the picker is Off.</p>
+          <p>Stoic, Christian, Islamic, Jewish. The picker's first row is
+          Off.</p>
         </div>
         <div role="listitem">
           <h3>iCloud backup</h3>
-          <p>Off by default, into your own private database, with fourteen
-          daily copies kept.</p>
+          <p>Off by default.</p>
         </div>
         <div role="listitem">
-          <h3>One widget, five sizes</h3>
-          <p>Plus two Control Center buttons, and a Live Activity that counts
-          the first 72 hours.</p>
+          <h3>The board</h3>
+          <p>Read it without an account. Posting is anonymous by design.</p>
+        </div>
+        <div role="listitem">
+          <h3>Widgets</h3>
+          <p>A widget for your home screen, and a live count on your lock
+          screen through the first three days.</p>
         </div>
         <div role="listitem">
           <h3>Apple Watch</h3>
-          <p>Clean time, next milestone, a breathing circle, and one-tap
-          logging from the wrist.</p>
+          <p>One-tap logging from the wrist.</p>
         </div>
         <div role="listitem">
           <h3>Notifications</h3>
-          <p>The window check-in, about 45 minutes ahead: opt in, and at most
-          one per habit per day.</p>
+          <p>Opt in. At most one per habit per day.</p>
         </div>
         <div role="listitem">
           <h3>Yours to take</h3>
-          <p>Export a spreadsheet of your record any time, or delete
-          everything, including the backup and anything you posted.</p>
+          <p>Export a spreadsheet, or delete everything.</p>
         </div>
       </div>
     </div>
@@ -1216,13 +1201,14 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <section id="price">
     <div class="wrap">
       <div class="sechead">
-        <h2>The floor is free.</h2>
+        <div>
+          <p class="kicker">Price</p>
+          <h2>The floor is free.</h2>
+        </div>
         <div class="sechead-body">
           <p class="lede dim">Everything you reach for on a bad night costs
           nothing, permanently.</p>
-          <p>Not a trial, not a teaser. The counter, every SOS tool, the day-level
-          timeline and the crisis lines are free because that is where they belong,
-          and they stay free whether or not you ever pay for anything.</p>
+          <p>Not a trial, not a teaser.</p>
         </div>
       </div>
 
@@ -1249,11 +1235,14 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
       </div>
 
+      <p class="small measure" style="margin-top: var(--s-xl);">Most habits
+      this app covers run to thousands a year. All of Premium is $39.99.</p>
+
       <div class="prices">
         <div class="price best">
           <span class="tag">Best value</span>
           <b>$39.99 a year</b>
-          <span>77 cents a week, and 67 percent less than paying monthly</span>
+          <span>77 cents a week</span>
         </div>
         <div class="price">
           <b>$9.99 a month</b>
@@ -1265,31 +1254,24 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
       </div>
 
-      <p class="small measure" style="margin-top: var(--s-xl);">The tin on the
-      Today screen counts what your habit was costing, week by week. Most
-      habits this app covers run to thousands a year; all of Premium is
-      $39.99.</p>
-      <p class="small measure" style="margin-top: var(--s-l);">One person built
-      QuitForecast, after quitting himself, and the same person answers the
-      mail. There are no ads here and nothing about you is for sale, so the
-      price is the whole business model: it is what pays for the app to keep
-      getting better.</p>
+      <p class="small measure" style="margin-top: var(--s-xl);">One person
+      built QuitForecast, after quitting himself. No ads, nothing about you
+      for sale: your subscription is the whole business model, and it is what
+      builds the app.</p>
 
       <p class="micro" style="margin-top: var(--s-l);">Subscriptions renew until you
-      cancel, in your Apple account settings; cancel and it simply runs out at the
+      cancel, in your Apple account settings; cancel and it runs out at the
       end of the term you paid for.</p>
+      <p class="small measure" style="margin-top: var(--s-l);">In this first
+      release, everything above is open. The paid split arrives in an update,
+      and the free floor never moves.</p>
       <p class="micro measure" style="margin-top: var(--s-l);">If your log never
       clears the bar, no window ever appears, and it is not being withheld from you:
-      it does not exist. Premium is still the hour-by-hour timeline, the recovery
-      curves, your Health cards and the full catalogue. The window is the one part the
-      app will not fake to look like it is working.</p>
-      <p class="micro measure" style="margin-top: var(--s-l);">The split above is
-      decided and is not yet enforced in a shipping build. When it is, this line
-      goes.</p>
+      it does not exist. The rest of Premium stands either way. The window is the
+      one part the app will not fake to look like it is working.</p>
 
       <div class="closer reveal">
-        <p class="small" style="max-width: 26rem;">Start free. The floor stays
-        under you either way.</p>
+        <p class="small" style="max-width: 26rem;">Start free.</p>
         <a class="badge" href="https://apps.apple.com/app/quitforecast/id0000000000"
            aria-label="Download on the App Store">
           <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false">
@@ -1311,7 +1293,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <div class="sechead">
         <h2>Some moments are not craving moments.</h2>
         <div class="sechead-body">
-          <p class="lede dim">Four numbers, one tap each, free permanently.</p>
+          <p class="lede dim">Four numbers, one tap each.</p>
           <!-- DIALABLE, and the full set the app ships. This page is the Support
                URL on every App Store storefront, so somebody will arrive here in
                the worst ten minutes of their week, on a phone, and plain text is a
@@ -1324,8 +1306,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           itself. If someone is in immediate danger, <a href="tel:911">call 911</a>.</p>
           <p class="small dim">Outside the US, your local emergency number works the
           same way, and <a href="https://findahelpline.com">findahelpline.com</a> lists
-          crisis lines by country. That is the same link the app opens, and it is the
-          only address on this page that points anywhere but here.</p>
+          crisis lines by country. That is the same link the app opens.</p>
           <!-- The alcohol rule stays, once, here, at the bottom, in the app's own
                wording. It is the one piece of safety content this page genuinely
                owes a reader, because the page is the Support URL on every App Store
@@ -1352,10 +1333,9 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <div class="sechead">
         <h2>A person answers.</h2>
         <div class="sechead-body">
-          <p class="lede dim">One address, and no ticket number.</p>
-          <p>Questions, bugs, or anything the app got wrong about you: write to
-          <a href="mailto:info@quitforecast.com">info@quitforecast.com</a> and the
-          person who built it will answer.</p>
+          <p class="lede dim">Inside the app, with no ticket number.</p>
+          <p>Settings, then Get help. Usually you hear back within a day, and
+          anonymous feedback has its own channel beside it.</p>
           <p class="small dim">QuitForecast is not a medical device and does not
           diagnose or treat anything. It holds no advice your own doctor should not
           overrule.</p>
@@ -1374,8 +1354,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
     <p><a href="https://apps.apple.com/app/quitforecast/id0000000000">Get the
        app</a> &nbsp;·&nbsp;
        <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
-       <a href="#crisis">Crisis lines</a> &nbsp;·&nbsp;
-       <a href="mailto:info@quitforecast.com">info@quitforecast.com</a></p>
+       <a href="#crisis">Crisis lines</a></p>
   </div>
 </footer>
 
