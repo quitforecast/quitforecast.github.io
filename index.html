@@ -221,11 +221,11 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
 /* --- Header ------------------------------------------------------------- */
 
-/* Sticky on desktop only. On a phone the sticky bottom bar carries the two
-   persistent routes (the store and the crisis lines), so pinning a second bar
-   to the top just spends screen, and at 200% text the pinned version measured
-   251px tall, a wall across a third of the window. Static solves both at once
-   and the max-height guard below keeps short desktop windows honest too. */
+/* Sticky on desktop only. Steven removed the floating bottom bar on phones
+   (August 1), and a pinned top bar at 200% text measured 251px tall, a wall
+   across a third of the window, so the phone gets no floating chrome at all:
+   the SOS route and the store live in the top nav and the footer. The
+   max-height guard below keeps short desktop windows honest too. */
 .topbar {
   position: sticky; top: 0; z-index: 5;
   background: rgba(12, 24, 32, 0.92);   /* --bg, with just enough left to see through */
@@ -274,37 +274,6 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
   .topbar { position: static; }
 }
 
-/* --- The sticky mobile bar ----------------------------------------------
-   The one conversion mechanic added in the rebuild. Bottom, phone widths only,
-   pure CSS: the store on the left, the crisis route on the right, both at
-   44px. The body padding keeps the last sections and the footer reachable
-   above it, and env() keeps it off the home indicator. */
-.stickybar { display: none; }
-@media (max-width: 48rem) {
-  .stickybar {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 6;
-    display: flex; gap: var(--s-m); align-items: center;
-    padding: 0.6rem 1.25rem calc(0.6rem + env(safe-area-inset-bottom));
-    background: rgba(12, 24, 32, 0.94);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid var(--line);
-  }
-  .stickybar .cta {
-    flex: 1; display: inline-flex; align-items: center; justify-content: center;
-    min-height: 2.75rem; background: var(--accent); color: var(--bg);
-    font-weight: 600; font-size: var(--t-small); text-decoration: none;
-    border-radius: 999px; padding: 0.6rem 1rem;
-  }
-  .stickybar .cta:hover { opacity: 0.88; }
-  .stickybar .sos {
-    display: inline-flex; align-items: center; justify-content: center;
-    min-height: 2.75rem; padding: 0.6rem 1rem;
-    color: var(--text); font-size: var(--t-small); text-decoration: none;
-    border: 1px solid var(--line2); border-radius: 999px;
-  }
-  body { padding-bottom: 5.75rem; }
-}
-
 /* --- Sections ----------------------------------------------------------- */
 
 section { padding-block: clamp(2.5rem, 7vw, 5rem); }
@@ -318,7 +287,7 @@ a, button, [tabindex]:not([tabindex="-1"]) { scroll-margin-top: 5.5rem; }
    reader's own; forced borders keep the cards and bars visible, and the ring
    adopts the system's accent rather than colours tuned for a dark ground. */
 @media (forced-colors: active) {
-  .card, .onpage, .topbar, .stickybar, .price { border: 1px solid CanvasText; }
+  .card, .onpage, .topbar, .price { border: 1px solid CanvasText; }
   .badge svg { forced-color-adjust: none; background: Canvas; }
   .dot { fill: CanvasText; opacity: 1; }
   .arc { stroke: Highlight; }
@@ -1290,10 +1259,9 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   </section>
 
   <!-- The crisis lines live on their own page, /crisis.html, per Steven's
-       ruling that the selling page carries no safety copy. The route stays
-       persistent: the nav SOS link, the sticky bar SOS button, and the footer
-       all point there, one tap from any scroll position. The app-suite
-       safety tests read that file. -->
+       ruling that the selling page carries no safety copy. The nav SOS link,
+       the SOS section, and the footer point there. The app-suite safety
+       tests read that file. -->
 
   <!-- ===================== SUPPORT ===================== -->
   <section id="support">
@@ -1322,14 +1290,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
        <a href="/crisis.html">Crisis lines</a></p>
   </div>
 </footer>
-
-<!-- The mobile bar: the store, and the way out. Present from load; a page
-     with no script cannot wait for a scroll to show it, and the two routes it
-     carries are the two a phone reader needs at any depth. -->
-<nav class="stickybar" aria-label="Quick actions">
-  <a class="cta" href="https://apps.apple.com/app/quitforecast/id0000000000">Get the app</a>
-  <a class="sos" href="/crisis.html">SOS</a>
-</nav>
 
 </body>
 </html>
