@@ -256,8 +256,8 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 }
 @media (max-width: 34rem) {
   .masthead { gap: var(--s-m); }
-  /* Price hides on a phone; it is one scroll away and in the sticky bar's
-     shadow anyway. SOS stays: a person mid-craving is not going to hunt. */
+  /* Price hides on a phone; it is one scroll away and has its own section.
+     SOS stays: a person mid-craving is not going to hunt. */
   .masthead nav a[href="#price"] { display: none; }
   .masthead nav { gap: var(--s-m); font-size: var(--t-micro); }
   .masthead nav a.navcta { padding: 0.35rem 0.75rem; }
@@ -277,7 +277,8 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 /* --- Sections ----------------------------------------------------------- */
 
 section { padding-block: clamp(2.5rem, 7vw, 5rem); }
-/* Clears the sticky bar, so an anchor lands on its heading and not under it. */
+/* Clears the sticky desktop bar, so an anchor lands on its heading and not
+   under it. */
 section { scroll-margin-top: 4.5rem; }
 /* SC 2.4.11 Focus Not Obscured: anything focusable carries the offset, which
    is the only version of this rule that survives Shift+Tab. */
@@ -574,7 +575,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
 /* --- Print -------------------------------------------------------------- */
 @media print {
   body { background: #FFFFFF; color: #111111; }
-  .topbar, .stickybar, .badge, .onpage { display: none; }
+  .topbar, .badge, .onpage { display: none; }
   a { color: #111111; }
 }
 </style>
