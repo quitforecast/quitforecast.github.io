@@ -954,8 +954,12 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p>Two taps to log a craving. The app finds the hours yours gather,
           the triggers that cost you most, and the two that tend to arrive
           together. Nothing is borrowed from an average: it is your record
-          speaking, or nothing. <b>Silence is a reading.</b> When it speaks,
-          it is right about 97 times in 100. Measured, not promised.</p>
+          speaking, or nothing. <b>Silence is a reading.</b></p>
+          <!-- THE PRECISION NUMBER IS GONE ON PURPOSE (Steven, August 3):
+               the reliability work stays silent and the feature just works.
+               Do not print a precision figure here again; the measurement
+               of record lives in Tests/WindowBacktestTests.swift and is for
+               the builders, not the page. -->
           <!-- THE TWO LOOKBACKS ARE NAMED, and a test in the app suite pins
                both numbers to PatternEngine's own constants. Do not quote the
                retired eight-week wording here even to explain it: the guard
