@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
 <title>QuitForecast: know the hours your cravings come</title>
 <!-- 155-160 characters, leading with the substance names a searcher actually
      types, then the two hero features of the launch build: the dated timeline
@@ -24,7 +25,7 @@
      data rather than as code and never executes, so it needs no grant. If a real
      script is ever added here, this line has to be revisited deliberately rather
      than loosened in passing. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://quitforecast.com/">
 <meta property="og:title" content="QuitForecast: know the hours your cravings come">
@@ -32,14 +33,15 @@
      the campaign line, then the two launch heroes in the hero's own order:
      the dated recovery road first, the log-named hours second. -->
 <meta property="og:description" content="Observation, not willpower. Recovery mapped hour by hour off the day you quit, and the two hours your own log names, before they open. Smoking, vaping, alcohol, cannabis, caffeine.">
-<!-- The share card. Same origin, drawn from the ring on the Ocean ground, so a
-     link to this page previews as the product rather than as a bare text tile.
-     The url is absolute on purpose: several scrapers drop a relative one and
-     fall back to nothing. -->
+<!-- The share card. Same origin, redrawn August 29 from the page's own bar
+     histogram (the ring retired with the dial), so a link to this page
+     previews as the product rather than as a bare text tile. The url is
+     absolute on purpose: several scrapers drop a relative one and fall back
+     to nothing. -->
 <meta property="og:image" content="https://quitforecast.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="A twenty-four hour ring with a craving log drawn on it, an amber arc over 8 to 10 PM.">
+<meta property="og:image:alt" content="A day of hours as bars beside the line See your recovery coming; two evening bars stand tall in amber, labelled 8 to 10 PM.">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:site_name" content="QuitForecast">
 <meta property="og:locale" content="en_US">
@@ -47,7 +49,7 @@
 <meta name="twitter:image" content="https://quitforecast.com/og.jpg">
 <!-- twitter:image:alt does NOT fall back to og:image:alt, so without this the
      card ships to screen readers with no description at all. -->
-<meta name="twitter:image:alt" content="A twenty-four hour ring with a craving log drawn on it, an amber arc over 8 to 10 PM.">
+<meta name="twitter:image:alt" content="A day of hours as bars beside the line See your recovery coming; two evening bars stand tall in amber, labelled 8 to 10 PM.">
 <!-- The real app icon, so a home-screen bookmark carries the mark a visitor
      has to recognise on the App Store. -->
 <link rel="apple-touch-icon" href="/icon-180.png">
@@ -74,7 +76,7 @@
   "applicationCategory": "HealthApplication",
   "operatingSystem": "iOS",
   "description": "Recovery mapped hour by hour from the day you quit, with cited sources, and the two hours your own log says cravings come. Separate withdrawal timelines for smoking, vaping, alcohol, cannabis and caffeine.",
-  "isAccessibleForFree": true,
+  "isAccessibleForFree": false,
   "featureList": [
     "Hour-by-hour withdrawal timeline per habit, with cited sources",
     "Apple Health comparison against your own pre-quit baseline",
@@ -83,8 +85,6 @@
     "Craving window: the two hours your own log says your cravings gather in"
   ],
   "offers": [
-    { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD",
-      "description": "Clean-time counter, day-level milestone timeline, SOS craving tools, crisis lines, faith and philosophy packs." },
     { "@type": "Offer", "name": "Premium, monthly", "price": "9.99", "priceCurrency": "USD" },
     { "@type": "Offer", "name": "Premium, annual", "price": "39.99", "priceCurrency": "USD" },
     { "@type": "Offer", "name": "Premium, one-time", "price": "99.99", "priceCurrency": "USD" }
@@ -94,8 +94,7 @@
     "name": "QuitForecast",
     "url": "https://quitforecast.com/",
     "email": "info@quitforecast.com"
-  },
-  "privacyPolicy": "https://quitforecast.com/privacy.html"
+  }
 }
 </script>
 <style>
@@ -138,13 +137,12 @@
   --amber:   #E5A45C;   /* live now-ness only: the window, the now-dot */
   /* Non-text contrast floor. --line2 measures 1.91:1 against the ground, which
      is fine for hairline borders and fails SC 1.4.11 for the one graphic that
-     carries meaning. The ring draws in this instead: 3.1:1 measured. */
-  --ringink: #4E6A76;
+     carries meaning. The chart's axis and its empty hours draw in this
+     instead: 3.1:1 measured. */
+  --chartink: #4E6A76;
 
   --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto,
           "Helvetica Neue", Arial, sans-serif;
-  /* Passages read as passages, everywhere. The app's one serif rule. */
-  --serif: ui-serif, "New York", Georgia, "Times New Roman", serif;
 
   /* Type scale. Every size is relative, so a reader who has set a larger
      default in their browser gets a larger page. Nothing is fixed in pixels. */
@@ -161,14 +159,12 @@
   --s-xl: 1.5rem; --s-xxl: 2rem;  --s-xxxl: 3rem;
 
   --gap-block: clamp(2rem, 5vw, 3rem);
-  --gap-sub:   clamp(2.5rem, 6vw, 4rem);
 
   --radius-card: 16px;
   --measure: 34rem;       /* about 66 characters, the reading measure */
 }
 
 .stack-block { margin-top: var(--gap-block); }
-.stack-sub   { margin-top: var(--gap-sub); }
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -237,7 +233,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
   gap: var(--s-l); flex-wrap: wrap;
   padding-block: var(--s-m);
 }
-.lockup { display: flex; align-items: center; gap: 0.625rem; font-weight: 600;
+.lockup { display: flex; align-items: center; gap: 0.625rem; min-height: 2.75rem; font-weight: 600;
           letter-spacing: -0.01em; color: var(--text); text-decoration: none; }
 .lockup svg { display: block; width: 1.625rem; height: 1.625rem; flex: none; }
 .masthead nav { display: flex; flex-wrap: wrap; align-items: center;
@@ -245,10 +241,10 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 /* SC 2.5.8 Target Size (Minimum), AA: 24 by 24 CSS px. These sit in a <nav>,
    so the inline exception does not apply; the min-height does the work. */
 .masthead nav a { color: var(--dim); text-decoration: none;
-                  display: inline-flex; align-items: center; min-height: 1.5rem; }
+                  display: inline-flex; align-items: center; min-height: 2.75rem; }
 .masthead nav a:hover { color: var(--text); }
 .masthead nav a.navcta { color: var(--bg); background: var(--accent);
-                         padding: 0.4rem 0.85rem; border-radius: 999px;
+                         padding: 0.55rem 0.95rem; border-radius: 999px;
                          font-weight: 600; }
 .masthead nav a.navcta:hover { color: var(--bg); opacity: 0.88; }
 @media (max-width: 48rem) {
@@ -285,14 +281,18 @@ section { scroll-margin-top: 4.5rem; }
 a, button, [tabindex]:not([tabindex="-1"]) { scroll-margin-top: 5.5rem; }
 
 /* Windows High Contrast and forced-colors. The palette is replaced by the
-   reader's own; forced borders keep the cards and bars visible, and the ring
-   adopts the system's accent rather than colours tuned for a dark ground. */
+   reader's own; forced borders keep the cards and bars visible, and the chart
+   adopts the system's own inks rather than colours tuned for a dark ground. The
+   window's two bars take Highlight, because in this mode colour is the ONLY
+   thing left to separate them from the day around them. */
 @media (forced-colors: active) {
   .card, .onpage, .topbar, .price { border: 1px solid CanvasText; }
   .badge svg { forced-color-adjust: none; background: Canvas; }
-  .dot { fill: CanvasText; opacity: 1; }
-  .arc { stroke: Highlight; }
-  .nowdot { fill: Highlight; }
+  .axis { stroke: CanvasText; }
+  .bar { fill: CanvasText; opacity: 1; }
+  .bar.window { fill: Highlight; }
+  .windowlabel { fill: Highlight; }
+  .hourlabel { fill: CanvasText; }
   a:focus-visible, button:focus-visible { outline: 2px solid Highlight; }
 }
 section + section { border-top: 1px solid var(--line); }
@@ -301,8 +301,6 @@ section + section { border-top: 1px solid var(--line); }
 .lede { font-size: var(--t-lead); line-height: 1.42; color: var(--text);
         text-wrap: pretty; }
 p { text-wrap: pretty; }
-.body-stack > * + * { margin-top: var(--s-l); }
-.head-stack > * + * { margin-top: var(--s-m); }
 
 /* The section head, in two columns once there is room: the short line on the
    left, what it means on the right. */
@@ -316,7 +314,13 @@ p { text-wrap: pretty; }
   .sechead > :first-child { position: sticky; top: 5.5rem; }
 }
 
-/* The App Store badge. White is the sanctioned variant on a dark ground.
+/* The App Store badge, in its PRE-LAUNCH state (Steven's Route A,
+   August 30): the drawn symbol reads Coming soon to the App Store and
+   every badge site is a non-interactive span, because a control that
+   presents as a route to the product must resolve (scorecard N4). At
+   launch: put the real id into the footer and navcta hrefs, restore
+   the spans to anchors, and swap Apple's supplied artwork into the
+   ONE symbol. White is the sanctioned variant on a dark ground.
    PLACEHOLDER ARTWORK: this is drawn here, with the Apple mark taken from the
    system font's own glyph rather than traced by eye, so it is accurate but it
    is still a recreation. Apple's marketing guidelines require their supplied
@@ -335,57 +339,62 @@ p { text-wrap: pretty; }
   .hero .wrap { grid-template-columns: minmax(0, 1fr) 16.5rem; align-items: center;
                 gap: clamp(2rem, 5vw, 4rem); }
   .hero-copy { max-width: 33rem; }
+  /* THE WRIST OVERLAPS THE PHONE'S CORNER, and this is measured rather than
+     styled by feel: the hero's figure column is exactly 16.5rem, the phone's own
+     width, so a watch beside it has nowhere to stand and wrapped underneath,
+     adding a second stacked image to the tallest thing on the page. Absolute and
+     mostly out in the grid's own gap, it reads as the pair of devices it is.
+     Desktop only: below this breakpoint the hero is one column and the watch
+     sits under the phone, which is the right answer on a phone. */
+  .hero .devices { position: relative; }
+  .hero .devices .watch { position: absolute; left: -4.5rem; bottom: 1.25rem;
+                          width: 7rem; }
 }
 .figure { margin: 0; display: flex; flex-direction: column; align-items: center;
           gap: var(--s-l); }
 /* The floor is in rem on purpose. A px inside a viewBox is a user unit scaled
    by the element's width, not by the reader's text setting, so the only way the
    hour labels grow with a larger default is for the ring itself to grow. */
-.figure svg.ring { display: block; width: min(76vw, 23.5rem);
-                   min-width: min(100%, 17.5rem); height: auto; }
+.figure svg.chart { display: block; width: min(90vw, 30rem);
+                    min-width: min(100%, 17.5rem); height: auto; }
 .figure-label { font-size: var(--t-micro); color: var(--dim); letter-spacing: 0.01em; }
 
-/* Ring parts. Every animated element's BASE state is its FINAL state, and the
+/* Chart parts. Every animated element's BASE state is its FINAL state, and the
    keyframes run with fill mode `both`, so switching the animations off (Reduce
    Motion, or a browser that will not run them) leaves the finished drawing
-   rather than an empty circle. Ink is --ringink, not --line2: the ring is the
-   one graphic on the page that carries meaning, so it clears SC 1.4.11's 3:1
-   where a hairline border does not have to. */
-.track  { fill: none; stroke: var(--ringink); stroke-width: 5; }
-.tick   { stroke: var(--ringink); stroke-width: 1; }
-.tick.major { stroke: var(--ringink); stroke-width: 1.5; }
-.hourlabel { fill: var(--dim); font-family: var(--sans); font-size: 15px;
+   rather than an empty frame. Ink is --chartink, not --line2: this is the one
+   graphic on the page that carries meaning, so it clears SC 1.4.11's 3:1 where
+   a hairline border does not have to.
+   THE RING RETIRED HERE (A7, August 11) because the app retired it (Q7): a
+   twenty-four hour dial with a resolving amber arc was selling a drawing the
+   product no longer draws. The bars are the same fact in the shape the app now
+   uses, so the page and the screen agree again. */
+.axis   { stroke: var(--chartink); stroke-width: 1.5; }
+.bar    { fill: var(--accent); opacity: 0.8; }
+.bar.window { fill: var(--amber); opacity: 1; }
+.hourlabel { fill: var(--dim); font-family: var(--sans); font-size: 0.9375rem;
              text-anchor: middle; dominant-baseline: middle; }
-.dot    { fill: var(--text); opacity: 0.55; }
-.arc    { fill: none; stroke: var(--amber); stroke-width: 5; stroke-linecap: round; }
-.arclabel { fill: var(--amber); font-family: var(--sans); font-size: 15px;
-            font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
-.nowhalo { fill: var(--bg); }
-.nowdot  { fill: var(--text); }
+.windowlabel { fill: var(--amber); font-family: var(--sans); font-size: 0.9375rem;
+               font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
 
-@keyframes drawRing { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes drawLine { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 @keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
-@keyframes tickIn   { from { opacity: 0; } to { opacity: 1; } }
-@keyframes dotIn    { from { opacity: 0; transform: scale(0.2); }
-                      to   { opacity: 0.55; transform: scale(1); } }
-@keyframes drawArc  { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
-/* The armed arc's heartbeat, straight off WindowDial: 1.8 seconds, resting at
-   full strength and breathing down to 0.8, never the other way round. */
-@keyframes arcBreath { from { opacity: 1; } to { opacity: 0.8; } }
-@keyframes popIn    { from { opacity: 0; transform: scale(0.3); }
-                      to   { opacity: 1; transform: scale(1); } }
+/* Each bar grows from the floor, in clock order, so the day assembles left to
+   right the way a log fills. THE HEARTBEAT IS GONE with the arc it belonged to:
+   it was "straight off WindowDial", and a pulse on this page would now be the
+   site animating something the app holds still. */
+@keyframes growBar  { from { opacity: 0; transform: scaleY(0); }
+                      to   { opacity: 1; transform: scaleY(1); } }
 
-.track { stroke-dasharray: 1; animation: drawRing 0.8s ease-out 0.05s both; }
-.tick  { animation: tickIn 0.5s ease-out 0.4s both; }
-.hourlabel { animation: fadeIn 0.5s ease-out 0.5s both; }
-.dot   { transform-box: fill-box; transform-origin: center;
-         animation: dotIn 0.45s ease-out both; }
-.arc   { stroke-dasharray: 1;
-         animation: drawArc 0.85s ease-out 2.3s both,
-                    arcBreath 1.8s ease-in-out 3.15s infinite alternate; }
-.arclabel { animation: fadeIn 0.6s ease-out 2.75s both; }
-.now   { transform-box: fill-box; transform-origin: center;
-         animation: popIn 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) 2.9s both; }
+.axis  { stroke-dasharray: 1; animation: drawLine 0.7s ease-out 0.05s both; }
+.hourlabel { animation: fadeIn 0.5s ease-out 0.45s both; }
+.bar   { transform-box: fill-box; transform-origin: bottom;
+         animation: growBar 0.5s ease-out both; }
+/* The two that carry the claim arrive last and alone, after the day is drawn,
+   which is the sequence the feature itself has: the hours are logged first and
+   the app only names them once it is sure. */
+.bar.window { animation-duration: 0.6s; animation-delay: 1.5s; }
+.windowlabel { animation: fadeIn 0.6s ease-out 2.0s both; }
 
 /* --- Cards -------------------------------------------------------------- */
 
@@ -401,7 +410,8 @@ p { text-wrap: pretty; }
 
 .phone {
   position: relative;
-  width: min(100%, 16.5rem);
+  width: 16.5rem;
+  max-width: 100%;
   padding: 0.4rem;
   border-radius: 2.6rem;
   background: linear-gradient(155deg, #35454F 0%, #1B2B35 38%, #0E1A22 100%);
@@ -410,6 +420,15 @@ p { text-wrap: pretty; }
   flex: none;
 }
 .phone img { display: block; width: 100%; height: auto; border-radius: 2.25rem; }
+/* The same fade for shots that BEGIN mid-scroll: the strip of sheared
+   half-lines under the status bar dissolves into the page instead of
+   reading as a defect. Applied per-shot with .scrolled. */
+.phone.scrolled::before {
+  content: ""; position: absolute; left: 0.4rem; right: 0.4rem; top: 0.4rem;
+  height: 4.5%; border-radius: 2.25rem 2.25rem 0 0; pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(12, 24, 32, 0), var(--bg) 72%);
+}
 /* HOLDING PATCH, not the fix. Several shots were caught mid-scroll and end in
    a strip of sheared half-lines under the floating tab bar. Until the re-shoot
    per SHOT-LIST.md, this fades the last 5.5% of every shot into the page. */
@@ -419,10 +438,31 @@ p { text-wrap: pretty; }
   background: linear-gradient(to bottom, rgba(12, 24, 32, 0), var(--bg) 70%);
 }
 
+/* THE WRIST (Q21, August 11). The same frame language as the phone, squarer and
+   much smaller, because that is the size difference in real life: a watch drawn
+   at phone scale reads as a tablet. The source is 422x514, a native capture of
+   the largest Watch, so it is a 2x image at the size it is shown. */
+.watch {
+  position: relative;
+  width: 8.5rem; max-width: 100%;
+  padding: 0.3rem;
+  border-radius: 1.9rem;
+  background: linear-gradient(155deg, #35454F 0%, #1B2B35 38%, #0E1A22 100%);
+  box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.5),
+              0 0.25rem 0.75rem rgba(0, 0, 0, 0.4);
+  flex: none;
+}
+.watch img { display: block; width: 100%; height: auto; border-radius: 1.65rem; }
+/* A phone and a wrist standing together, bottom aligned so they read as two
+   devices on one desk rather than two images in a row. Wraps on a narrow
+   screen, where the watch goes under the phone. */
+.devices { display: flex; gap: clamp(0.75rem, 2vw, 1.5rem); align-items: flex-end;
+           justify-content: center; flex-wrap: wrap; }
+
 /* Two devices reading left to right: the glance, then the sentence behind it. */
 .phones { display: flex; gap: clamp(1rem, 3vw, 2rem); align-items: flex-start;
           flex-wrap: wrap; justify-content: center; }
-.phones > * { width: min(100%, 16.5rem); }
+.phones > * { width: 16.5rem; max-width: 100%; }
 .phones > *:nth-child(2) { margin-top: clamp(0rem, 4vw, 2.5rem); }
 /* Phone widths on a phone: a 264px frame is a third of the page height per
    shot at 375, and nine shots were the single biggest reason the page ran
@@ -432,7 +472,7 @@ p { text-wrap: pretty; }
    phone reader loses nothing but the duplicate. display:none before
    intersection also means the bytes are never fetched on mobile. */
 @media (max-width: 34rem) {
-  .phone { width: min(100%, 13.75rem); }
+  .phone { width: 13.75rem; max-width: 100%; }
   .optional { display: none; }
 }
 
@@ -493,15 +533,6 @@ p { text-wrap: pretty; }
   }
 }
 
-/* --- Quote bands -------------------------------------------------------- */
-
-blockquote { margin: 0; }
-.pull {
-  font-family: var(--serif); font-size: clamp(1.375rem, 1.1rem + 1.4vw, 2rem);
-  line-height: 1.3; letter-spacing: -0.01em; max-width: 30rem;
-}
-.attrib { font-size: var(--t-micro); color: var(--dim); margin-top: var(--s-m); }
-
 /* --- Lists -------------------------------------------------------------- */
 
 /* min() on the track floor, not a bare rem: at 200% text a 15rem minimum is
@@ -511,23 +542,11 @@ blockquote { margin: 0; }
 .grid h3 { margin-bottom: var(--s-xs); font-size: var(--t-body); }
 .grid p { font-size: var(--t-small); color: var(--dim); }
 
-.split { display: grid; gap: var(--s-l);
-         grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr)); }
 .plainlist { list-style: none; margin: var(--s-m) 0 0; padding: 0;
              font-size: var(--t-small); }
 .plainlist li { padding-block: 0.3rem; padding-left: 1.1rem; position: relative; }
 .plainlist li::before { content: ""; position: absolute; left: 0; top: 0.85em;
                         width: 0.375rem; height: 1px; background: var(--dim); }
-
-/* An instrument list: the counted thing, then what it means. role="list"
-   survives list-style:none in Safari with VoiceOver, which is why every list
-   on this page carries it. */
-.instr { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-m); }
-.instr > li { display: grid; grid-template-columns: auto 1fr; gap: var(--s-m);
-              align-items: baseline; }
-.instr b { color: var(--text); font-weight: 620; font-variant-numeric: tabular-nums;
-           white-space: nowrap; }
-.instr span { color: var(--dim); }
 
 /* --- Price -------------------------------------------------------------- */
 
@@ -569,18 +588,41 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
     animation: none !important;
     transition: none !important;
   }
-  .track, .arc { stroke-dashoffset: 0; }
+  .axis { stroke-dashoffset: 0; }
+  .bar  { transform: none; opacity: 1; }
 }
 
 /* --- Print -------------------------------------------------------------- */
 @media print {
   body { background: #FFFFFF; color: #111111; }
   .topbar, .badge, .onpage { display: none; }
-  a { color: #111111; }
+  a, .dim, .micro, .small.dim, .figure-label, .kicker, .eyebrow,
+  .lede.dim, .shotnote { color: #333333; }
+  .hourlabel { fill: #333333; }
+  .windowlabel { fill: #7A4A00; }
+  .bar { fill: #555555; }
+  .bar.window { fill: #7A4A00; }
 }
 </style>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<!-- The App Store badge, drawn ONCE. Every badge anchor references it
+     with <use> (anchors before launch, spans while the badge says
+     Coming soon), which is what let the page grow two more CTA closers
+     without growing the document. The artwork itself is still the
+     recreation the stylesheet header describes; Apple's supplied badge
+     replaces the symbol's contents before launch, in one place now. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<symbol id="badge-appstore" viewBox="0 0 120 40">
+              <rect width="120" height="40" rx="6.5" fill="#FFFFFF"/>
+              <g transform="translate(10.6 10.6) scale(0.2311)">
+                <path fill="#000000" d="M44.63,18.31Q45.70,18.31 48.29,18.65Q50.88,18.99 53.98,20.58Q57.08,22.17 59.62,25.83Q59.47,25.98 58.20,26.88Q56.93,27.78 55.37,29.52Q53.81,31.25 52.64,33.91Q51.46,36.57 51.46,40.23Q51.46,44.43 52.95,47.36Q54.44,50.29 56.42,52.08Q58.40,53.86 59.94,54.69Q61.47,55.52 61.57,55.57Q61.52,55.76 60.33,59.03Q59.13,62.30 56.40,66.31Q54.00,69.78 51.25,72.71Q48.49,75.63 44.63,75.63Q42.04,75.63 40.38,74.88Q38.72,74.12 36.96,73.36Q35.21,72.61 32.23,72.61Q29.35,72.61 27.42,73.39Q25.49,74.17 23.75,74.95Q22.02,75.73 19.68,75.73Q16.11,75.73 13.43,72.90Q10.74,70.07 7.91,66.11Q4.64,61.43 2.32,54.66Q0.00,47.90 0.00,41.02Q0.00,33.64 2.78,28.64Q5.57,23.63 9.94,21.07Q14.31,18.51 18.99,18.51Q21.48,18.51 23.68,19.31Q25.88,20.12 27.81,20.95Q29.74,21.78 31.30,21.78Q32.81,21.78 34.81,20.90Q36.82,20.02 39.31,19.17Q41.80,18.31 44.63,18.31ZM41.94,12.11Q40.04,14.40 37.16,15.94Q34.28,17.48 31.69,17.48Q31.15,17.48 30.66,17.38Q30.62,17.24 30.57,16.85Q30.52,16.46 30.52,16.02Q30.52,13.09 31.79,10.33Q33.06,7.57 34.67,5.76Q36.72,3.32 39.84,1.71Q42.97,0.10 45.80,0.00Q45.95,0.63 45.95,1.51Q45.95,4.44 44.82,7.20Q43.70,9.96 41.94,12.11Z"/>
+              </g>
+              <text x="31.5" y="16.4" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="7.0">Coming soon to the</text>
+              <text x="31" y="31.6" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16.8" font-weight="500" letter-spacing="-0.35">App Store</text>
+            </symbol>
+</svg>
+
 
 <header class="topbar">
   <div class="wrap masthead">
@@ -599,7 +641,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
            away. -->
       <a href="/crisis.html">SOS</a>
       <a href="#price">Price</a>
-      <a class="navcta" href="https://apps.apple.com/app/quitforecast/id0000000000">Get the app</a>
+      <a class="navcta" href="#price">Launching soon</a>
     </nav>
   </div>
 </header>
@@ -626,20 +668,13 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
 
         <div>
-          <a class="badge" href="https://apps.apple.com/app/quitforecast/id0000000000"
-             aria-label="Download on the App Store">
-            <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false">
-              <rect width="120" height="40" rx="6.5" fill="#FFFFFF"/>
-              <g transform="translate(10.6 10.6) scale(0.2311)">
-                <path fill="#000000" d="M44.63,18.31Q45.70,18.31 48.29,18.65Q50.88,18.99 53.98,20.58Q57.08,22.17 59.62,25.83Q59.47,25.98 58.20,26.88Q56.93,27.78 55.37,29.52Q53.81,31.25 52.64,33.91Q51.46,36.57 51.46,40.23Q51.46,44.43 52.95,47.36Q54.44,50.29 56.42,52.08Q58.40,53.86 59.94,54.69Q61.47,55.52 61.57,55.57Q61.52,55.76 60.33,59.03Q59.13,62.30 56.40,66.31Q54.00,69.78 51.25,72.71Q48.49,75.63 44.63,75.63Q42.04,75.63 40.38,74.88Q38.72,74.12 36.96,73.36Q35.21,72.61 32.23,72.61Q29.35,72.61 27.42,73.39Q25.49,74.17 23.75,74.95Q22.02,75.73 19.68,75.73Q16.11,75.73 13.43,72.90Q10.74,70.07 7.91,66.11Q4.64,61.43 2.32,54.66Q0.00,47.90 0.00,41.02Q0.00,33.64 2.78,28.64Q5.57,23.63 9.94,21.07Q14.31,18.51 18.99,18.51Q21.48,18.51 23.68,19.31Q25.88,20.12 27.81,20.95Q29.74,21.78 31.30,21.78Q32.81,21.78 34.81,20.90Q36.82,20.02 39.31,19.17Q41.80,18.31 44.63,18.31ZM41.94,12.11Q40.04,14.40 37.16,15.94Q34.28,17.48 31.69,17.48Q31.15,17.48 30.66,17.38Q30.62,17.24 30.57,16.85Q30.52,16.46 30.52,16.02Q30.52,13.09 31.79,10.33Q33.06,7.57 34.67,5.76Q36.72,3.32 39.84,1.71Q42.97,0.10 45.80,0.00Q45.95,0.63 45.95,1.51Q45.95,4.44 44.82,7.20Q43.70,9.96 41.94,12.11Z"/>
-              </g>
-              <text x="31.5" y="16.4" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="7.6">Download on the</text>
-              <text x="31" y="31.6" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16.8" font-weight="500" letter-spacing="-0.35">App Store</text>
-            </svg>
-          </a>
-          <p class="micro" style="margin-top: var(--s-m);">Free to download.
-          The counter, every SOS tool and the crisis lines stay free
-          permanently.</p>
+          <span class="badge" role="img"
+             aria-label="Coming soon to the App Store">
+            <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
+          </span>
+          <p class="micro" style="margin-top: var(--s-m);">Free to download,
+          and the first week is the whole app. The crisis lines and the
+          safety warnings never sit behind the price.</p>
         </div>
 
       </div>
@@ -647,13 +682,28 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <!-- THE FIRST IMAGE IS THE APP: counter, next milestone, recovery
            systems, all on one real screen. -->
       <div class="figure">
-        <div class="phone">
-          <img src="shots/today.jpg" width="520" height="1130"
-               decoding="async" fetchpriority="high"
-               alt="The Today screen. A ring counting 56 days clean, and
-                    beside it a twenty-four hour clock face with hour marks,
-                    an amber arc over the coming window, a cream dot at the
-                    current time, and the words Window soon.">
+        <div class="devices">
+          <div class="phone">
+            <picture><source srcset="shots/today.webp" type="image/webp"><img src="shots/today.jpg" width="519" height="1130"
+                 decoding="async" fetchpriority="high"
+                 alt="The Today screen. Nicotine-free, 30 days 0 hours 0
+                      minutes, beside a Cravings by hour chart whose evening
+                      bars run amber. Under it, a line reading Weeks of
+                      afternoons like this one. It shows. Then Saved $360.00
+                      at a $4,380 a year pace, Next milestone 6 weeks, 71
+                      percent there, and the Recovery systems list with
+                      Carbon monoxide clearance, Heart rate and blood
+                      pressure and Taste and smell marked Recovered."></picture>
+          </div>
+          <!-- The wrist, in the header, so the Watch is visible before anyone
+               scrolls (Q21). It is the smaller device and it is drawn smaller. -->
+          <div class="watch">
+            <picture><source srcset="shots/watch-home.webp" type="image/webp"><img src="shots/watch-home.jpg" width="422" height="514"
+                 decoding="async"
+                 alt="A quit on an Apple Watch: the word NICOTINE-FREE, a
+                      running count of one month one day, the next milestone at
+                      six weeks, and a Log craving button."></picture>
+          </div>
         </div>
         <p class="figure-label">Your clean time, and the two hours your own log
         named. Real screens; the log is a demonstration, not a person's.</p>
@@ -663,8 +713,11 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         <ul role="list">
           <li><a href="#timeline">The timeline</a></li>
           <li><a href="#sos">SOS</a></li>
+          <li><a href="#wrist">The wrist</a></li>
+          <li><a href="#rebuild">Rebuild</a></li>
           <li><a href="#health">Apple Health</a></li>
           <li><a href="#log">The log</a></li>
+          <li><a href="#works-with">Works with</a></li>
           <li><a href="#price">Price</a></li>
         </ul>
       </nav>
@@ -689,14 +742,36 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           are getting yours back.</p>
           <p>See first. Correct second. Correction that skips the watching is
           just willpower, and willpower is what you already tried.</p>
+          <!-- Q22, Steven's own line, TEMPERED. He wrote: "when we understand
+               ourselves and the habit deeply, there is no effort required to
+               quit. Just observing it and watching it flow past", and asked for
+               more of this ethos on the page. Shipping it as written would
+               promise effortlessness, which is the one thing this page cannot
+               claim to somebody on day two of an alcohol quit. The idea survives
+               whole; the absolute comes out, and the last clause is where the
+               tempering lives. -->
+          <p>Understand yourself and the habit deeply enough and quitting stops
+          being a fight you have to win. You watch the thing rise, you watch it
+          pass. <b>It gets easier because you get clearer, not because you get
+          stronger.</b></p>
+          <!-- Steven's August 22 ruling on the research question: no reference
+               page, a marketing mention. The count is READ from the app's own
+               registry (References.swift) and a test fails the build the day
+               the two drift, so the number on this page is always the number
+               in the app. -->
+          <p class="micro">Built on the published record: 61 cited sources,
+          every claim in the app named to its study where you read it, and the
+          full library ships in the app under Settings. Where the evidence is
+          thin, the app says that too.</p>
         </div>
       </div>
       <div class="phone reveal stack-block optional">
-        <img src="shots/habits.jpg" width="520" height="1130" loading="lazy"
+        <picture><source srcset="shots/habits.webp" type="image/webp"><img src="shots/habits.jpg" width="519" height="1130" loading="lazy"
              decoding="async"
              alt="The setup screen asking What are you quitting, listing
                   Smoking, Vaping, Alcohol, Cannabis and Caffeine, each with
-                  its own icon.">
+                  its own icon, and closing on the line: What you understand
+                  can't own you."></picture>
       </div>
     </div>
   </section>
@@ -727,19 +802,56 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
       </div>
       <div class="figure reveal stack-block">
-        <div class="phone">
-          <img src="shots/recovery.jpg" width="520" height="1130" loading="lazy"
+        <div class="phone scrolled">
+          <picture><source srcset="shots/recovery.webp" type="image/webp"><img src="shots/recovery.jpg" width="519" height="1130" loading="lazy"
                decoding="async"
                alt="The Recovery systems card on Today. Carbon monoxide
-                    clearance, heart rate and blood pressure, sleep quality
-                    and taste and smell are marked Recovered. Nicotinic
-                    receptor reset, at 92 percent, is open to its curve from
-                    day zero to day ninety with a marker labelled you at day
-                    56. Below it, What it was doing and What's healing explain
-                    the extra receptors and their reset.">
+                    clearance, heart rate and blood pressure, and taste and
+                    smell are marked Recovered; sleep quality reads 88
+                    percent and anxiety settling 75. Nicotinic receptor
+                    reset, at 70 percent, is open to its curve from day zero
+                    to day ninety with a marker labelled you at day 30.
+                    Below it, What it was doing and What's healing explain
+                    the extra receptors and their reset, over the note Day
+                    30 of 90 and Evidence 8."></picture>
         </div>
         <p class="figure-label">One system opened to its road. A demonstration
         history, not a person's.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 2b. TWO AT ONCE =====================
+       Q20, August 11. The page could describe running two quits and had no
+       image of it, because every capture route ships a single habit. Steven's
+       ruling on the caption: the other demonstration figures carry one because
+       they show a LOG or a health curve, where fixture data could read as
+       somebody's outcome. This frame shows the app's behaviour rather than
+       anyone's result, so it stands without one. -->
+  <section id="together">
+    <div class="wrap">
+      <div class="sechead">
+        <div>
+          <p class="kicker">More than one</p>
+          <h2>Two quits, two clocks.</h2>
+        </div>
+        <div class="sechead-body">
+          <p class="lede dim">Quitting two things at once is one app, not two.</p>
+          <p>Each habit keeps its own quit date, its own forecast, its own log
+          and its own next milestone. Nothing is shared that should not be: a
+          slip on one does not touch the other's clock.</p>
+          <p>The top of the screen adds them up. The money and the recovery
+          are yours together, even when the roads are separate.</p>
+        </div>
+      </div>
+      <div class="phone reveal stack-block optional">
+        <picture><source srcset="shots/two-habits.webp" type="image/webp"><img src="shots/two-habits.jpg" width="519" height="1130" loading="lazy"
+             decoding="async"
+             alt="The Habits screen with two quits. A combined card reads All 2
+                  habits combined, total saved $459 and overall recovery 62
+                  percent. Below it, Smoking at 30 days with its own saved
+                  figure, recovery and next milestone in 12 days, and Alcohol at
+                  11 days with its own, next milestone in 3 days."></picture>
       </div>
     </div>
   </section>
@@ -754,8 +866,8 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
         <div class="sechead-body">
           <p class="lede dim">Read day three before you live it.</p>
-          <p>Open any stage: what is healing, what you might feel, and in the
-          hard early hours, what helps now. The studies sit under each
+          <p>Open any stage of the withdrawal: what is healing, what you
+          might feel, and in the hard early hours, what helps now. The studies sit under each
           one.</p>
           <p class="small dim">Minutes in, you still feel fine, and the app
           puts that to work: <b>Clear them out first: the pack, the spare in
@@ -767,36 +879,30 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <h3>Every hour of it</h3>
           <p class="small dim">There on minute one, and it never scolds.</p>
         </div>
-        <div class="phone">
-          <img src="shots/timeline.jpg" width="520" height="1130" loading="lazy"
+        <div class="phone scrolled">
+          <picture><source srcset="shots/timeline.webp" type="image/webp"><img src="shots/timeline.jpg" width="519" height="1130" loading="lazy"
                decoding="async"
-               alt="The recovery timeline for the first day, with the twenty-minute
-                    milestone open and titled The healing begins. Inside it: What's
-                    healing, heart rate and blood pressure begin dropping back
-                    toward your true baseline. What you might feel, you feel fine,
-                    still riding the decision. What helps now, a paragraph telling
-                    you to clear out the pack, the spare in the car, the lighters
-                    and the ashtrays while you still feel fine, and to decide now
-                    what you will do when the first craving lands. A line beneath
-                    reads Evidence 1, 2, 21. Collapsed below it: one hour,
-                    circulation waking up; two hours, nicotine halved; four hours,
-                    three-quarters gone.">
+               alt="The recovery timeline's twenty-minute milestone, open.
+                    Inside it: What's healing, heart rate and blood pressure
+                    begin dropping back toward your true baseline. What you
+                    might feel, you feel fine, still riding the decision.
+                    What helps now, a paragraph telling you to clear out the
+                    pack, the spare in the car, the lighters and the ashtrays
+                    while you still feel fine, and to decide now what you
+                    will do when the first craving lands. A line beneath
+                    reads Evidence 1, 2, 21, over a Share this win link.
+                    Collapsed below it: one hour, circulation waking up; two
+                    hours, nicotine halved; four hours, three-quarters
+                    gone."></picture>
         </div>
       </div>
       <div class="closer reveal">
         <p class="small" style="max-width: 26rem;">The timeline starts the
         minute you set a quit date.</p>
-        <a class="badge" href="https://apps.apple.com/app/quitforecast/id0000000000"
-           aria-label="Download on the App Store">
-          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false">
-            <rect width="120" height="40" rx="6.5" fill="#FFFFFF"/>
-            <g transform="translate(10.6 10.6) scale(0.2311)">
-              <path fill="#000000" d="M44.63,18.31Q45.70,18.31 48.29,18.65Q50.88,18.99 53.98,20.58Q57.08,22.17 59.62,25.83Q59.47,25.98 58.20,26.88Q56.93,27.78 55.37,29.52Q53.81,31.25 52.64,33.91Q51.46,36.57 51.46,40.23Q51.46,44.43 52.95,47.36Q54.44,50.29 56.42,52.08Q58.40,53.86 59.94,54.69Q61.47,55.52 61.57,55.57Q61.52,55.76 60.33,59.03Q59.13,62.30 56.40,66.31Q54.00,69.78 51.25,72.71Q48.49,75.63 44.63,75.63Q42.04,75.63 40.38,74.88Q38.72,74.12 36.96,73.36Q35.21,72.61 32.23,72.61Q29.35,72.61 27.42,73.39Q25.49,74.17 23.75,74.95Q22.02,75.73 19.68,75.73Q16.11,75.73 13.43,72.90Q10.74,70.07 7.91,66.11Q4.64,61.43 2.32,54.66Q0.00,47.90 0.00,41.02Q0.00,33.64 2.78,28.64Q5.57,23.63 9.94,21.07Q14.31,18.51 18.99,18.51Q21.48,18.51 23.68,19.31Q25.88,20.12 27.81,20.95Q29.74,21.78 31.30,21.78Q32.81,21.78 34.81,20.90Q36.82,20.02 39.31,19.17Q41.80,18.31 44.63,18.31ZM41.94,12.11Q40.04,14.40 37.16,15.94Q34.28,17.48 31.69,17.48Q31.15,17.48 30.66,17.38Q30.62,17.24 30.57,16.85Q30.52,16.46 30.52,16.02Q30.52,13.09 31.79,10.33Q33.06,7.57 34.67,5.76Q36.72,3.32 39.84,1.71Q42.97,0.10 45.80,0.00Q45.95,0.63 45.95,1.51Q45.95,4.44 44.82,7.20Q43.70,9.96 41.94,12.11Z"/>
-            </g>
-            <text x="31.5" y="16.4" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="7.6">Download on the</text>
-            <text x="31" y="31.6" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16.8" font-weight="500" letter-spacing="-0.35">App Store</text>
-          </svg>
-        </a>
+        <span class="badge" role="img"
+           aria-label="Coming soon to the App Store">
+          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
+        </span>
       </div>
     </div>
   </section>
@@ -816,24 +922,94 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           it. So ride it: breathe, scan, ground, or play a game until it dies.
           At zero the clock says Outlasted.</p>
           <p class="small dim">Urge surfing and game distraction are studied
-          technique, and every tool cites its sources in the app.</p>
+          technique, and the screens that teach them carry their
+          citations.</p>
+          <p>Beside the tools sits a cited chapter called The why: seven
+          short cards on why this pull exists at all, from the wanting
+          machinery to the after-work reach, one card per visit. Nobody's
+          brain is called broken; the machinery is explained so it can be
+          retrained. The Big questions sit beside it: one honest question at a
+          time, for the cravings that are really about something else.</p>
           <p><b>You're the one watching. It's the one passing.</b></p>
-          <p class="small dim">Every tool here is free, and so are
-          <a href="/crisis.html">the crisis lines</a>, always one tap away.
-          The worst ten minutes of your week are not a sales moment.</p>
+          <p class="small dim"><a href="/crisis.html">The crisis lines</a>
+          are yours whether you ever pay or not, always one tap away. The
+          worst ten minutes of your week are not a sales moment.</p>
         </div>
       </div>
       <div class="phone reveal stack-block">
-        <img src="shots/sos.jpg" width="520" height="1130" loading="lazy"
+        <picture><source srcset="shots/sos.webp" type="image/webp"><img src="shots/sos.jpg" width="519" height="1130" loading="lazy"
              decoding="async"
-             alt="The Craving SOS screen. It opens: this wave will crest and fade
-                  in a few minutes whether or not you fight it. Stay busy while it
-                  dies. Pick a tool. A card headed This wave, timed shows 4:51
-                  running, and under it the line: your last 6 timed SOS rides
-                  ended in about 3 minutes, with Evidence 25, 22, 29, 30. Then a
-                  group headed Sit with it holding four tools: Breathe, Body scan,
-                  5 senses and Study. A second group below reads Distract
-                  yourself.">
+             alt="The Craving SOS screen. It opens: this wave will crest and
+                  fade in a few minutes whether or not you fight it. Stay busy
+                  while it dies. Pick a tool. A card headed This wave, timed
+                  shows 4:47 running over the line: one clock rides the whole
+                  wave, you don't get to call it over early; you outlast it.
+                  The research paragraph beneath closes on Evidence 25, 22,
+                  29, 30. Then a group headed Sit with it, its first tools
+                  Breathe and Body scan in frame."></picture>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4b. THE WRIST =====================
+       Q21, August 11: Steven asked for the full section, not the one line it had
+       in the features list, and for the Watch to be visible in the header too.
+       It lands after SOS because the two things the wrist does are the two
+       things this section is about: log without reaching for the phone, and ride
+       the wave where the haptics are. Both captures are of the real app on the
+       largest Watch; the section claims nothing the app does not do, and it says
+       what is NOT there rather than leaving it to be discovered. -->
+  <section id="wrist">
+    <div class="wrap">
+      <div class="sechead">
+        <div>
+          <p class="kicker">Apple Watch</p>
+          <h2>The tap that doesn't need your phone.</h2>
+        </div>
+        <div class="sechead-body">
+          <p class="lede dim">The craving does not wait for you to find your
+          phone, so the log does not either.</p>
+          <p>One press on your wrist logs a craving. If the phone is out of
+          range it says so and waits, and it only says Logged once the phone
+          actually has it. An app whose whole personality is not claiming more
+          than it can support does not get to fake a checkmark.</p>
+          <p>After the tap, an optional sheet offers strength, trigger and
+          who you were with; skipping any of it costs nothing, and the
+          craving is already logged either way. If you track more than one
+          quit, the wrist switches between them without touching the
+          phone.</p>
+          <p>The breath runs on the watch itself, with no phone in the room.
+          That is the point of it: the wrist is what you have at the moment you
+          need something to do with your hands.</p>
+          <p class="small dim">Your clean time and your next milestone are on
+          the glance, counted from the watch's own clock. The complication
+          arrives in an update; today the app is the glance and the moves
+          above.</p>
+        </div>
+      </div>
+      <div class="devices reveal stack-block">
+        <div class="watch">
+          <picture><source srcset="shots/watch-home.webp" type="image/webp"><img src="shots/watch-home.jpg" width="422" height="514" loading="lazy"
+               decoding="async"
+               alt="The watch glance: NICOTINE-FREE, a running count of one
+                    month one day, NEXT: 6 WEEKS with 9 days 7 hours to go, and
+                    a Log craving button."></picture>
+        </div>
+        <div class="watch">
+          <picture><source srcset="shots/watch-sos.webp" type="image/webp"><img src="shots/watch-sos.jpg" width="422" height="514" loading="lazy"
+               decoding="async"
+               alt="The watch's breathing circle above the words Breathe with
+                    the circle, and the note: a craving is a wave, it crests and
+                    breaks, usually within a few minutes."></picture>
+        </div>
+      </div>
+      <div class="closer reveal">
+        <p class="small" style="max-width: 26rem;">The wrist is optional; the
+        week of the whole thing is not smaller without it.</p>
+        <span class="badge" role="img"
+           aria-label="Coming soon to the App Store">
+          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
+        </span>
       </div>
     </div>
   </section>
@@ -856,14 +1032,22 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="small dim">One ladder is the whole idea made literal: sit
           with yourself for ten minutes, then twenty, then an hour. <b>That
           restlessness is the exercise, not a sign to stop.</b></p>
+          <p>The community board lives here too: moves submitted by people
+          quitting, each read by a person before it is public, voted on by
+          everyone, and one tap adds any of them to your list.</p>
+          <p class="small dim">A fifth shelf, Spirit, joins the four when a
+          faith or philosophy pack is on.</p>
         </div>
       </div>
       <div class="phone reveal stack-block">
-        <img src="shots/catalogue.jpg" width="520" height="1130" loading="lazy"
+        <picture><source srcset="shots/catalogue.webp" type="image/webp"><img src="shots/catalogue.jpg" width="519" height="1130" loading="lazy"
              decoding="async"
-             alt="The catalogue, filtered by section and by nerve. Cards
-                  reading Move your body, 10 min, Quiet; Get into nature,
-                  20 min, Quiet; Cook a real meal, 45 min, Quiet.">
+             alt="The catalogue in its grid view, with section, nerve and
+                  basis filter rows. Cards reading Move your body, 10 min,
+                  Quiet, marked On your list; Get into nature, 20 min,
+                  Quiet; Savor one thing, 1 min, Quiet; Cook a real meal,
+                  45 min, Quiet; Take it cold, 3 min; and Take an awe walk,
+                  15 min."></picture>
       </div>
     </div>
   </section>
@@ -892,12 +1076,12 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <div class="phones reveal stack-block">
         <div>
           <div class="phone">
-            <img src="shots/health.jpg" width="520" height="1130" loading="lazy"
+            <picture><source srcset="shots/health.webp" type="image/webp"><img src="shots/health.jpg" width="520" height="1130" loading="lazy"
                  decoding="async"
                  alt="The Health tab. A heading reading There is no improved you
                       at the end of this, and under it a resting heart rate
                       card, charting a dashed pre-quit baseline, a marker at the
-                      day you stopped, and a falling line after it.">
+                      day you stopped, and a falling line after it."></picture>
           </div>
           <p class="shotnote" style="margin-top: var(--s-m);">A demonstration
           chart: nothing is stored, so there was no saved series to
@@ -906,13 +1090,13 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
         <div class="optional">
           <div class="phone">
-            <img src="shots/health-metric.jpg" width="520" height="1130"
+            <picture><source srcset="shots/health-metric.webp" type="image/webp"><img src="shots/health-metric.jpg" width="520" height="1130"
                  loading="lazy" decoding="async"
                  alt="A heart rate variability card with its chart, and beneath
                       it a block headed What research expects reading: nicotine
                       suppresses HRV, studies show it climbing within days to
                       weeks of stopping, one of the earliest measurable wins.
-                      Evidence 26.">
+                      Evidence 26."></picture>
           </div>
           <p class="shotnote" style="margin-top: var(--s-m);">The structure is the
           point: what the research expects sits under the chart, with its source,
@@ -925,17 +1109,10 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <div class="closer reveal">
         <p class="small" style="max-width: 26rem;">Your watch has been keeping
         a record since before you decided. Put it to work.</p>
-        <a class="badge" href="https://apps.apple.com/app/quitforecast/id0000000000"
-           aria-label="Download on the App Store">
-          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false">
-            <rect width="120" height="40" rx="6.5" fill="#FFFFFF"/>
-            <g transform="translate(10.6 10.6) scale(0.2311)">
-              <path fill="#000000" d="M44.63,18.31Q45.70,18.31 48.29,18.65Q50.88,18.99 53.98,20.58Q57.08,22.17 59.62,25.83Q59.47,25.98 58.20,26.88Q56.93,27.78 55.37,29.52Q53.81,31.25 52.64,33.91Q51.46,36.57 51.46,40.23Q51.46,44.43 52.95,47.36Q54.44,50.29 56.42,52.08Q58.40,53.86 59.94,54.69Q61.47,55.52 61.57,55.57Q61.52,55.76 60.33,59.03Q59.13,62.30 56.40,66.31Q54.00,69.78 51.25,72.71Q48.49,75.63 44.63,75.63Q42.04,75.63 40.38,74.88Q38.72,74.12 36.96,73.36Q35.21,72.61 32.23,72.61Q29.35,72.61 27.42,73.39Q25.49,74.17 23.75,74.95Q22.02,75.73 19.68,75.73Q16.11,75.73 13.43,72.90Q10.74,70.07 7.91,66.11Q4.64,61.43 2.32,54.66Q0.00,47.90 0.00,41.02Q0.00,33.64 2.78,28.64Q5.57,23.63 9.94,21.07Q14.31,18.51 18.99,18.51Q21.48,18.51 23.68,19.31Q25.88,20.12 27.81,20.95Q29.74,21.78 31.30,21.78Q32.81,21.78 34.81,20.90Q36.82,20.02 39.31,19.17Q41.80,18.31 44.63,18.31ZM41.94,12.11Q40.04,14.40 37.16,15.94Q34.28,17.48 31.69,17.48Q31.15,17.48 30.66,17.38Q30.62,17.24 30.57,16.85Q30.52,16.46 30.52,16.02Q30.52,13.09 31.79,10.33Q33.06,7.57 34.67,5.76Q36.72,3.32 39.84,1.71Q42.97,0.10 45.80,0.00Q45.95,0.63 45.95,1.51Q45.95,4.44 44.82,7.20Q43.70,9.96 41.94,12.11Z"/>
-            </g>
-            <text x="31.5" y="16.4" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="7.6">Download on the</text>
-            <text x="31" y="31.6" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16.8" font-weight="500" letter-spacing="-0.35">App Store</text>
-          </svg>
-        </a>
+        <span class="badge" role="img"
+           aria-label="Coming soon to the App Store">
+          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
+        </span>
       </div>
     </div>
   </section>
@@ -953,8 +1130,10 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           rather say nothing than guess.</p>
           <p>Two taps to log a craving. The app finds the hours yours gather,
           the triggers that cost you most, and the two that tend to arrive
-          together. Nothing is borrowed from an average: it is your record
-          speaking, or nothing. <b>Silence is a reading.</b></p>
+          together, ranked by how hard they hit and not just how often.
+          Your top two carry a research-backed play each. Nothing is
+          borrowed from an average: it is your record speaking, or nothing.
+          <b>Silence is a reading.</b></p>
           <!-- THE PRECISION NUMBER IS GONE ON PURPOSE (Steven, August 3):
                the reliability work stays silent and the feature just works.
                Do not print a precision figure here again; the measurement
@@ -967,122 +1146,83 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                to. -->
           <p class="small dim">The everyday reading counts your last thirty
           days; a weekday pattern needs your last eight of that weekday.</p>
+          <p><b>Your cravings are already on a schedule. You may as well have
+          a copy of it.</b></p>
           <p>Once your hours are real, the app tells you before they arrive,
-          and again just before they open, with the move you picked while you
-          were calm. Meet the hour knowing it is yours.</p>
+          and again just before they open. Meet the hour knowing it is
+          yours.</p>
         </div>
       </div>
       <div class="figure reveal stack-block">
         <p class="figure-label">How the window is found</p>
-        <svg class="ring" viewBox="-12 -12 364 364" role="img"
-             aria-labelledby="ringTitle ringDesc">
-          <title id="ringTitle">A twenty-four hour dial with a craving log
+        <svg class="chart" viewBox="0 0 340 196" role="img"
+             aria-labelledby="chartTitle chartDesc">
+          <title id="chartTitle">A day of hours as bars, with a craving log
           drawn on it</title>
-          <desc id="ringDesc">Cravings appear as dots around a ring of the
-          day, midnight at the top. Most are scattered. Seven gather between
-          8 PM and 10 PM, and an amber arc resolves over those two hours once
-          there are enough of them to be worth saying.</desc>
+          <desc id="chartDesc">One bar for each hour from midnight to midnight.
+          Most hours are low or empty. Two of them, the 8 PM and 9 PM bars of
+          the 8 to 10 PM stretch, stand well above the rest and turn amber
+          once there are enough logged cravings in them to be worth
+          saying.</desc>
 
-          <!-- The day. Drawn first, and the scale everything else is read
-               against. pathLength 1 makes the draw-on one clean number. -->
-          <circle class="track" cx="170" cy="170" r="118" pathLength="1"
-                  transform="rotate(-90 170 170)"/>
+          <!-- The day's floor. Drawn first, and the line every bar is read
+               against, the same hairline the app's own histogram gained when a
+               render showed twenty empty hours reading as debris without it. -->
+          <line class="axis" x1="20" y1="150" x2="320" y2="150"/>
 
-          <!-- Twenty-four hours of notches, longer at the quarters. -->
-          <g>
-            <line class="tick major" x1="170" y1="44" x2="170" y2="39"/>
-            <line class="tick" x1="202.6" y1="48.3" x2="203.9" y2="43.5"/>
-            <line class="tick" x1="233" y1="60.9" x2="235.5" y2="56.6"/>
-            <line class="tick" x1="259.1" y1="80.9" x2="262.6" y2="77.4"/>
-            <line class="tick" x1="279.1" y1="107" x2="283.4" y2="104.5"/>
-            <line class="tick" x1="291.7" y1="137.4" x2="296.5" y2="136.1"/>
-            <line class="tick major" x1="296" y1="170" x2="301" y2="170"/>
-            <line class="tick" x1="291.7" y1="202.6" x2="296.5" y2="203.9"/>
-            <line class="tick" x1="279.1" y1="233" x2="283.4" y2="235.5"/>
-            <line class="tick" x1="259.1" y1="259.1" x2="262.6" y2="262.6"/>
-            <line class="tick" x1="233" y1="279.1" x2="235.5" y2="283.4"/>
-            <line class="tick" x1="202.6" y1="291.7" x2="203.9" y2="296.5"/>
-            <line class="tick major" x1="170" y1="296" x2="170" y2="301"/>
-            <line class="tick" x1="137.4" y1="291.7" x2="136.1" y2="296.5"/>
-            <line class="tick" x1="107" y1="279.1" x2="104.5" y2="283.4"/>
-            <line class="tick" x1="80.9" y1="259.1" x2="77.4" y2="262.6"/>
-            <line class="tick" x1="60.9" y1="233" x2="56.6" y2="235.5"/>
-            <line class="tick" x1="48.3" y1="202.6" x2="43.5" y2="203.9"/>
-            <line class="tick major" x1="44" y1="170" x2="39" y2="170"/>
-            <line class="tick" x1="48.3" y1="137.4" x2="43.5" y2="136.1"/>
-            <line class="tick" x1="60.9" y1="107" x2="56.6" y2="104.5"/>
-            <line class="tick" x1="80.9" y1="80.9" x2="77.4" y2="77.4"/>
-            <line class="tick" x1="107" y1="60.9" x2="104.5" y2="56.6"/>
-            <line class="tick" x1="137.4" y1="48.3" x2="136.1" y2="43.5"/>
-          </g>
-          <text class="hourlabel" x="170" y="15">12am</text>
-          <text class="hourlabel" x="325" y="170">6am</text>
-          <text class="hourlabel" x="170" y="325">12pm</text>
-          <text class="hourlabel" x="15" y="170">6pm</text>
+          <!-- A demonstration log: sixteen cravings over nine days, seven of
+               them inside the two amber hours. The bars are counts, and they grow
+               from the floor in clock order, which is the reading the app's own
+               chart gives: taller is more, and nothing needs a key. An hour with
+               nothing logged draws NOTHING, the way the app draws it: a stub
+               would be a mark, and a mark where nothing happened is a claim. -->
+          <rect class="bar" x="122.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.674s"/>
+          <rect class="bar" x="147.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.730s"/>
+          <rect class="bar" x="172.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.786s"/>
+          <rect class="bar" x="184.75" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.814s"/>
+          <rect class="bar" x="209.75" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.870s"/>
+          <rect class="bar" x="234.75" y="98" width="8" height="52" rx="1.5" style="animation-delay:0.926s"/>
+          <rect class="bar" x="247.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.954s"/>
+          <rect class="bar window" x="272.25" y="46" width="8" height="104" rx="1.5" style="animation-delay:1.010s"/>
+          <rect class="bar window" x="284.75" y="72" width="8" height="78" rx="1.5" style="animation-delay:1.038s"/>
+          <rect class="bar" x="297.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:1.066s"/>
 
-          <!-- The log. Scattered hours first, then the seven that gather. -->
-          <circle class="dot" cx="271.0" cy="202.3" r="3.6" style="animation-delay:0.60s"/>
-          <circle class="dot" cx="252.7" cy="236.3" r="3.6" style="animation-delay:0.695s"/>
-          <circle class="dot" cx="200.1" cy="271.6" r="3.6" style="animation-delay:0.79s"/>
-          <circle class="dot" cx="158.9" cy="275.4" r="3.6" style="animation-delay:0.885s"/>
-          <circle class="dot" cx="132.4" cy="269.1" r="3.6" style="animation-delay:0.98s"/>
-          <circle class="dot" cx="81.1"  cy="227.7" r="3.6" style="animation-delay:1.075s"/>
-          <circle class="dot" cx="65.8"  cy="189.3" r="3.6" style="animation-delay:1.17s"/>
-          <circle class="dot" cx="64.1"  cy="164.5" r="3.6" style="animation-delay:1.265s"/>
-          <circle class="dot" cx="153.4" cy="65.3"  r="3.6" style="animation-delay:1.36s"/>
-          <circle class="dot" cx="78.9"  cy="115.8" r="3.6" style="animation-delay:1.48s"/>
-          <circle class="dot" cx="84.0"  cy="108.1" r="3.6" style="animation-delay:1.55s"/>
-          <circle class="dot" cx="89.1"  cy="101.5" r="3.6" style="animation-delay:1.62s"/>
-          <circle class="dot" cx="95.0"  cy="95.0"  r="3.6" style="animation-delay:1.69s"/>
-          <circle class="dot" cx="101.5" cy="89.1"  r="3.6" style="animation-delay:1.76s"/>
-          <circle class="dot" cx="108.4" cy="83.7"  r="3.6" style="animation-delay:1.83s"/>
-          <circle class="dot" cx="115.8" cy="78.9"  r="3.6" style="animation-delay:1.90s"/>
+          <text class="hourlabel" x="26.25" y="170">12am</text>
+          <text class="hourlabel" x="101.25" y="170">6am</text>
+          <text class="hourlabel" x="176.25" y="170">12pm</text>
+          <text class="hourlabel" x="251.25" y="170">6pm</text>
 
-          <!-- The verdict. The arc is inset by half a stroke at each end, so
-               the ink covers exactly two hours with its round caps included.
-               Same correction the app's dial makes in capInsetDegrees. -->
-          <path class="arc" pathLength="1"
-                d="M69.08,108.85 A118,118 0 0,1 108.85,69.08"/>
-          <text class="arclabel" x="61.8" y="61.8">8&#8211;10 PM</text>
-
-          <!-- Now, riding the ring, with a ring of page background behind it so
-               it stays a dot where it crosses the arc. -->
-          <g class="now">
-            <circle class="nowhalo" cx="56" cy="139.5" r="6.5"/>
-            <circle class="nowdot"  cx="56" cy="139.5" r="4"/>
-          </g>
+          <!-- The verdict, named in words as well as colour, because the two
+               amber bars are the whole claim. -->
+          <text class="windowlabel" x="268" y="32">8&#8211;10 PM</text>
         </svg>
         <ul class="plainlist small dim" role="list" style="margin-top: var(--s-l);">
-          <li>Until your pattern clears every statistical test, the app says
+          <li>Until your own log has earned the claim, the app says
           nothing at all.</li>
-          <li>There is no red on the dial. Only your hours, and now.</li>
+          <li>There is no red on the chart. Only your own hours, and the two
+          the app is willing to name.</li>
           <li><b>7 of your last 9 days had a craving between 8 PM and 10 PM.</b></li>
         </ul>
       </div>
       <p class="shotnote">A demonstration log, one that happens to peak in the
       early evening. Yours will name different hours.</p>
       <div class="phone reveal stack-block">
-        <img src="shots/window.jpg" width="520" height="1130" loading="lazy"
+        <picture><source srcset="shots/window.webp" type="image/webp"><img src="shots/window.jpg" width="519" height="1130" loading="lazy"
              decoding="async"
-             alt="The window card, open, reading: You are in your window.
-                  This is the stretch that has been hardest. It builds, it
-                  peaks, it passes. Below it, a Patterns card listing four
-                  measured facts from the same log.">
+             alt="The Log tab. A heading reading A craving is not a command,
+                  over the explanation that a craving is a learned response
+                  which builds, crests and falls within minutes. Under it,
+                  Past 7 days, 7, was 3; a Risk window card reading 8 PM to
+                  10 PM; and a craving strength chart reading 3.6 of 5 over
+                  the last seven days."></picture>
       </div>
       <div class="closer reveal">
-        <p class="small" style="max-width: 26rem;">The log is free, and the
-        two hours come from your own taps.</p>
-        <a class="badge" href="https://apps.apple.com/app/quitforecast/id0000000000"
-           aria-label="Download on the App Store">
-          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false">
-            <rect width="120" height="40" rx="6.5" fill="#FFFFFF"/>
-            <g transform="translate(10.6 10.6) scale(0.2311)">
-              <path fill="#000000" d="M44.63,18.31Q45.70,18.31 48.29,18.65Q50.88,18.99 53.98,20.58Q57.08,22.17 59.62,25.83Q59.47,25.98 58.20,26.88Q56.93,27.78 55.37,29.52Q53.81,31.25 52.64,33.91Q51.46,36.57 51.46,40.23Q51.46,44.43 52.95,47.36Q54.44,50.29 56.42,52.08Q58.40,53.86 59.94,54.69Q61.47,55.52 61.57,55.57Q61.52,55.76 60.33,59.03Q59.13,62.30 56.40,66.31Q54.00,69.78 51.25,72.71Q48.49,75.63 44.63,75.63Q42.04,75.63 40.38,74.88Q38.72,74.12 36.96,73.36Q35.21,72.61 32.23,72.61Q29.35,72.61 27.42,73.39Q25.49,74.17 23.75,74.95Q22.02,75.73 19.68,75.73Q16.11,75.73 13.43,72.90Q10.74,70.07 7.91,66.11Q4.64,61.43 2.32,54.66Q0.00,47.90 0.00,41.02Q0.00,33.64 2.78,28.64Q5.57,23.63 9.94,21.07Q14.31,18.51 18.99,18.51Q21.48,18.51 23.68,19.31Q25.88,20.12 27.81,20.95Q29.74,21.78 31.30,21.78Q32.81,21.78 34.81,20.90Q36.82,20.02 39.31,19.17Q41.80,18.31 44.63,18.31ZM41.94,12.11Q40.04,14.40 37.16,15.94Q34.28,17.48 31.69,17.48Q31.15,17.48 30.66,17.38Q30.62,17.24 30.57,16.85Q30.52,16.46 30.52,16.02Q30.52,13.09 31.79,10.33Q33.06,7.57 34.67,5.76Q36.72,3.32 39.84,1.71Q42.97,0.10 45.80,0.00Q45.95,0.63 45.95,1.51Q45.95,4.44 44.82,7.20Q43.70,9.96 41.94,12.11Z"/>
-            </g>
-            <text x="31.5" y="16.4" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="7.6">Download on the</text>
-            <text x="31" y="31.6" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16.8" font-weight="500" letter-spacing="-0.35">App Store</text>
-          </svg>
-        </a>
+        <p class="small" style="max-width: 26rem;">The two hours come from
+        your own taps, and the first week of the whole app is free.</p>
+        <span class="badge" role="img"
+           aria-label="Coming soon to the App Store">
+          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
+        </span>
       </div>
     </div>
   </section>
@@ -1103,15 +1243,20 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         <div class="sechead-body">
           <p class="lede dim">No account, because there is nothing to sign in
           to. Your record lives on your phone.</p>
-          <p>Six things can leave, and each one is a thing you do on purpose: an
-          iCloud backup, into your own private database that we cannot read; a post
-          to the community board, under an anonymous identifier that is never your
-          name; a vote on somebody else's post, stored under that same identifier
-          so a tap can be taken back; a report, if you flag a post for review; a
-          feedback message, if you write one; and a support conversation, if you
-          start one, addressed by a random ID that is never your name. That is the
-          whole list.</p>
-          <p>Reading the board sends nothing.</p>
+          <p>Six things can leave, and each one is a thing you do on purpose.
+          An iCloud backup, into your own private database that we cannot
+          read. A post to the community board, under an anonymous identifier
+          that is never your name. A vote on somebody else's post, stored
+          under that same identifier so a tap can be taken back. A report,
+          if you flag a post for review. A feedback message, if you write
+          one. And a support conversation, if you start one, addressed by a
+          random ID that is never your name. That is the whole list.</p>
+          <p class="micro">Paying is not on the list because the app never
+          touches it: premium is bought on Apple's own purchase sheet,
+          between you and Apple.</p>
+          <p>Reading the board posts nothing and sends nothing you wrote.
+          Opening it does ask iCloud who you are, the same check the backup
+          makes, and that is all.</p>
           <p class="micro">This page is part of the same promise. It loads no fonts,
           no executable script and no trackers, and sets no cookies. Its own content
           policy tells the browser to refuse them, so it is enforced rather than
@@ -1163,11 +1308,93 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
         <div role="listitem">
           <h3>Notifications</h3>
-          <p>Opt in. At most one per habit per day.</p>
+          <p>Opt in. Window check-ins come at most once per habit per day;
+          milestone alerts arrive as the milestones do, and a Majors-only
+          switch trims them to the big ones.</p>
         </div>
         <div role="listitem">
           <h3>Yours to take</h3>
           <p>Export a spreadsheet, or delete everything.</p>
+        </div>
+      </div>
+      <div class="closer reveal">
+        <p class="small" style="max-width: 26rem;">Every switch above ships
+        set to quiet.</p>
+        <span class="badge" role="img"
+           aria-label="Coming soon to the App Store">
+          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WORKS WITH ===================== -->
+  <!-- Steven's August 22 note (item 3): which phones, what the Watch is for,
+       and the accessibility list. Every line here is read from the project
+       rather than written for it: iOS 18 and watchOS 11 are the deployment
+       targets in project.yml, iPhone-only is TARGETED_DEVICE_FAMILY 1, and
+       each accessibility claim names an affordance the code implements
+       (Dynamic Type reflow through the accessibility sizes, VoiceOver
+       labels and announcements, Reduce Motion, the large content viewer,
+       the 11-point floor held by a lint). Change the project and this
+       section is wrong; change this section and the project is not. -->
+  <section id="works-with">
+    <div class="wrap">
+      <div class="sechead">
+        <div>
+          <p class="kicker">Compatibility</p>
+          <h2>What it runs on.</h2>
+        </div>
+        <div class="sechead-body">
+          <p class="lede dim">An iPhone is all it needs. The rest is optional,
+          and the app says so when you reach each door.</p>
+        </div>
+      </div>
+      <div class="grid stack-block" role="list" style="list-style: none; padding: 0; margin-top: var(--gap-block);">
+        <div role="listitem">
+          <h3>iPhone</h3>
+          <p>iOS 18 or later: any iPhone from the iPhone XS and XR onward.
+          Built for iPhone; there is no iPad or Mac app.</p>
+        </div>
+        <div role="listitem">
+          <h3>Apple Watch</h3>
+          <p>Optional. watchOS 11 or later, paired to the phone. The wrist
+          carries your counter, one-tap craving logging (with a skippable
+          detail sheet after the tap), the SOS breath, and a switcher if
+          you track more than one quit. Everything else lives on the
+          phone.</p>
+        </div>
+        <div role="listitem">
+          <h3>Widgets, Lock Screen, Control Center</h3>
+          <p>Home Screen widgets, Lock Screen accessories, and Control
+          Center buttons for logging and SOS, all part of iOS 18. Through
+          the first three days a Live Activity keeps your counter on the
+          Lock Screen, and in the Dynamic Island on the iPhones that have
+          one.</p>
+        </div>
+        <div role="listitem">
+          <h3>Apple Health</h3>
+          <p>Optional. Five metrics, read on your phone and never sent
+          anywhere: resting heart rate, heart rate variability, cardio
+          fitness, respiratory rate and blood oxygen. They arrive in Health
+          from an Apple Watch or any other device that writes them; without
+          a source, the cards wait rather than guess.</p>
+        </div>
+        <div role="listitem">
+          <h3>Siri</h3>
+          <p>&ldquo;Craving SOS in QuitForecast&rdquo; opens the breath
+          directly, with the app closed.</p>
+        </div>
+        <div role="listitem">
+          <h3>Accessibility</h3>
+          <p>Dynamic Type at every size, including the accessibility sizes,
+          with layouts that reflow instead of truncating. VoiceOver labels
+          and announcements throughout. Reduce Motion honoured, so the
+          forecast's reveal and the milestone celebrations play without
+          motion. The large content viewer on the tab bar. Dark and light
+          appearance. No text under 11 points on the
+          phone, or 10 on the watch and widgets, held by a lint in the
+          build.</p>
         </div>
       </div>
     </div>
@@ -1179,34 +1406,34 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <div class="sechead">
         <div>
           <p class="kicker">Price</p>
-          <h2>The floor is free.</h2>
+          <!-- THE MODEL CHANGED August 3 (Steven's ruling, PAYWALL-SPLIT.md
+               in the app repo): one wall, everything premium, a free week
+               as the whole product experience, and the safety carve-outs
+               stated plainly. This copy DEPLOYS ONLY WITH the paywalled
+               build; until that ships, the live page keeps the old floor
+               promise and no build exists that breaks it. -->
+          <h2>A week of the whole thing, free.</h2>
         </div>
         <div class="sechead-body">
-          <p class="lede dim">Everything you reach for on a bad night costs
-          nothing, permanently.</p>
-          <p>Not a trial. Nothing on the free floor expires.</p>
+          <p class="lede dim">The trial is the app, entire. It starts the
+          moment your forecast first draws itself.</p>
+          <p>The week ends on its own and costs nothing. Paying is a
+          separate choice you make in the app, never a charge that sneaks
+          in behind a trial.</p>
         </div>
       </div>
 
       <div class="prices reveal stack-block">
         <div class="card">
-          <h3>Free, no matter what</h3>
+          <h3>Premium is the whole app</h3>
           <ul class="plainlist small dim" role="list">
-            <li>Your clean-time counter and the day-level milestone timeline</li>
-            <li>Every SOS craving tool, and the crisis lines</li>
-            <li>All four faith and philosophy packs</li>
-            <li>The full export, and delete everything</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Premium</h3>
-          <ul class="plainlist small dim" role="list">
-            <li>Your craving window: the two hours, the dial, and the heads-up
-            before they open</li>
-            <li>The hour-by-hour timeline, with the studies under each
+            <li>Your craving window: the two hours, the chart of your own
+            cravings, and the heads-up before they open</li>
+            <li>The full timeline, hour by hour, with the studies under each
             milestone</li>
             <li>Every recovery curve, and your five Health cards</li>
-            <li>The full Rebuild catalogue</li>
+            <li>The full Rebuild catalogue, every SOS tool, and all four
+            faith and philosophy packs</li>
           </ul>
         </div>
       </div>
@@ -1235,12 +1462,28 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       for sale: your subscription is the whole business model, and it is what
       builds the app.</p>
 
-      <p class="micro" style="margin-top: var(--s-l);">Subscriptions renew until you
-      cancel, in your Apple account settings; cancel and it runs out at the
-      end of the term you paid for.</p>
-      <p class="small measure" style="margin-top: var(--s-l);">In this first
-      release, everything above is open. The paid split arrives in an update,
-      and the free floor never moves.</p>
+      <!-- BELOW the offer on purpose, mirroring the app's paywall (Steven,
+           August 3): the top of the section sells, and these are not
+           features to sell, they are doors that stay open. A reader gets
+           here deciding, which is when "yours even without it" is true and
+           worth reading. -->
+      <div class="prices" style="margin-top: var(--s-l);">
+        <div class="card">
+          <h3>Yours even without it</h3>
+          <ul class="plainlist small dim" role="list">
+            <li>The crisis and support lines</li>
+            <li>The alcohol safety warnings, and their 911 rule</li>
+            <li>Your data: the full export, and delete everything</li>
+            <li>A person answering in Get help</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="small dim measure" style="margin-top: var(--s-l);">Subscriptions renew
+      until you cancel, in your Apple account settings; cancel and it runs
+      out at the end of the term you paid for. Purchases run under
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple's
+      standard licence agreement</a>, the terms of use for the app.</p>
       <p class="micro measure" style="margin-top: var(--s-l);">If your log never
       clears the bar, no window ever appears, and it is not being withheld from you:
       it does not exist. The rest of Premium stands either way. The window is the
@@ -1248,17 +1491,10 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
 
       <div class="closer reveal">
         <p class="small" style="max-width: 26rem;">Start free.</p>
-        <a class="badge" href="https://apps.apple.com/app/quitforecast/id0000000000"
-           aria-label="Download on the App Store">
-          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false">
-            <rect width="120" height="40" rx="6.5" fill="#FFFFFF"/>
-            <g transform="translate(10.6 10.6) scale(0.2311)">
-              <path fill="#000000" d="M44.63,18.31Q45.70,18.31 48.29,18.65Q50.88,18.99 53.98,20.58Q57.08,22.17 59.62,25.83Q59.47,25.98 58.20,26.88Q56.93,27.78 55.37,29.52Q53.81,31.25 52.64,33.91Q51.46,36.57 51.46,40.23Q51.46,44.43 52.95,47.36Q54.44,50.29 56.42,52.08Q58.40,53.86 59.94,54.69Q61.47,55.52 61.57,55.57Q61.52,55.76 60.33,59.03Q59.13,62.30 56.40,66.31Q54.00,69.78 51.25,72.71Q48.49,75.63 44.63,75.63Q42.04,75.63 40.38,74.88Q38.72,74.12 36.96,73.36Q35.21,72.61 32.23,72.61Q29.35,72.61 27.42,73.39Q25.49,74.17 23.75,74.95Q22.02,75.73 19.68,75.73Q16.11,75.73 13.43,72.90Q10.74,70.07 7.91,66.11Q4.64,61.43 2.32,54.66Q0.00,47.90 0.00,41.02Q0.00,33.64 2.78,28.64Q5.57,23.63 9.94,21.07Q14.31,18.51 18.99,18.51Q21.48,18.51 23.68,19.31Q25.88,20.12 27.81,20.95Q29.74,21.78 31.30,21.78Q32.81,21.78 34.81,20.90Q36.82,20.02 39.31,19.17Q41.80,18.31 44.63,18.31ZM41.94,12.11Q40.04,14.40 37.16,15.94Q34.28,17.48 31.69,17.48Q31.15,17.48 30.66,17.38Q30.62,17.24 30.57,16.85Q30.52,16.46 30.52,16.02Q30.52,13.09 31.79,10.33Q33.06,7.57 34.67,5.76Q36.72,3.32 39.84,1.71Q42.97,0.10 45.80,0.00Q45.95,0.63 45.95,1.51Q45.95,4.44 44.82,7.20Q43.70,9.96 41.94,12.11Z"/>
-            </g>
-            <text x="31.5" y="16.4" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="7.6">Download on the</text>
-            <text x="31" y="31.6" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16.8" font-weight="500" letter-spacing="-0.35">App Store</text>
-          </svg>
-        </a>
+        <span class="badge" role="img"
+           aria-label="Coming soon to the App Store">
+          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
+        </span>
       </div>
     </div>
   </section>
@@ -1277,6 +1513,9 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="lede dim">Inside the app, with no ticket number.</p>
           <p>Settings, then Get help. Usually you hear back within a day, and
           anonymous feedback has its own channel beside it.</p>
+          <p class="small dim">Not installed yet? <a
+          href="mailto:info@quitforecast.com">info@quitforecast.com</a>
+          reaches the same person.</p>
         </div>
       </div>
     </div>
@@ -1289,10 +1528,11 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
     <p>QuitForecast</p>
     <!-- A text link, not a badge. A badge directly under the crisis lines
          reads as a pitch attached to 988. -->
-    <p><a href="https://apps.apple.com/app/quitforecast/id0000000000">Get the
-       app</a> &nbsp;·&nbsp;
+    <p><a href="mailto:info@quitforecast.com?subject=Tell%20me%20at%20launch">Launch
+       notice</a> &nbsp;·&nbsp;
        <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
-       <a href="/crisis.html">Crisis lines</a></p>
+       <a href="/crisis.html">Crisis lines</a> &nbsp;·&nbsp;
+       <a href="/manual.html">The manual</a></p>
   </div>
 </footer>
 

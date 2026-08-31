@@ -7,9 +7,10 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0C1820">
 <meta name="color-scheme" content="dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
 <link rel="apple-touch-icon" href="/icon-180.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%237FD9C4' stroke-width='3'/%3E%3Ccircle cx='16' cy='5' r='3.4' fill='%23E5A45C'/%3E%3C/svg%3E">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Ccircle%20cx='16'%20cy='16'%20r='11'%20fill='none'%20stroke='%237FD9C4'%20stroke-width='3'/%3E%3Ccircle%20cx='16'%20cy='5'%20r='3.4'%20fill='%23E5A45C'/%3E%3C/svg%3E">
 <!-- GitHub Pages serves this file for any path it cannot resolve on the custom
      domain. Without it, a mistyped URL got GitHub's own error page: a different
      typeface, a different ground, no mark, and no route back here. Same tokens as
@@ -61,7 +62,7 @@
   }
   .crisis p { margin: 0; }
   .crisis p + p { margin-top: 0.6rem; }
-  .crisis a { color: var(--amber); }
+  .crisis a { color: var(--amber); overflow-wrap: anywhere; }
   @media (forced-colors: active) {
     .crisis { border: 1px solid CanvasText; }
     a:focus-visible { outline: 2px solid Highlight; }
@@ -79,13 +80,15 @@
   </div>
 
   <h1>There is nothing at this address.</h1>
-  <p class="dim">Not a broken promise, just a wrong turn. The site is two pages
-  and they are both below.</p>
+  <p class="dim">Not a broken promise, just a wrong turn. Everything the site
+  has is below.</p>
 
   <ul class="routes">
     <li><a href="/">The main page</a></li>
-    <li><a href="/#price">Price</a></li>
+    <li><a href="/crisis.html">The crisis lines</a></li>
+    <li><a href="/manual.html">The manual</a></li>
     <li><a href="/privacy.html">Privacy policy</a></li>
+    <li><a href="/#price">Price</a></li>
     <li><a href="/#support">Support</a></li>
   </ul>
 
@@ -94,9 +97,9 @@
     go hunting through a website.</strong></p>
     <p class="small">In the US: <a href="tel:988">call 988</a> or
     <a href="sms:988">text 988</a> for the Suicide and Crisis Lifeline.
-    <a href="tel:18006624357">1-800-662-4357</a> is the SAMHSA National Helpline,
-    free and open every day. <a href="tel:18007848669">1-800-784-8669</a> is
-    1-800-QUIT-NOW. If someone is in immediate danger,
+    <a href="tel:+18006624357">1-800-662-4357</a> is the SAMHSA National Helpline,
+    free and open every day. <a href="tel:+18007848669">1-800-784-8669</a> is
+    1-800-QUIT-NOW, for quitting smoking and vaping. If someone is in immediate danger,
     <a href="tel:911">call 911</a>.</p>
     <p class="small dim">Outside the US, your local emergency number works the
     same way, and <a href="https://findahelpline.com">findahelpline.com</a> lists

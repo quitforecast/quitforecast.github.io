@@ -4,9 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>QuitForecast Privacy Policy</title>
-<meta name="description" content="What QuitForecast stores, what never leaves your phone, and how to delete everything.">
+<meta name="description" content="The QuitForecast privacy policy: what stays on your phone, the six things that can leave, each only when you choose it, and how to delete every stored copy.">
 <meta name="theme-color" content="#0C1820">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%237FD9C4' stroke-width='3'/%3E%3Ccircle cx='16' cy='5' r='3.4' fill='%23E5A45C'/%3E%3C/svg%3E">
+<meta name="color-scheme" content="dark">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
+<link rel="canonical" href="https://quitforecast.com/privacy.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Ccircle%20cx='16'%20cy='16'%20r='11'%20fill='none'%20stroke='%237FD9C4'%20stroke-width='3'/%3E%3Ccircle%20cx='16'%20cy='5'%20r='3.4'%20fill='%23E5A45C'/%3E%3C/svg%3E">
 <style>
 /* Same ground, same type, same rules as index.html: one site, not two pages
    that happen to share a domain. Nothing loads from anywhere else here either,
@@ -55,6 +59,7 @@ p { margin: 0 0 0.75rem; text-wrap: pretty; }
 p + p { margin-top: 0; }
 a { color: var(--accent); text-decoration-thickness: 1px;
     text-underline-offset: 0.18em; }
+a[href^="mailto:"] { overflow-wrap: anywhere; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px;
                  border-radius: 3px; }
 .effective { color: var(--dim); font-size: var(--t-small); }
@@ -65,6 +70,12 @@ a { color: var(--accent); text-decoration-thickness: 1px;
 footer { border-top: 1px solid var(--line); padding-block: 2rem 3rem;
          font-size: var(--t-small); color: var(--dim); }
 footer a { color: var(--dim); }
+@media print {
+  body { background: #FFFFFF; color: #111111; }
+  .masthead nav { display: none; }
+  a, .effective, footer { color: #333333; }
+  .summary { border-color: #999999; background: #FFFFFF; }
+}
 </style>
 </head>
 <body>
@@ -78,7 +89,8 @@ footer a { color: var(--dim); }
       </svg>
       QuitForecast
     </a>
-    <nav><a href="/">Back to the app</a></nav>
+    <nav><a href="/crisis.html">Crisis lines</a> &nbsp;·&nbsp;
+    <a href="/">Back to the app</a></nav>
   </header>
 </div>
 
@@ -114,9 +126,11 @@ footer a { color: var(--dim); }
     <p><strong>Community board posts.</strong> If you post a move to the board,
     its text is stored publicly with an anonymous member identifier (a salted
     one-way hash derived from your iCloud account, never your name or email).
-    Posts are reviewed by a person before appearing. To remove what you posted,
-    use Settings &gt; Delete all data: it erases every post and vote you made on
-    the board.</p>
+    Posts are reviewed by a person before appearing. A post that is not
+    approved is never published; it stays in the private review record until
+    you delete your data, which removes it there too. To remove what you
+    posted, use Settings &gt; Delete all data: it erases every post and vote
+    you made on the board.</p>
     <p><strong>Votes.</strong> If you back somebody's post, your vote is stored
     against that post under the same anonymous member identifier, which is what
     lets you take the vote back. Nothing else about you is attached to it.</p>
@@ -128,27 +142,27 @@ footer a { color: var(--dim); }
     things travel: the category you picked and the words you wrote. No name, no
     device identifier, no habit data, nothing that would let us find the message
     again or connect it to you. It is stored on our feedback service, hosted by
-    Cloudflare, where a person reads it, and every message is automatically
-    deleted within twelve months of arriving. Sending it uses the internet, so
-    the service sees your IP address the way any server does: it is used only to
-    limit repeat submissions, lives in that counter for about two minutes, and
-    is never stored with your message.</p>
+    Cloudflare, where a person reads it. Every message is automatically
+    deleted within twelve months of arriving. Sending it uses the internet,
+    so the service sees your IP address the way any server does. That
+    address is used only to limit repeat submissions, lives in that counter
+    for about two minutes, and is never stored with your message.</p>
     <p><strong>Support conversations.</strong> If you open Get help and write to
     us, your messages and our replies are stored on the same feedback service,
-    hosted by Cloudflare, under a random thread ID your phone invents. The ID is
-    never your name, your email, or anything about your device, and nothing else
-    travels with your words. The conversation lives on your phone: deleting the
-    app's data closes it there, and the stored copy deletes itself within twelve
-    months, or sooner if you ask us to remove it while the thread is still open
-    on your phone.</p>
+    hosted by Cloudflare, under a random thread ID your phone invents. The ID
+    is never your name, your email, or anything about your device. Nothing
+    else travels with your words. The conversation lives on your phone, and
+    deleting the app's data closes it there. The stored copy deletes itself
+    within twelve months, or sooner if you ask us to remove it while the
+    thread is still open on your phone.</p>
     <p><strong>Reading the board sends nothing</strong> and needs no account.
     Opening it does ask iCloud who you are, so the board can show which posts
     are yours and which you have already backed. If you never post, vote or
     report, nothing about you is written to the board.</p>
 
     <h2>What we never do</h2>
-    <p>No advertising, no analytics SDKs, no tracking across apps or websites,
-    no sale or sharing of data, no accounts, no passwords.</p>
+    <p>No advertising. No analytics SDKs. No tracking across apps or
+    websites. No sale or sharing of data. No accounts, and no passwords.</p>
 
     <h2>This website</h2>
     <p>These pages set no cookies and load no fonts, scripts or trackers from
@@ -179,6 +193,18 @@ footer a { color: var(--dim); }
     <a href="mailto:info@quitforecast.com">info@quitforecast.com</a>. A feedback
     message works the same way: quote it to us and we will delete it. Because no
     message carries an identifier, what it said is the only way to find it.</p>
+    <p>The same address handles the rest of your rights: if something we hold
+    is wrong you can ask us to correct it, you can ask us to stop or limit
+    what we do with it, and you can object to any of it. You can also
+    complain to the data protection authority where you live, at any time,
+    without asking us first.</p>
+
+    <h2>The legal footing</h2>
+    <p>Every send above happens only because you choose it: the basis for
+    each of the six is your own action, and for everything else there is no
+    processing to need a basis. The feedback and support service runs on
+    Cloudflare's network, which can process a message outside your own
+    country; the twelve-month deletion applies wherever it lands.</p>
 
     <h2>Changes</h2>
     <p>If this policy changes, the updated version is posted at this address
@@ -189,6 +215,7 @@ footer a { color: var(--dim); }
 <footer>
   <div class="wrap">
     <p><a href="/">QuitForecast</a> &nbsp;·&nbsp;
+       <a href="/crisis.html">Crisis lines</a> &nbsp;·&nbsp;
        <a href="mailto:info@quitforecast.com">info@quitforecast.com</a></p>
   </div>
 </footer>
