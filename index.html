@@ -254,7 +254,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
   .masthead { gap: var(--s-m); }
   /* Price hides on a phone; it is one scroll away and has its own section.
      SOS stays: a person mid-craving is not going to hunt. */
-  .masthead nav a[href="#price"] { display: none; }
+  .masthead nav a[href="#price"]:not(.navcta) { display: none; }
   .masthead nav { gap: var(--s-m); font-size: var(--t-micro); }
   .masthead nav a.navcta { padding: 0.35rem 0.75rem; }
   .lockup { font-size: var(--t-small); gap: var(--s-s); }
@@ -283,7 +283,7 @@ section { padding-block: clamp(2.5rem, 7vw, 5rem); }
 section { scroll-margin-top: 4.5rem; }
 /* SC 2.4.11 Focus Not Obscured: anything focusable carries the offset, which
    is the only version of this rule that survives Shift+Tab. */
-a, button, [tabindex]:not([tabindex="-1"]) { scroll-margin-top: 5.5rem; }
+a, [tabindex]:not([tabindex="-1"]) { scroll-margin-top: 5.5rem; }
 
 /* Windows High Contrast and forced-colors. The palette is replaced by the
    reader's own; forced borders keep the cards and bars visible, and the chart
@@ -298,7 +298,7 @@ a, button, [tabindex]:not([tabindex="-1"]) { scroll-margin-top: 5.5rem; }
   .bar.window { fill: Highlight; }
   .windowlabel { fill: Highlight; }
   .hourlabel { fill: CanvasText; }
-  a:focus-visible, button:focus-visible { outline: 2px solid Highlight; }
+  a:focus-visible { outline: 2px solid Highlight; }
 }
 section + section { border-top: 1px solid var(--line); }
 .hero { padding-top: clamp(1.5rem, 5vw, 3.5rem); padding-bottom: clamp(2rem, 6vw, 4rem); }
@@ -368,7 +368,7 @@ p { text-wrap: pretty; }
    inside .badge with it. The href is a placeholder too. */
 .badge { display: inline-block; line-height: 0; border-radius: 8px; }
 .badge svg { display: block; width: min(10.25rem, 100%); height: auto; }
-.badge:hover { opacity: 0.88; }
+a.badge:hover { opacity: 0.88; }
 
 /* --- The hero figure ---------------------------------------------------- */
 
@@ -636,7 +636,9 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   body { background: #FFFFFF; color: #111111; }
   .topbar, .badge, .onpage { display: none; }
   a, .dim, .micro, .small.dim, .figure-label, .kicker, .eyebrow,
-  .lede.dim, .shotnote { color: #333333; }
+  .lede.dim, .shotnote, .small, .statband span, .seclink a,
+  .sechead-media .figure-label { color: #333333; }
+  .statband strong, b, strong, h1, h2, h3 { color: #111111; }
   .hourlabel { fill: #333333; }
   .windowlabel { fill: #7A4A00; }
   .bar { fill: #555555; }
@@ -678,9 +680,9 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
            destination. Price stays visible on desktop because hidden pricing
            reads as a trap; on a phone it yields to width and lives one scroll
            away. -->
-      <a href="/crisis.html">SOS</a>
+      <a href="/crisis.html">Crisis lines</a>
       <a href="#price">Price</a>
-      <a class="navcta" href="#price">Launching soon</a>
+      <a class="navcta" href="#price">Price, and the launch</a>
     </nav>
   </div>
 </header>
@@ -740,9 +742,9 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <div class="watch">
             <picture><source srcset="shots/watch-home.webp" type="image/webp"><img src="shots/watch-home.jpg" width="422" height="514"
                  decoding="async"
-                 alt="A quit on an Apple Watch: the word NICOTINE-FREE, a
-                      running count of 30 days, the next milestone a day away,
-                      and a Log craving button."></picture>
+                 alt="A quit on an Apple Watch. The word NICOTINE-FREE over a
+                      running count of 30 days. The next milestone is a day
+                      away, and a Log craving button waits below."></picture>
           </div>
         </div>
         <p class="figure-label">Your clean time, and the two hours your own log
@@ -842,7 +844,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           system healing underneath.</p>
           <p>A counter that resets to zero has told you the last forty days
           did not happen. They happened. After a slip the button says what it
-          does: <b>Restart my clock, keep my history</b></p>
+          does: <b>Restart my clock, keep my history</b>.</p>
           <p>A tin counts the money you stopped spending. A slip never
           empties it: what you are saving for should never pay for one hard
           night.</p>
@@ -909,6 +911,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                     figure, recovery and next milestone in 12 days, and Alcohol at
                     11 days with its own, next milestone in 3 days."></picture>
         </div>
+        <p class="figure-label">Two demonstration quits, seeded for this picture: the money is the seed's arithmetic, not a person's.</p>
       </div>
       </div>
     </div>
@@ -991,6 +994,12 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="small dim"><a href="/crisis.html">The crisis lines</a>
           are yours whether you ever pay or not, always one tap away. The
           worst ten minutes of your week are not a sales moment.</p>
+          <p class="small dim">One of the Big questions, whole: "Everything
+          around you is built to keep your attention fed, and the appetite
+          still is not full. What is it actually hungry for?"</p>
+          <p class="small">And when the stakes are medical, the toolkit
+          yields: through a heavy drinker's first days, the crisis lines
+          lead the SOS screen above every tool.</p>
           <p class="small seclink"><a href="/manual.html#sos">More in the manual: the SOS toolkit</a></p>
         </div>
       <div class="sechead-media">
@@ -1034,14 +1043,13 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           actually has it. An app whose whole personality is not claiming more
           than it can support does not get to fake a checkmark.</p>
           <p>After the tap, an optional sheet offers strength, trigger and
-          who you were with; skipping any of it costs nothing, and the
-          craving is already logged either way. If you track more than one
-          quit, the wrist switches between them without touching the
-          phone.</p>
+          who you were with. Skipping any of it costs nothing: the craving
+          is already logged either way. If you track more than one quit,
+          the wrist switches between them without touching the phone.</p>
           <p>The breath runs on the watch itself, with no phone in the room.
           That is the point of it: the wrist is what you have at the moment you
           need something to do with your hands.</p>
-          <p class="small dim">Your clean time and your next milestone are on
+          <p class="small">Your clean time and your next milestone are on
           the glance, counted from the watch's own clock. The complication
           arrives in an update; today the app is the glance and the moves
           above.</p>
@@ -1095,9 +1103,16 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="small dim">One ladder is the whole idea made literal: sit
           with yourself for ten minutes, then twenty, then an hour. <b>That
           restlessness is the exercise, not a sign to stop.</b></p>
+          <p class="small dim">The shelves argue in the app's own words. Reward:
+          "Relearning to feel ordinary pleasure." Connection: "Corruption
+          begins in the lack of relationship." Meaning: "Knowing yourself,
+          and what this is for." Competence: "Building something that's
+          yours."</p>
           <p>The community board lives here too: moves submitted by people
           quitting, each read by a person before it is public, voted on by
-          everyone, and one tap adds any of them to your list.</p>
+          everyone. Its own door says it plainly: "Suggest a move, vote up
+          what worked for you, and add any move to your list straight from
+          its page."</p>
           <p class="small dim">A fifth shelf, Spirit, joins the four when a
           faith or philosophy pack is on.</p>
           <p class="small seclink"><a href="/manual.html#rebuild">More in the manual: moves and badges</a></p>
@@ -1144,9 +1159,13 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           baseline from the two weeks before you quit, with what research
           expects printed beside your line. <b>Your chart is allowed to
           disagree.</b></p>
-          <p class="micro">Needs an Apple Watch or similar. Read fresh from
+          <p class="small">Needs an Apple Watch or similar. Read fresh from
           Apple Health on every visit and never stored: no series on your
           phone, none in the backup, nothing to leak.</p>
+          <p>The charts are live, read fresh from Apple Health each time the
+          tab opens. One example of what was hiding: nicotine suppresses
+          heart rate variability, and studies show it climbing within days
+          to weeks of stopping.</p>
           <p class="small seclink"><a href="/manual.html#health">More in the manual: the five metrics</a></p>
         </div>
       <div class="sechead-media">
@@ -1231,6 +1250,11 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p>Once your hours are real, the app tells you before they arrive,
           and again just before they open. Meet the hour knowing it is
           yours.</p>
+          <p class="small dim">The play for Stress, in the app's own words:
+          "Build a faster exit than the habit was."</p>
+          <p class="small dim">Two silences are deliberate: a trigger you
+          name yourself borrows no play it has not earned, and the
+          alcohol-specific play is withheld where it does not apply.</p>
           <p class="small seclink"><a href="/manual.html#log">More in the manual: the craving log</a></p>
         </div>
       <div class="sechead-media">
@@ -1408,6 +1432,15 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
         </span>
       </div>
+    
+      <div class="closer reveal">
+        <p class="small" style="max-width: 26rem;">Settings is the whole
+        list; the app works on its defaults from the first minute.</p>
+        <span class="badge" role="img"
+           aria-label="Coming soon to the App Store">
+          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
+        </span>
+      </div>
     </div>
   </section>
 
@@ -1499,10 +1532,11 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
         <div class="sechead-body">
           <p class="lede dim">The trial is the app, entire. It starts the
-          moment your forecast first draws itself.</p>
+          moment your forecast, the timeline above, first draws
+          itself.</p>
           <p>The week ends on its own and costs nothing. Paying is a
-          separate choice you make in the app, never a charge that sneaks
-          in behind a trial.</p>
+          separate choice you make in the app, on Apple's own purchase
+          sheet.</p>
         </div>
       </div>
 
@@ -1510,7 +1544,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         <div class="card">
           <h3>Premium is the whole app</h3>
           <ul class="plainlist small dim" role="list">
-            <li>Your craving window: the two hours, the chart of your own
+            <li>Your risk window: the two hours, the chart of your own
             cravings, and the heads-up before they open</li>
             <li>The full timeline, hour by hour, with the studies under each
             milestone</li>

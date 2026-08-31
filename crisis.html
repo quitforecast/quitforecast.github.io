@@ -9,6 +9,9 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://quitforecast.com/crisis.html">
 <meta property="og:title" content="QuitForecast crisis lines">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://quitforecast.com/og.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:description" content="The QuitForecast crisis lines, one tap each: call or text 988, the SAMHSA National Helpline, 1-800-QUIT-NOW for smoking, 911, and helplines by country.">
 <meta property="og:site_name" content="QuitForecast">
 <meta name="twitter:card" content="summary">
@@ -60,6 +63,19 @@ footer { border-top: 1px solid var(--line); margin-top: clamp(2rem, 6vw, 3rem);
          padding-top: 1.5rem; font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
          color: var(--dim); }
 footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
+.lines { margin-top: 1.25rem; border-bottom: 1px solid #24343E; }
+.line { display: flex; justify-content: space-between; align-items: baseline;
+        gap: 1rem; padding-block: 0.85rem; border-top: 1px solid #24343E;
+        text-decoration: none; min-height: 44px; }
+.line b { color: var(--text); font-weight: 600; white-space: nowrap; }
+.line span { color: var(--dim); text-align: right;
+             font-size: clamp(0.875rem, 0.85rem + 0.2vw, 1rem); }
+@media print {
+  body { background: #FFFFFF; color: #111111; }
+  a, .line b { color: #111111; }
+  .lede, .small, .line span, footer, footer a { color: #333333; }
+  .lines, .line { border-color: #CCCCCC; }
+}
 @media (forced-colors: active) {
   a:focus-visible { outline: 2px solid Highlight; }
 }
@@ -75,14 +91,23 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
   </a>
 
   <h1>Some moments are not craving moments.</h1>
-  <p class="lede">Four numbers, one tap each.</p>
+  <p class="lede">The numbers, one tap each.</p>
 
-  <p>In the US: <a href="tel:988">call 988</a> for the Suicide and Crisis
-  Lifeline, or <a href="sms:988">text 988</a> if talking is not on the table.
-  <a href="tel:+18006624357">1-800-662-4357</a> is the SAMHSA National
-  Helpline, free, confidential and open every day.
-  <a href="tel:+18007848669">1-800-784-8669</a> is 1-800-QUIT-NOW, for
-  quitting smoking and vaping. If someone is in immediate danger, <a href="tel:911">call 911</a>.</p>
+  <!-- Full-width 44pt rows, the app's own affordance for these lines (an
+       August 30 fresh-eyes finding: they were 20px inline links on the one
+       page where a target size matters most). -->
+  <div class="lines">
+    <a class="line" href="tel:988"><b>Call 988</b><span>Suicide and Crisis
+      Lifeline</span></a>
+    <a class="line" href="sms:988"><b>Text 988</b><span>the same line, if
+      talking is not on the table</span></a>
+    <a class="line" href="tel:+18006624357"><b>1-800-662-4357</b><span>SAMHSA
+      National Helpline, free, confidential, open every day</span></a>
+    <a class="line" href="tel:+18007848669"><b>1-800-784-8669</b><span>1-800-QUIT-NOW,
+      for quitting smoking and vaping</span></a>
+    <a class="line" href="tel:911"><b>Call 911</b><span>if someone is in
+      immediate danger</span></a>
+  </div>
 
   <p class="small">Outside the US, your local emergency number works the same
   way, and <a href="https://findahelpline.com">findahelpline.com</a> lists
@@ -96,6 +121,9 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
   supervised taper is the safe route, so talk to a doctor first. The app's own
   wording, unchanged: <strong>Confusion, seeing or hearing things that are not
   there, fever, bad shaking, or a seizure means 911, immediately.</strong></p>
+
+  <p class="small">A supervised taper means cutting down gradually with a
+  doctor watching the amounts. That is the thing to ask for.</p>
 
   <p class="small">These lines are free, confidential, and staffed by people
   who do this every day. Calling one is a strong move, not a weak one.</p>
