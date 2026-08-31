@@ -148,7 +148,7 @@
      default in their browser gets a larger page. Nothing is fixed in pixels. */
   --t-micro: clamp(0.8125rem, 0.78rem + 0.16vw, 0.9375rem);
   --t-small: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
-  --t-body:  clamp(1.0625rem, 1.02rem + 0.24vw, 1.1875rem);
+  --t-body:  clamp(1.0625rem, 1rem + 0.35vw, 1.28rem); /* desktop ~20.5px, the Apple-Linear range; phones unchanged (candidate 4) */
   --t-lead:  clamp(1.1875rem, 1.1rem + 0.5vw, 1.4375rem);
   --t-h3:    clamp(1.25rem, 1.13rem + 0.55vw, 1.5rem);
   --t-h2:    clamp(1.75rem, 1.4rem + 1.6vw, 2.625rem);
@@ -273,6 +273,11 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 /* --- Sections ----------------------------------------------------------- */
 
 section { padding-block: clamp(2.5rem, 7vw, 5rem); }
+/* Candidate 1: the references' silence, desktop only; the mobile page
+   length, fought for shot by shot, is untouched. */
+@media (min-width: 54rem) {
+  section { padding-block: clamp(5rem, 8vw, 7rem); }
+}
 /* Clears the sticky desktop bar, so an anchor lands on its heading and not
    under it. */
 section { scroll-margin-top: 4.5rem; }
@@ -315,6 +320,21 @@ p { text-wrap: pretty; }
 .sechead-media { grid-area: media; }
 .sechead-media .figure-label { margin-top: var(--s-m); max-width: 24rem; }
 .sechead-media .shotnote { margin-top: var(--s-l); }
+
+/* The stat band: the quiet Apple grammar, figures large and labels dim. */
+.statband { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--s-xl) var(--s-xxl); margin-top: var(--gap-block); }
+.statband strong { display: block; font-size: var(--t-h2); font-weight: 600;
+                   letter-spacing: -0.022em; line-height: 1.1; }
+.statband span { font-size: var(--t-small); color: var(--dim); }
+@media (min-width: 54rem) {
+  .statband { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* The per-section quiet action (world-class candidate 3): one dim link,
+   a real destination, no sell. */
+.seclink a { color: var(--dim); text-decoration-color: var(--line2); }
+.seclink a:hover { color: var(--text); }
 .sechead-media > * + * { margin-top: var(--s-m); }
 .sechead-body > * + * { margin-top: var(--s-l); }
 .sechead-body { max-width: var(--measure); }
@@ -703,7 +723,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <div class="figure">
         <div class="devices">
           <div class="phone">
-            <picture><source srcset="shots/today.webp" type="image/webp"><img src="shots/today.jpg" width="519" height="1130"
+            <picture><source type="image/webp" srcset="shots/today.webp 519w, shots/today@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/today.jpg" width="519" height="1130"
                  decoding="async" fetchpriority="high"
                  alt="The Today screen. Nicotine-free, 30 days 0 hours 0
                       minutes, beside a Cravings by hour chart whose evening
@@ -785,7 +805,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
       <div class="sechead-media">
         <div class="phone reveal optional">
-          <picture><source srcset="shots/habits.webp" type="image/webp"><img src="shots/habits.jpg" width="519" height="1130" loading="lazy"
+          <picture><source type="image/webp" srcset="shots/habits.webp 519w, shots/habits@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/habits.jpg" width="519" height="1130" loading="lazy"
                decoding="async"
                alt="The setup screen asking What are you quitting, listing
                     Smoking, Vaping, Alcohol, Cannabis and Caffeine, each with
@@ -793,6 +813,17 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                     can't own you."></picture>
         </div>
       </div>
+      </div>
+    
+      <!-- The stat band (Steven's world-class candidate 2, August 30): the
+           Apple grammar, only true numbers. Every figure is pinned to the
+           code by SiteClaimTests; N9 forbids invented proof, not real
+           counts set large. -->
+      <div class="statband reveal">
+        <div><strong>61</strong><span>cited sources, the library in the app</span></div>
+        <div><strong>5</strong><span>substances, each its own road</span></div>
+        <div><strong>6</strong><span>things that can ever leave your phone</span></div>
+        <div><strong>0</strong><span>accounts, and nothing to sign in to</span></div>
       </div>
     </div>
   </section>
@@ -820,11 +851,12 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           doing to you and what is healing now.</p>
           <p class="micro">Recovery curves are drawn from cited findings and
           interpolated between them, not a measurement of your body.</p>
+          <p class="small seclink"><a href="/manual.html#today">More in the manual: the Today screen</a></p>
         </div>
       <div class="sechead-media">
         <div class="figure reveal">
           <div class="phone scrolled">
-            <picture><source srcset="shots/recovery.webp" type="image/webp"><img src="shots/recovery.jpg" width="519" height="1130" loading="lazy"
+            <picture><source type="image/webp" srcset="shots/recovery.webp 519w, shots/recovery@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/recovery.jpg" width="519" height="1130" loading="lazy"
                  decoding="async"
                  alt="The Recovery systems card on Today. Carbon monoxide
                       clearance, heart rate and blood pressure, and taste and
@@ -868,7 +900,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
       <div class="sechead-media">
         <div class="phone reveal optional">
-          <picture><source srcset="shots/two-habits.webp" type="image/webp"><img src="shots/two-habits.jpg" width="519" height="1130" loading="lazy"
+          <picture><source type="image/webp" srcset="shots/two-habits.webp 519w, shots/two-habits@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/two-habits.jpg" width="519" height="1130" loading="lazy"
                decoding="async"
                alt="The Habits screen with two quits. A combined card reads All 2
                     habits combined, total saved $459 and overall recovery 62
@@ -897,6 +929,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="small dim">Minutes in, you still feel fine, and the app
           puts that to work: <b>Clear them out first: the pack, the spare in
           the car, the lighters, the ashtrays.</b></p>
+          <p class="small seclink"><a href="/manual.html#today">More in the manual: the forecast, entry by entry</a></p>
         </div>
       <div class="sechead-media">
         <div class="feature reveal">
@@ -905,7 +938,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
             <p class="small dim">There on minute one, and it never scolds.</p>
           </div>
           <div class="phone scrolled">
-            <picture><source srcset="shots/timeline.webp" type="image/webp"><img src="shots/timeline.jpg" width="519" height="1130" loading="lazy"
+            <picture><source type="image/webp" srcset="shots/timeline.webp 519w, shots/timeline@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/timeline.jpg" width="519" height="1130" loading="lazy"
                  decoding="async"
                  alt="The recovery timeline's twenty-minute milestone, open.
                       Inside it: What's healing, heart rate and blood pressure
@@ -961,10 +994,11 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="small dim"><a href="/crisis.html">The crisis lines</a>
           are yours whether you ever pay or not, always one tap away. The
           worst ten minutes of your week are not a sales moment.</p>
+          <p class="small seclink"><a href="/manual.html#sos">More in the manual: the SOS toolkit</a></p>
         </div>
       <div class="sechead-media">
         <div class="phone reveal">
-          <picture><source srcset="shots/sos.webp" type="image/webp"><img src="shots/sos.jpg" width="519" height="1130" loading="lazy"
+          <picture><source type="image/webp" srcset="shots/sos.webp 519w, shots/sos@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/sos.jpg" width="519" height="1130" loading="lazy"
                decoding="async"
                alt="The Craving SOS screen. It opens: this wave will crest and
                     fade in a few minutes whether or not you fight it. Stay busy
@@ -1014,6 +1048,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           the glance, counted from the watch's own clock. The complication
           arrives in an update; today the app is the glance and the moves
           above.</p>
+          <p class="small seclink"><a href="/manual.html#reach">More in the manual: watch, widgets and Siri</a></p>
         </div>
       <div class="sechead-media">
         <div class="devices reveal">
@@ -1068,10 +1103,11 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           everyone, and one tap adds any of them to your list.</p>
           <p class="small dim">A fifth shelf, Spirit, joins the four when a
           faith or philosophy pack is on.</p>
+          <p class="small seclink"><a href="/manual.html#rebuild">More in the manual: moves and badges</a></p>
         </div>
       <div class="sechead-media">
         <div class="phone reveal">
-          <picture><source srcset="shots/catalogue.webp" type="image/webp"><img src="shots/catalogue.jpg" width="519" height="1130" loading="lazy"
+          <picture><source type="image/webp" srcset="shots/catalogue.webp 519w, shots/catalogue@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/catalogue.jpg" width="519" height="1130" loading="lazy"
                decoding="async"
                alt="The catalogue in its grid view, with section, nerve and
                     basis filter rows. Cards reading Move your body, 10 min,
@@ -1079,6 +1115,16 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                     Quiet; Savor one thing, 1 min, Quiet; Cook a real meal,
                     45 min, Quiet; Take it cold, 3 min; and Take an awe walk,
                     15 min."></picture>
+          <picture><source type="image/webp" srcset="shots/board.webp 519w, shots/board@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/board.jpg" width="519" height="1130" loading="lazy"
+               decoding="async"
+               alt="The Community board. Suggest a move, vote up what worked
+                    for you, and add any move to your list straight from its
+                    page. Four posts with vote counts: Cold water in the
+                    morning under Competence with 42, Ten pages before the
+                    phone under Meaning with 31, Walk-and-call a friend under
+                    Connection with 27, and One meal you cook from scratch
+                    under Reward, each a Practice with its minutes and nerve
+                    named."></picture>
         </div>
       </div>
       </div>
@@ -1103,12 +1149,13 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="micro">Needs an Apple Watch or similar. Read fresh from
           Apple Health on every visit and never stored: no series on your
           phone, none in the backup, nothing to leak.</p>
+          <p class="small seclink"><a href="/manual.html#health">More in the manual: the five metrics</a></p>
         </div>
       <div class="sechead-media">
         <div class="phones reveal">
           <div>
             <div class="phone">
-              <picture><source srcset="shots/health.webp" type="image/webp"><img src="shots/health.jpg" width="520" height="1130" loading="lazy"
+              <picture><source type="image/webp" srcset="shots/health.webp 519w, shots/health@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/health.jpg" width="519" height="1130" loading="lazy"
                    decoding="async"
                    alt="The Health tab. A heading reading There is no improved you
                         at the end of this, and under it a resting heart rate
@@ -1122,7 +1169,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           </div>
           <div class="optional">
             <div class="phone">
-              <picture><source srcset="shots/health-metric.webp" type="image/webp"><img src="shots/health-metric.jpg" width="520" height="1130"
+              <picture><source type="image/webp" srcset="shots/health-metric.webp 519w, shots/health-metric@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/health-metric.jpg" width="519" height="1130"
                    loading="lazy" decoding="async"
                    alt="A heart rate variability card with its chart, and beneath
                         it a block headed What research expects reading: nicotine
@@ -1186,6 +1233,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p>Once your hours are real, the app tells you before they arrive,
           and again just before they open. Meet the hour knowing it is
           yours.</p>
+          <p class="small seclink"><a href="/manual.html#log">More in the manual: the craving log</a></p>
         </div>
       <div class="sechead-media">
         <div class="figure reveal">
@@ -1242,7 +1290,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         <p class="shotnote">A demonstration log, one that happens to peak in the
         early evening. Yours will name different hours.</p>
         <div class="phone reveal">
-          <picture><source srcset="shots/window.webp" type="image/webp"><img src="shots/window.jpg" width="519" height="1130" loading="lazy"
+          <picture><source type="image/webp" srcset="shots/window.webp 519w, shots/window@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/window.jpg" width="519" height="1130" loading="lazy"
                decoding="async"
                alt="The Log tab. A heading reading A craving is not a command,
                     over the explanation that a craving is a learned response
