@@ -109,6 +109,21 @@ a:hover { text-decoration-thickness: 2px; }
 .lockup { display: inline-flex; align-items: center; gap: 0.625rem;
           font-weight: 600; color: var(--text); text-decoration: none;
           margin-bottom: clamp(1.5rem, 5vw, 2.5rem); }
+/* The masthead: home is one tap from every manual page, said in words,
+   not only in the wordmark. */
+.masthead { display: flex; align-items: center; justify-content: space-between;
+            gap: 1rem; flex-wrap: wrap;
+            margin-bottom: clamp(1.25rem, 4vw, 2rem); }
+.masthead .lockup { margin-bottom: 0; }
+.mastnav { display: flex; gap: clamp(0.75rem, 2.5vw, 1.5rem); flex-wrap: wrap; }
+.mastnav a { color: var(--dim); text-decoration: none;
+             font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+             padding-block: 0.35rem; min-height: 24px; }
+.mastnav a:hover { color: var(--accent); }
+.crumbs { color: var(--dim); margin: 0 0 0.75rem;
+          font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem); }
+.crumbs a { color: var(--dim); }
+.crumbs a:hover { color: var(--accent); }
 .lockup svg { display: block; width: 1.625rem; height: 1.625rem; }
 footer { border-top: 1px solid var(--line); margin-top: clamp(2rem, 6vw, 3rem);
          padding-top: 1.5rem; font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
@@ -178,13 +193,21 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
     </ul>
   </nav>
 <main class="wrap">
-  <a class="lockup" href="/">
-    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-      <circle cx="16" cy="16" r="11" fill="none" stroke="#7FD9C4" stroke-width="3"/>
-      <circle cx="16" cy="5" r="3.4" fill="#E5A45C"/>
-    </svg>
-    <span>QuitForecast</span>
-  </a>
+  <div class="masthead">
+    <a class="lockup" href="/" aria-label="QuitForecast home">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <circle cx="16" cy="16" r="11" fill="none" stroke="#7FD9C4" stroke-width="3"/>
+        <circle cx="16" cy="5" r="3.4" fill="#E5A45C"/>
+      </svg>
+      <span>QuitForecast</span>
+    </a>
+    <nav class="mastnav" aria-label="Site">
+      <a href="/">Home</a>
+      <a href="/manual.html">The manual</a>
+      <a href="/crisis.html">Crisis lines</a>
+    </nav>
+  </div>
+  <p class="crumbs"><a href="/">QuitForecast</a> / <a href="/manual.html">The manual</a> / The log and patterns</p>
   <nav class="onpage" aria-label="Manual sections">
     <ul role="list">
       <li><a href="/manual-today.html">Today</a></li>
