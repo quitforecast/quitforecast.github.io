@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The QuitForecast manual</title>
-<meta name="description" content="What every part of QuitForecast does, where it lives, and the rules it keeps: the forecast, the log, the SOS toolkit, Rebuild, the Watch, Health, and your data.">
+<title>The SOS toolkit: the QuitForecast manual</title>
+<meta name="description" content="A craving crests and breaks in a few minutes. The toolkit exists to get you through exactly those minutes, with a shared five minute wave clock across">
 <meta name="referrer" content="no-referrer">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://quitforecast.com/manual.html">
-<meta property="og:title" content="The QuitForecast manual">
-<meta property="og:description" content="What every part of QuitForecast does, where it lives, and the rules it keeps: the forecast, the log, the SOS toolkit, Rebuild, the Watch, Health, and your data.">
+<meta property="og:url" content="https://quitforecast.com/manual-sos.html">
+<meta property="og:title" content="The SOS toolkit: the QuitForecast manual">
+<meta property="og:description" content="A craving crests and breaks in a few minutes. The toolkit exists to get you through exactly those minutes, with a shared five minute wave clock across">
 <meta property="og:site_name" content="QuitForecast">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://quitforecast.com/og.jpg">
@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0C1820">
 <meta name="color-scheme" content="dark">
-<link rel="canonical" href="https://quitforecast.com/manual.html">
+<link rel="canonical" href="https://quitforecast.com/manual-sos.html">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
 <link rel="apple-touch-icon" href="/icon-180.png">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -149,6 +149,34 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
 }
 </style>
 <body>
+<div class="withrail">
+  <nav class="rail" aria-label="The manual">
+    <a class="railtitle" href="/manual.html">The manual</a>
+    <ul>
+      <li><a href="/manual-today.html">Today</a>
+      </li>
+      <li><a href="/manual-log.html">The log</a>
+      </li>
+      <li><a href="/manual-sos.html" aria-current="page">SOS</a>
+      <ul>
+        <li><a href="#breathe">Breathe</a></li>
+        <li><a href="#body-scan">Body scan</a></li>
+        <li><a href="#the-games">The games</a></li>
+        <li><a href="#the-big-questions">The Big questions</a></li>
+        <li><a href="#the-why">The why</a></li>
+        <li><a href="#crisis-and-support-lines">Crisis and support lines</a></li>
+      </ul>
+      </li>
+      <li><a href="/manual-rebuild.html">Rebuild</a>
+      </li>
+      <li><a href="/manual-reach.html">Watch and widgets</a>
+      </li>
+      <li><a href="/manual-health.html">Health</a>
+      </li>
+      <li><a href="/manual-data.html">Your data</a>
+      </li>
+    </ul>
+  </nav>
 <main class="wrap">
   <a class="lockup" href="/">
     <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
@@ -157,54 +185,64 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
     </svg>
     <span>QuitForecast</span>
   </a>
-  <h1>The manual.</h1>
-  <p class="lede">What every part of the app does, where it lives, and the rules it keeps. One page per part, from the same source as the app's own manual in Settings, so the two can never disagree.</p>
   <nav class="onpage" aria-label="Manual sections">
     <ul role="list">
       <li><a href="/manual-today.html">Today</a></li>
       <li><a href="/manual-log.html">The log</a></li>
-      <li><a href="/manual-sos.html">SOS</a></li>
+      <li><a href="/manual-sos.html" aria-current="page">SOS</a></li>
       <li><a href="/manual-rebuild.html">Rebuild</a></li>
       <li><a href="/manual-reach.html">Watch and widgets</a></li>
       <li><a href="/manual-health.html">Health</a></li>
       <li><a href="/manual-data.html">Your data</a></li>
     </ul>
   </nav>
-  <a class="seccard" href="/manual-today.html">
-    <h2>Today and the forecast</h2>
-    <p>Today is the clock and the road: how long you have been clean, what your body is doing right now, and what is coming next.</p>
-    <span class="count">7 entries: The counter, The recovery timeline, The craving histogram&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-log.html">
-    <h2>The log and patterns</h2>
-    <p>The Log tab is where your own evidence accumulates: what set cravings off, when they hit, who you were with, and what all of it adds up to.</p>
-    <span class="count">6 entries: Logging a craving, The trigger chart, The week's shape&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-sos.html">
-    <h2>The SOS toolkit</h2>
-    <p>A craving crests and breaks in a few minutes. The toolkit exists to get you through exactly those minutes, with a shared five minute wave clock across every tool.</p>
-    <span class="count">6 entries: Breathe, Body scan, The games&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-rebuild.html">
-    <h2>Rebuild, moves and badges</h2>
-    <p>Quitting leaves a gap where the habit lived. Rebuild is the catalogue of what goes in its place, and the shelf that remembers what you have already built.</p>
-    <span class="count">5 entries: The catalogue, Your list and the footer, The savings tin&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-reach.html">
-    <h2>Watch, widgets and Control Center</h2>
-    <p>The moments that matter rarely happen with the app open. Every surface below logs the same craving into the same record, one press, nothing asked.</p>
-    <span class="count">5 entries: The Watch app, Home Screen widgets, Control Center and the Lock Screen&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-health.html">
-    <h2>Health and baselines</h2>
-    <p>The forecast says your body recovers. The Health tab is where your own Apple Health data gets to agree, against your own before.</p>
-    <span class="count">3 entries: The five metrics, The baseline, What never leaves the phone&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-data.html">
-    <h2>Data, backup and privacy</h2>
-    <p>No accounts, nothing to sign into, and your record is yours. This section is the manual for keeping it that way.</p>
-    <span class="count">4 entries: Where your data lives, Export, Delete everything&hellip;</span>
-  </a>
+  <h1>The SOS toolkit</h1>
+  <p class="lede">A craving crests and breaks in a few minutes. The toolkit exists to get you through exactly those minutes, with a shared five minute wave clock across every tool.</p>
+  <div class="entrycard" id="breathe">
+    <h2>Breathe</h2>
+    <p class="entrylede">The box breath: four in, four hold, four out, four hold, with the screen kept awake for the whole session.</p>
+    <p>It waits for your Start tap rather than launching into a countdown, because a breath you have to catch mid-cycle reads as an emergency. From Start, the circle grows and settles on a four-count box, each phase spoken aloud for VoiceOver and marked with a soft haptic.</p>
+    <p>The five-minute wave clock keeps running in the corner: the breath times the exercise, the clock times the craving, and finishing one does not end the other. The screen stays awake for the whole session so a craving ridden with the phone in hand never goes dark mid-breath.</p>
+    <p>Why this tool: slow, even breathing switches on the calming branch of your nervous system, the body's own off-switch for the stress a craving rides in on. The evidence is cited on the screen itself.</p>
+  </div>
+  <div class="entrycard" id="body-scan">
+    <h2>Body scan</h2>
+    <p class="entrylede">Tap where the craving lives, describe it, and watch it for thirty seconds. Watching a craving instead of obeying it is the whole technique, and it is cited on the screen that teaches it.</p>
+    <p>This is urge surfing, the technique with the strongest evidence in the toolkit: turn toward the sensation, name where it lives and what it feels like, and watch it instead of arguing with it. Watched sensations pass faster than fought ones.</p>
+    <p>The screen's own line says the whole stance: you're the one watching, it's the one passing. Thirty seconds of honest observation is usually enough to feel the crest.</p>
+  </div>
+  <div class="entrycard" id="the-games">
+    <h2>The games</h2>
+    <p class="entrylede">Snake and a maze chase, because occupying the mind's visual workshop measurably blunts a craving. Best scores persist, and the wave clock runs through them.</p>
+    <p>The science is the Tetris effect: a visual task absorbing enough to fill working memory leaves less room for the craving to render itself, and the drop in intensity is measurable in studies. The games are deliberately old-school because simple and demanding is exactly the recipe.</p>
+    <p>Your best score persists per game, giving the tenth hard evening something to beat. The wave clock runs through play: switching from breathing to Snake does not restart your five minutes.</p>
+  </div>
+  <div class="entrycard" id="the-big-questions">
+    <h2>The Big questions</h2>
+    <p class="entrylede">One honest question at a time, for the cravings that are really about something else.</p>
+    <p>A rotating set of questions with no bottom, one per visit, in the register of a good late-night conversation. They ask about the appetite under the appetite: what the reaching is actually hungry for, what happened to the quiet, what the ritual was standing in for.</p>
+    <p>The set claims nothing and cites nothing on purpose: it is the one tool in SOS whose job is not evidence but honesty. Repeat visits get different questions, and the set is deep enough that a hard week does not wear it smooth.</p>
+  </div>
+  <div class="entrycard" id="the-why">
+    <h2>The why</h2>
+    <p class="entrylede">Seven short cards on why humans reach for these substances at all: the wanting machinery, the after-work reach, the cue, the evolutionary story. Every card is cited, and each visit opens on a different one.</p>
+    <p>The chapter answers the question every quit eventually asks: why does this pull exist at all? Seven cards cover the honest science: a craving is a learning system working as built, wanting and liking are separate machinery, relief teaches as hard as pleasure, cues bind by repetition, and the evolutionary argument is presented as the live debate it is.</p>
+    <p>Each card ends on something you can do or watch in the moment, and cites its sources at the foot like every claim in the app. One card per visit, rotating, and the cue card can quote your own log's reading when it has earned one; science, so it is never gated behind a faith pack.</p>
+    <p>The last card is the app's whole thesis applied to itself: what you understand can't own you. Watching the machinery fire, naming the cue, riding the wave: that is the machinery being retrained.</p>
+  </div>
+  <div class="entrycard" id="crisis-and-support-lines">
+    <h2>Crisis and support lines</h2>
+    <p class="entrylede">Real, staffed lines, one tap from the SOS screen and from Settings; 988 and the SAMHSA helpline answer day and night. An app can ride a wave with you. Some nights need a person.</p>
+    <p>The lines are the real ones: 988 by call or text for the Suicide and Crisis Lifeline, the SAMHSA National Helpline for substance use and mental health, the national quitline for smoking and vaping, and 911 for immediate danger, with helplines by country for readers outside the US.</p>
+    <p>During a heavy drinker's first days the SOS screen leads with this routing above every coping tool, and the alcohol rule is stated in full wherever it is needed: confusion, seeing or hearing things that are not there, fever, bad shaking, or a seizure means 911, immediately.</p>
+    <p>The same numbers live on the website's own crisis page, so the route exists even without the app in hand.</p>
+    <p><a href="/crisis.html">The crisis lines page, one tap away.</a></p>
+  </div>
+  <nav class="pager" aria-label="Between sections">
+    <a href="/manual-log.html" rel="prev">&larr; The log and patterns</a>
+    <span class="spacer"></span>
+    <a href="/manual-rebuild.html" rel="next">Rebuild, moves and badges &rarr;</a>
+  </nav>
   <footer>
     <p>QuitForecast is not a medical device and does not diagnose or treat
     anything. It holds no advice your own doctor should not overrule.</p>
@@ -216,3 +254,4 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
        <a href="/privacy.html">Privacy</a></p>
   </footer>
 </main>
+</div>

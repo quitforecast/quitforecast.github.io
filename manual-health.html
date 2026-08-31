@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The QuitForecast manual</title>
-<meta name="description" content="What every part of QuitForecast does, where it lives, and the rules it keeps: the forecast, the log, the SOS toolkit, Rebuild, the Watch, Health, and your data.">
+<title>Health and baselines: the QuitForecast manual</title>
+<meta name="description" content="The forecast says your body recovers. The Health tab is where your own Apple Health data gets to agree, against your own before.">
 <meta name="referrer" content="no-referrer">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://quitforecast.com/manual.html">
-<meta property="og:title" content="The QuitForecast manual">
-<meta property="og:description" content="What every part of QuitForecast does, where it lives, and the rules it keeps: the forecast, the log, the SOS toolkit, Rebuild, the Watch, Health, and your data.">
+<meta property="og:url" content="https://quitforecast.com/manual-health.html">
+<meta property="og:title" content="Health and baselines: the QuitForecast manual">
+<meta property="og:description" content="The forecast says your body recovers. The Health tab is where your own Apple Health data gets to agree, against your own before.">
 <meta property="og:site_name" content="QuitForecast">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://quitforecast.com/og.jpg">
@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0C1820">
 <meta name="color-scheme" content="dark">
-<link rel="canonical" href="https://quitforecast.com/manual.html">
+<link rel="canonical" href="https://quitforecast.com/manual-health.html">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
 <link rel="apple-touch-icon" href="/icon-180.png">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -149,6 +149,31 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
 }
 </style>
 <body>
+<div class="withrail">
+  <nav class="rail" aria-label="The manual">
+    <a class="railtitle" href="/manual.html">The manual</a>
+    <ul>
+      <li><a href="/manual-today.html">Today</a>
+      </li>
+      <li><a href="/manual-log.html">The log</a>
+      </li>
+      <li><a href="/manual-sos.html">SOS</a>
+      </li>
+      <li><a href="/manual-rebuild.html">Rebuild</a>
+      </li>
+      <li><a href="/manual-reach.html">Watch and widgets</a>
+      </li>
+      <li><a href="/manual-health.html" aria-current="page">Health</a>
+      <ul>
+        <li><a href="#the-five-metrics">The five metrics</a></li>
+        <li><a href="#the-baseline">The baseline</a></li>
+        <li><a href="#what-never-leaves-the-phone">What never leaves the phone</a></li>
+      </ul>
+      </li>
+      <li><a href="/manual-data.html">Your data</a>
+      </li>
+    </ul>
+  </nav>
 <main class="wrap">
   <a class="lockup" href="/">
     <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
@@ -157,8 +182,6 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
     </svg>
     <span>QuitForecast</span>
   </a>
-  <h1>The manual.</h1>
-  <p class="lede">What every part of the app does, where it lives, and the rules it keeps. One page per part, from the same source as the app's own manual in Settings, so the two can never disagree.</p>
   <nav class="onpage" aria-label="Manual sections">
     <ul role="list">
       <li><a href="/manual-today.html">Today</a></li>
@@ -166,45 +189,35 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
       <li><a href="/manual-sos.html">SOS</a></li>
       <li><a href="/manual-rebuild.html">Rebuild</a></li>
       <li><a href="/manual-reach.html">Watch and widgets</a></li>
-      <li><a href="/manual-health.html">Health</a></li>
+      <li><a href="/manual-health.html" aria-current="page">Health</a></li>
       <li><a href="/manual-data.html">Your data</a></li>
     </ul>
   </nav>
-  <a class="seccard" href="/manual-today.html">
-    <h2>Today and the forecast</h2>
-    <p>Today is the clock and the road: how long you have been clean, what your body is doing right now, and what is coming next.</p>
-    <span class="count">7 entries: The counter, The recovery timeline, The craving histogram&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-log.html">
-    <h2>The log and patterns</h2>
-    <p>The Log tab is where your own evidence accumulates: what set cravings off, when they hit, who you were with, and what all of it adds up to.</p>
-    <span class="count">6 entries: Logging a craving, The trigger chart, The week's shape&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-sos.html">
-    <h2>The SOS toolkit</h2>
-    <p>A craving crests and breaks in a few minutes. The toolkit exists to get you through exactly those minutes, with a shared five minute wave clock across every tool.</p>
-    <span class="count">6 entries: Breathe, Body scan, The games&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-rebuild.html">
-    <h2>Rebuild, moves and badges</h2>
-    <p>Quitting leaves a gap where the habit lived. Rebuild is the catalogue of what goes in its place, and the shelf that remembers what you have already built.</p>
-    <span class="count">5 entries: The catalogue, Your list and the footer, The savings tin&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-reach.html">
-    <h2>Watch, widgets and Control Center</h2>
-    <p>The moments that matter rarely happen with the app open. Every surface below logs the same craving into the same record, one press, nothing asked.</p>
-    <span class="count">5 entries: The Watch app, Home Screen widgets, Control Center and the Lock Screen&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-health.html">
-    <h2>Health and baselines</h2>
-    <p>The forecast says your body recovers. The Health tab is where your own Apple Health data gets to agree, against your own before.</p>
-    <span class="count">3 entries: The five metrics, The baseline, What never leaves the phone&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-data.html">
-    <h2>Data, backup and privacy</h2>
-    <p>No accounts, nothing to sign into, and your record is yours. This section is the manual for keeping it that way.</p>
-    <span class="count">4 entries: Where your data lives, Export, Delete everything&hellip;</span>
-  </a>
+  <h1>Health and baselines</h1>
+  <p class="lede">The forecast says your body recovers. The Health tab is where your own Apple Health data gets to agree, against your own before.</p>
+  <div class="entrycard" id="the-five-metrics">
+    <h2>The five metrics</h2>
+    <p class="entrylede">Resting heart rate, heart rate variability, cardio fitness, respiratory rate and blood oxygen. Each is charted against your own pre-quit baseline, with what published research expects underneath.</p>
+    <p>Each card charts your own daily averages from Apple Health with your pre-quit baseline drawn beside them, and beneath the chart, what published research expects that metric to do after quitting, with the study named. Your chart is allowed to disagree with the research; the app never edits your line to match the story.</p>
+    <p>Heart rate variability is the early mover worth knowing about: nicotine suppresses it, and studies show it climbing within days to weeks of stopping. The readings need an Apple Watch or a similar sensor feeding Apple Health; without one the tab says so and waits.</p>
+  </div>
+  <div class="entrycard" id="the-baseline">
+    <h2>The baseline</h2>
+    <p class="entrylede">Your own average from before the quit, drawn only when enough pre-quit days exist to mean something. A baseline from two readings is noise, so the app waits rather than guesses.</p>
+    <p>The baseline is your average from the fourteen days before your quit date: fourteen days you did not know you were recording, which is what makes the before-and-after honest. Backdate your quit accurately at setup so the line lands inside the history your watch actually holds.</p>
+    <p>If those days hold too few readings to mean anything, no baseline is drawn and the chart stands alone. A dotted line invented from two data points would be the chart lying with statistics.</p>
+  </div>
+  <div class="entrycard" id="what-never-leaves-the-phone">
+    <h2>What never leaves the phone</h2>
+    <p class="entrylede">Health data is read on your device and never transmitted anywhere, never backed up by this app, and never quoted by any surface that leaves the phone. That is a promise the code holds by test.</p>
+    <p>The app reads your Health data fresh each time the tab opens and keeps no copy: no series on your phone, none in the iCloud backup, nothing on any server. Access is read-only, and the permission sheet asks for exactly the five metrics and nothing else.</p>
+    <p>No surface that leaves your phone quotes a Health number: not the backup, not the board, not feedback. The app's own test suite enforces this, which is what the manual means when it says the promise is held by code.</p>
+  </div>
+  <nav class="pager" aria-label="Between sections">
+    <a href="/manual-reach.html" rel="prev">&larr; Watch, widgets and Control Center</a>
+    <span class="spacer"></span>
+    <a href="/manual-data.html" rel="next">Data, backup and privacy &rarr;</a>
+  </nav>
   <footer>
     <p>QuitForecast is not a medical device and does not diagnose or treat
     anything. It holds no advice your own doctor should not overrule.</p>
@@ -216,3 +229,4 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
        <a href="/privacy.html">Privacy</a></p>
   </footer>
 </main>
+</div>

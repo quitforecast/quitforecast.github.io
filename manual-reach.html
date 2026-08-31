@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The QuitForecast manual</title>
-<meta name="description" content="What every part of QuitForecast does, where it lives, and the rules it keeps: the forecast, the log, the SOS toolkit, Rebuild, the Watch, Health, and your data.">
+<title>Watch, widgets and Control Center: the QuitForecast manual</title>
+<meta name="description" content="The moments that matter rarely happen with the app open. Every surface below logs the same craving into the same record, one press, nothing asked.">
 <meta name="referrer" content="no-referrer">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://quitforecast.com/manual.html">
-<meta property="og:title" content="The QuitForecast manual">
-<meta property="og:description" content="What every part of QuitForecast does, where it lives, and the rules it keeps: the forecast, the log, the SOS toolkit, Rebuild, the Watch, Health, and your data.">
+<meta property="og:url" content="https://quitforecast.com/manual-reach.html">
+<meta property="og:title" content="Watch, widgets and Control Center: the QuitForecast manual">
+<meta property="og:description" content="The moments that matter rarely happen with the app open. Every surface below logs the same craving into the same record, one press, nothing asked.">
 <meta property="og:site_name" content="QuitForecast">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://quitforecast.com/og.jpg">
@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0C1820">
 <meta name="color-scheme" content="dark">
-<link rel="canonical" href="https://quitforecast.com/manual.html">
+<link rel="canonical" href="https://quitforecast.com/manual-reach.html">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
 <link rel="apple-touch-icon" href="/icon-180.png">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -149,6 +149,33 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
 }
 </style>
 <body>
+<div class="withrail">
+  <nav class="rail" aria-label="The manual">
+    <a class="railtitle" href="/manual.html">The manual</a>
+    <ul>
+      <li><a href="/manual-today.html">Today</a>
+      </li>
+      <li><a href="/manual-log.html">The log</a>
+      </li>
+      <li><a href="/manual-sos.html">SOS</a>
+      </li>
+      <li><a href="/manual-rebuild.html">Rebuild</a>
+      </li>
+      <li><a href="/manual-reach.html" aria-current="page">Watch and widgets</a>
+      <ul>
+        <li><a href="#the-watch-app">The Watch app</a></li>
+        <li><a href="#home-screen-widgets">Home Screen widgets</a></li>
+        <li><a href="#control-center-and-the-lock-screen">Control Center and the Lock Screen</a></li>
+        <li><a href="#the-live-activity">The Live Activity</a></li>
+        <li><a href="#siri">Siri</a></li>
+      </ul>
+      </li>
+      <li><a href="/manual-health.html">Health</a>
+      </li>
+      <li><a href="/manual-data.html">Your data</a>
+      </li>
+    </ul>
+  </nav>
 <main class="wrap">
   <a class="lockup" href="/">
     <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
@@ -157,54 +184,55 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
     </svg>
     <span>QuitForecast</span>
   </a>
-  <h1>The manual.</h1>
-  <p class="lede">What every part of the app does, where it lives, and the rules it keeps. One page per part, from the same source as the app's own manual in Settings, so the two can never disagree.</p>
   <nav class="onpage" aria-label="Manual sections">
     <ul role="list">
       <li><a href="/manual-today.html">Today</a></li>
       <li><a href="/manual-log.html">The log</a></li>
       <li><a href="/manual-sos.html">SOS</a></li>
       <li><a href="/manual-rebuild.html">Rebuild</a></li>
-      <li><a href="/manual-reach.html">Watch and widgets</a></li>
+      <li><a href="/manual-reach.html" aria-current="page">Watch and widgets</a></li>
       <li><a href="/manual-health.html">Health</a></li>
       <li><a href="/manual-data.html">Your data</a></li>
     </ul>
   </nav>
-  <a class="seccard" href="/manual-today.html">
-    <h2>Today and the forecast</h2>
-    <p>Today is the clock and the road: how long you have been clean, what your body is doing right now, and what is coming next.</p>
-    <span class="count">7 entries: The counter, The recovery timeline, The craving histogram&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-log.html">
-    <h2>The log and patterns</h2>
-    <p>The Log tab is where your own evidence accumulates: what set cravings off, when they hit, who you were with, and what all of it adds up to.</p>
-    <span class="count">6 entries: Logging a craving, The trigger chart, The week's shape&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-sos.html">
-    <h2>The SOS toolkit</h2>
-    <p>A craving crests and breaks in a few minutes. The toolkit exists to get you through exactly those minutes, with a shared five minute wave clock across every tool.</p>
-    <span class="count">6 entries: Breathe, Body scan, The games&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-rebuild.html">
-    <h2>Rebuild, moves and badges</h2>
-    <p>Quitting leaves a gap where the habit lived. Rebuild is the catalogue of what goes in its place, and the shelf that remembers what you have already built.</p>
-    <span class="count">5 entries: The catalogue, Your list and the footer, The savings tin&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-reach.html">
-    <h2>Watch, widgets and Control Center</h2>
-    <p>The moments that matter rarely happen with the app open. Every surface below logs the same craving into the same record, one press, nothing asked.</p>
-    <span class="count">5 entries: The Watch app, Home Screen widgets, Control Center and the Lock Screen&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-health.html">
-    <h2>Health and baselines</h2>
-    <p>The forecast says your body recovers. The Health tab is where your own Apple Health data gets to agree, against your own before.</p>
-    <span class="count">3 entries: The five metrics, The baseline, What never leaves the phone&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-data.html">
-    <h2>Data, backup and privacy</h2>
-    <p>No accounts, nothing to sign into, and your record is yours. This section is the manual for keeping it that way.</p>
-    <span class="count">4 entries: Where your data lives, Export, Delete everything&hellip;</span>
-  </a>
+  <h1>Watch, widgets and Control Center</h1>
+  <p class="lede">The moments that matter rarely happen with the app open. Every surface below logs the same craving into the same record, one press, nothing asked.</p>
+  <div class="entrycard" id="the-watch-app">
+    <h2>The Watch app</h2>
+    <p class="entrylede">Your counter, a one-tap craving log, and the SOS breath, on your wrist. After the tap, an optional sheet offers strength, trigger and company; skipping any of it costs nothing, and the craving is already logged either way. If you track more than one quit, the wrist switches between them without touching the phone.</p>
+    <p>The glance shows your clean time and next milestone, counted from the watch's own clock, in your theme. One press logs a craving; an optional sheet then offers strength, trigger and company, and skipping it costs nothing because the craving is already filed.</p>
+    <p>The wrist never fakes a checkmark: it says Logged only once the phone actually has the craving. Out of range, it says so, holds the tap, and sends when the phone is near; the log arrives stamped with the moment you pressed, not the moment it synced.</p>
+    <p>The breath runs on the watch itself with no phone in the room, and with more than one quit running, the wrist switches habits locally, repainting to each quit's own theme. The complication arrives in an update; today the app is the glance and the moves above.</p>
+  </div>
+  <div class="entrycard" id="home-screen-widgets">
+    <h2>Home Screen widgets</h2>
+    <p class="entrylede">The counter ticking live, money saved, and the next milestone. Long-press to pin a widget to one habit; left alone it follows whichever the app has open.</p>
+    <p>The widget carries the counter live, the money saved, and the next milestone with its countdown, in the app's theme. It updates itself; there is nothing to refresh.</p>
+    <p>By default it follows whichever habit the app has open. Long-press, choose the habit, and it pins: two quits can run two widgets side by side, each on its own clock.</p>
+  </div>
+  <div class="entrycard" id="control-center-and-the-lock-screen">
+    <h2>Control Center and the Lock Screen</h2>
+    <p class="entrylede">A log button that files a craving without opening the app, an SOS button that opens the app straight into the breath, and lock-screen accessories for the counter.</p>
+    <p>The Control Center log button files a real craving in one press, no unlock past Face ID, no app open, no questions. It lands in the same record as every other log, unrated, stamped now.</p>
+    <p>The SOS button is a door, not a silent action: it opens the app straight into the toolkit, because breathing needs a screen. The Lock Screen accessories carry the counter where your eyes already go.</p>
+  </div>
+  <div class="entrycard" id="the-live-activity">
+    <h2>The Live Activity</h2>
+    <p class="entrylede">Through the first three days, your counter and next milestone sit on the Lock Screen and in the Dynamic Island, and a tap lands on the SOS breath. It retires itself once the acute phase passes.</p>
+    <p>The first three days are when cravings arrive fastest and reaching for the phone is most automatic, so for exactly that window your counter and next milestone live on the Lock Screen and in the Dynamic Island, one tap from the breath.</p>
+    <p>It retires itself when the acute phase passes rather than becoming permanent furniture, because a Lock Screen fixture you stop seeing is worse than none.</p>
+  </div>
+  <div class="entrycard" id="siri">
+    <h2>Siri</h2>
+    <p class="entrylede">Say "Craving SOS in QuitForecast" and the breath opens directly, with the app closed, mid-craving, no hunting.</p>
+    <p>The phrases are registered with the system when the app is installed: say "Craving SOS in QuitForecast", or "help me through a craving in QuitForecast", and the toolkit opens with the wave clock running, hands-free.</p>
+    <p>Siri needs the app named in the phrase; that is how iOS routes it. No setup, no shortcut-building, nothing to record first.</p>
+  </div>
+  <nav class="pager" aria-label="Between sections">
+    <a href="/manual-rebuild.html" rel="prev">&larr; Rebuild, moves and badges</a>
+    <span class="spacer"></span>
+    <a href="/manual-health.html" rel="next">Health and baselines &rarr;</a>
+  </nav>
   <footer>
     <p>QuitForecast is not a medical device and does not diagnose or treat
     anything. It holds no advice your own doctor should not overrule.</p>
@@ -216,3 +244,4 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
        <a href="/privacy.html">Privacy</a></p>
   </footer>
 </main>
+</div>

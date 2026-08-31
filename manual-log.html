@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The QuitForecast manual</title>
-<meta name="description" content="What every part of QuitForecast does, where it lives, and the rules it keeps: the forecast, the log, the SOS toolkit, Rebuild, the Watch, Health, and your data.">
+<title>The log and patterns: the QuitForecast manual</title>
+<meta name="description" content="The Log tab is where your own evidence accumulates: what set cravings off, when they hit, who you were with, and what all of it adds up to.">
 <meta name="referrer" content="no-referrer">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://quitforecast.com/manual.html">
-<meta property="og:title" content="The QuitForecast manual">
-<meta property="og:description" content="What every part of QuitForecast does, where it lives, and the rules it keeps: the forecast, the log, the SOS toolkit, Rebuild, the Watch, Health, and your data.">
+<meta property="og:url" content="https://quitforecast.com/manual-log.html">
+<meta property="og:title" content="The log and patterns: the QuitForecast manual">
+<meta property="og:description" content="The Log tab is where your own evidence accumulates: what set cravings off, when they hit, who you were with, and what all of it adds up to.">
 <meta property="og:site_name" content="QuitForecast">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://quitforecast.com/og.jpg">
@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0C1820">
 <meta name="color-scheme" content="dark">
-<link rel="canonical" href="https://quitforecast.com/manual.html">
+<link rel="canonical" href="https://quitforecast.com/manual-log.html">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
 <link rel="apple-touch-icon" href="/icon-180.png">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -149,6 +149,34 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
 }
 </style>
 <body>
+<div class="withrail">
+  <nav class="rail" aria-label="The manual">
+    <a class="railtitle" href="/manual.html">The manual</a>
+    <ul>
+      <li><a href="/manual-today.html">Today</a>
+      </li>
+      <li><a href="/manual-log.html" aria-current="page">The log</a>
+      <ul>
+        <li><a href="#logging-a-craving">Logging a craving</a></li>
+        <li><a href="#the-trigger-chart">The trigger chart</a></li>
+        <li><a href="#the-week-s-shape">The week's shape</a></li>
+        <li><a href="#the-risk-window">The risk window</a></li>
+        <li><a href="#strength-over-time">Strength over time</a></li>
+        <li><a href="#the-quit-medicine-record">The quit-medicine record</a></li>
+      </ul>
+      </li>
+      <li><a href="/manual-sos.html">SOS</a>
+      </li>
+      <li><a href="/manual-rebuild.html">Rebuild</a>
+      </li>
+      <li><a href="/manual-reach.html">Watch and widgets</a>
+      </li>
+      <li><a href="/manual-health.html">Health</a>
+      </li>
+      <li><a href="/manual-data.html">Your data</a>
+      </li>
+    </ul>
+  </nav>
 <main class="wrap">
   <a class="lockup" href="/">
     <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
@@ -157,12 +185,10 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
     </svg>
     <span>QuitForecast</span>
   </a>
-  <h1>The manual.</h1>
-  <p class="lede">What every part of the app does, where it lives, and the rules it keeps. One page per part, from the same source as the app's own manual in Settings, so the two can never disagree.</p>
   <nav class="onpage" aria-label="Manual sections">
     <ul role="list">
       <li><a href="/manual-today.html">Today</a></li>
-      <li><a href="/manual-log.html">The log</a></li>
+      <li><a href="/manual-log.html" aria-current="page">The log</a></li>
       <li><a href="/manual-sos.html">SOS</a></li>
       <li><a href="/manual-rebuild.html">Rebuild</a></li>
       <li><a href="/manual-reach.html">Watch and widgets</a></li>
@@ -170,41 +196,52 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
       <li><a href="/manual-data.html">Your data</a></li>
     </ul>
   </nav>
-  <a class="seccard" href="/manual-today.html">
-    <h2>Today and the forecast</h2>
-    <p>Today is the clock and the road: how long you have been clean, what your body is doing right now, and what is coming next.</p>
-    <span class="count">7 entries: The counter, The recovery timeline, The craving histogram&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-log.html">
-    <h2>The log and patterns</h2>
-    <p>The Log tab is where your own evidence accumulates: what set cravings off, when they hit, who you were with, and what all of it adds up to.</p>
-    <span class="count">6 entries: Logging a craving, The trigger chart, The week's shape&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-sos.html">
-    <h2>The SOS toolkit</h2>
-    <p>A craving crests and breaks in a few minutes. The toolkit exists to get you through exactly those minutes, with a shared five minute wave clock across every tool.</p>
-    <span class="count">6 entries: Breathe, Body scan, The games&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-rebuild.html">
-    <h2>Rebuild, moves and badges</h2>
-    <p>Quitting leaves a gap where the habit lived. Rebuild is the catalogue of what goes in its place, and the shelf that remembers what you have already built.</p>
-    <span class="count">5 entries: The catalogue, Your list and the footer, The savings tin&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-reach.html">
-    <h2>Watch, widgets and Control Center</h2>
-    <p>The moments that matter rarely happen with the app open. Every surface below logs the same craving into the same record, one press, nothing asked.</p>
-    <span class="count">5 entries: The Watch app, Home Screen widgets, Control Center and the Lock Screen&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-health.html">
-    <h2>Health and baselines</h2>
-    <p>The forecast says your body recovers. The Health tab is where your own Apple Health data gets to agree, against your own before.</p>
-    <span class="count">3 entries: The five metrics, The baseline, What never leaves the phone&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-data.html">
-    <h2>Data, backup and privacy</h2>
-    <p>No accounts, nothing to sign into, and your record is yours. This section is the manual for keeping it that way.</p>
-    <span class="count">4 entries: Where your data lives, Export, Delete everything&hellip;</span>
-  </a>
+  <h1>The log and patterns</h1>
+  <p class="lede">The Log tab is where your own evidence accumulates: what set cravings off, when they hit, who you were with, and what all of it adds up to.</p>
+  <div class="entrycard" id="logging-a-craving">
+    <h2>Logging a craving</h2>
+    <p class="entrylede">Two taps and done. Triggers can stack, because cravings are compound. Strength and company are optional questions: a one-press log from the widget, the wrist or Control Center files no number at all, because the app never invents one you did not choose.</p>
+    <p>The full sheet asks four things and requires none of them: how strong it was, what set it off, who you were with, and whether you rode it out. Triggers stack because real cravings are compound: stress and a drink in hand can both be true, and logging both teaches the pair chart.</p>
+    <p>The quick routes file just the fact and the time. An unrated craving still counts everywhere counts are shown, but it never votes on your strength average, because an average of ratings may only average ratings.</p>
+    <p>Logging one during an SOS session works too: when the wave clock runs out, the hub offers the log with one tap.</p>
+  </div>
+  <div class="entrycard" id="the-trigger-chart">
+    <h2>The trigger chart</h2>
+    <p class="entrylede">Your triggers ranked by how hard they hit, weighted by strength, so the heavier fight leads even when it fires less often. The company card beside it counts who you were with, in plain counts.</p>
+    <p>Ranking is by load, not by count: a trigger that fires twice at full strength outranks one that fires four times gently, because the heavier fight deserves the top of your attention. The window it reads is your last thirty days.</p>
+    <p>Your top triggers each carry a research-backed play, cited like everything else. A trigger you named yourself gets the general if-then play; Other stays silent because it names nothing to plan for.</p>
+    <p>The company card answers the question the setup asked: who are you usually with? It counts alone, with friends, with family, at work, in plain numbers from your own log, and the morning note can compare what you predicted with what the log measured.</p>
+  </div>
+  <div class="entrycard" id="the-week-s-shape">
+    <h2>The week's shape</h2>
+    <p class="entrylede">Cravings by weekday, drawn once eight are logged. The sentence above it names your heaviest day only when one day truly carries the week; an even week is shown, not claimed.</p>
+    <p>Seven bars, one per weekday, weighted the same way the trigger chart is. The gate is eight logged cravings, and the headline sentence appears only when one day truly carries the week's weight; a flat week gets the chart and no claim.</p>
+    <p>A weekday pattern needs your last eight of that same weekday to speak, which takes real calendar time. The app would rather wait weeks than guess.</p>
+  </div>
+  <div class="entrycard" id="the-risk-window">
+    <h2>The risk window</h2>
+    <p class="entrylede">Once your log holds enough evidence, the app names the two hours your cravings cluster in, and can check in just before them if you ask it to. It speaks in plain counts from your own log, never in odds.</p>
+    <p>The window is a two-hour stretch your cravings genuinely cluster in, found by reading your last thirty days. Its evidence sentence is a plain count you could verify by hand from your own log, in the shape of seven of your last nine days had a craving between 8 and 10 PM. No percentages, no probabilities, no odds.</p>
+    <p>Before it opens, Today shows a window-soon card; if you opt in to check-ins, one notification arrives 45 minutes ahead, at most one per habit per day, and only on days the pattern still holds. There is never a heads-up about a window the app is not also willing to show you on screen.</p>
+    <p>If your log never clears the bar, no window ever appears, and the app says exactly that rather than inventing one. The window is the one feature that would rather not exist than fake existing.</p>
+  </div>
+  <div class="entrycard" id="strength-over-time">
+    <h2>Strength over time</h2>
+    <p class="entrylede">Average craving strength, this week against the weeks before. Cravings getting weaker is the most motivating fact a log can hold, and this is where yours shows it.</p>
+    <p>The line is your average rated strength by week, drawn only from cravings you actually rated. Quick logs are excluded on purpose: counting an unrated tap as average strength would drag every real trend toward the middle.</p>
+    <p>The headline compares this week against your recent past and speaks only when there is enough rated data to compare. Cravings that arrive less often and land more softly is the shape most quits take, and this chart is where your own version of that sentence becomes visible.</p>
+  </div>
+  <div class="entrycard" id="the-quit-medicine-record">
+    <h2>The quit-medicine record</h2>
+    <p class="entrylede">If you use a patch, gum or another over-the-counter aid, the Log keeps your record of what you took and when you stepped down. It records, and it never advises.</p>
+    <p>Tell the app you are using a nicotine aid and it adjusts honestly: the nicotinic receptor reset curve holds at zero while nicotine is still arriving, on Today, in the Habits sheet, on the Watch and on the widget, with a line saying why. The rest of the recovery keeps moving, because lungs and circulation do not wait for the patch to end.</p>
+    <p>The record itself is a diary: what you took, when, and when you stepped down, drawn as your own dated course. It never suggests a dose, never schedules a step-down, and never grades you; that conversation belongs to you and a pharmacist or doctor.</p>
+  </div>
+  <nav class="pager" aria-label="Between sections">
+    <a href="/manual-today.html" rel="prev">&larr; Today and the forecast</a>
+    <span class="spacer"></span>
+    <a href="/manual-sos.html" rel="next">The SOS toolkit &rarr;</a>
+  </nav>
   <footer>
     <p>QuitForecast is not a medical device and does not diagnose or treat
     anything. It holds no advice your own doctor should not overrule.</p>
@@ -216,3 +253,4 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
        <a href="/privacy.html">Privacy</a></p>
   </footer>
 </main>
+</div>

@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The QuitForecast manual</title>
-<meta name="description" content="What every part of QuitForecast does, where it lives, and the rules it keeps: the forecast, the log, the SOS toolkit, Rebuild, the Watch, Health, and your data.">
+<title>Today and the forecast: the QuitForecast manual</title>
+<meta name="description" content="Today is the clock and the road: how long you have been clean, what your body is doing right now, and what is coming next.">
 <meta name="referrer" content="no-referrer">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://quitforecast.com/manual.html">
-<meta property="og:title" content="The QuitForecast manual">
-<meta property="og:description" content="What every part of QuitForecast does, where it lives, and the rules it keeps: the forecast, the log, the SOS toolkit, Rebuild, the Watch, Health, and your data.">
+<meta property="og:url" content="https://quitforecast.com/manual-today.html">
+<meta property="og:title" content="Today and the forecast: the QuitForecast manual">
+<meta property="og:description" content="Today is the clock and the road: how long you have been clean, what your body is doing right now, and what is coming next.">
 <meta property="og:site_name" content="QuitForecast">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://quitforecast.com/og.jpg">
@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0C1820">
 <meta name="color-scheme" content="dark">
-<link rel="canonical" href="https://quitforecast.com/manual.html">
+<link rel="canonical" href="https://quitforecast.com/manual-today.html">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
 <link rel="apple-touch-icon" href="/icon-180.png">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -149,6 +149,35 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
 }
 </style>
 <body>
+<div class="withrail">
+  <nav class="rail" aria-label="The manual">
+    <a class="railtitle" href="/manual.html">The manual</a>
+    <ul>
+      <li><a href="/manual-today.html" aria-current="page">Today</a>
+      <ul>
+        <li><a href="#the-counter">The counter</a></li>
+        <li><a href="#the-recovery-timeline">The recovery timeline</a></li>
+        <li><a href="#the-craving-histogram">The craving histogram</a></li>
+        <li><a href="#the-morning-note">The morning note</a></li>
+        <li><a href="#the-evening-review">The evening review</a></li>
+        <li><a href="#celebrations">Celebrations</a></li>
+        <li><a href="#the-sos-button">The SOS button</a></li>
+      </ul>
+      </li>
+      <li><a href="/manual-log.html">The log</a>
+      </li>
+      <li><a href="/manual-sos.html">SOS</a>
+      </li>
+      <li><a href="/manual-rebuild.html">Rebuild</a>
+      </li>
+      <li><a href="/manual-reach.html">Watch and widgets</a>
+      </li>
+      <li><a href="/manual-health.html">Health</a>
+      </li>
+      <li><a href="/manual-data.html">Your data</a>
+      </li>
+    </ul>
+  </nav>
 <main class="wrap">
   <a class="lockup" href="/">
     <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
@@ -157,11 +186,9 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
     </svg>
     <span>QuitForecast</span>
   </a>
-  <h1>The manual.</h1>
-  <p class="lede">What every part of the app does, where it lives, and the rules it keeps. One page per part, from the same source as the app's own manual in Settings, so the two can never disagree.</p>
   <nav class="onpage" aria-label="Manual sections">
     <ul role="list">
-      <li><a href="/manual-today.html">Today</a></li>
+      <li><a href="/manual-today.html" aria-current="page">Today</a></li>
       <li><a href="/manual-log.html">The log</a></li>
       <li><a href="/manual-sos.html">SOS</a></li>
       <li><a href="/manual-rebuild.html">Rebuild</a></li>
@@ -170,41 +197,56 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
       <li><a href="/manual-data.html">Your data</a></li>
     </ul>
   </nav>
-  <a class="seccard" href="/manual-today.html">
-    <h2>Today and the forecast</h2>
-    <p>Today is the clock and the road: how long you have been clean, what your body is doing right now, and what is coming next.</p>
-    <span class="count">7 entries: The counter, The recovery timeline, The craving histogram&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-log.html">
-    <h2>The log and patterns</h2>
-    <p>The Log tab is where your own evidence accumulates: what set cravings off, when they hit, who you were with, and what all of it adds up to.</p>
-    <span class="count">6 entries: Logging a craving, The trigger chart, The week's shape&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-sos.html">
-    <h2>The SOS toolkit</h2>
-    <p>A craving crests and breaks in a few minutes. The toolkit exists to get you through exactly those minutes, with a shared five minute wave clock across every tool.</p>
-    <span class="count">6 entries: Breathe, Body scan, The games&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-rebuild.html">
-    <h2>Rebuild, moves and badges</h2>
-    <p>Quitting leaves a gap where the habit lived. Rebuild is the catalogue of what goes in its place, and the shelf that remembers what you have already built.</p>
-    <span class="count">5 entries: The catalogue, Your list and the footer, The savings tin&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-reach.html">
-    <h2>Watch, widgets and Control Center</h2>
-    <p>The moments that matter rarely happen with the app open. Every surface below logs the same craving into the same record, one press, nothing asked.</p>
-    <span class="count">5 entries: The Watch app, Home Screen widgets, Control Center and the Lock Screen&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-health.html">
-    <h2>Health and baselines</h2>
-    <p>The forecast says your body recovers. The Health tab is where your own Apple Health data gets to agree, against your own before.</p>
-    <span class="count">3 entries: The five metrics, The baseline, What never leaves the phone&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-data.html">
-    <h2>Data, backup and privacy</h2>
-    <p>No accounts, nothing to sign into, and your record is yours. This section is the manual for keeping it that way.</p>
-    <span class="count">4 entries: Where your data lives, Export, Delete everything&hellip;</span>
-  </a>
+  <h1>Today and the forecast</h1>
+  <p class="lede">Today is the clock and the road: how long you have been clean, what your body is doing right now, and what is coming next.</p>
+  <div class="entrycard" id="the-counter">
+    <h2>The counter</h2>
+    <p class="entrylede">Your clean time, counting up from your quit moment. Its format is yours to choose in Settings, and the same clock drives the widgets and the Watch.</p>
+    <p>The clock counts from the exact minute you set, not from midnight, so a 9 PM quit shows its first full day at 9 PM the next evening. Backdating is allowed at setup: if you quit last Tuesday, tell it so, and the counter, the timeline and the milestones all start from there.</p>
+    <p>The format setting offers days-hours-minutes, weeks, or a plain day count. Whatever you pick, every surface repeats it: the widget, the Lock Screen, the Watch glance. One clock, one format, everywhere.</p>
+    <p>A slip restarts this clock and nothing else. Your history, your best run, your savings and your badges all survive; the counter alone goes back to zero, because it measures the current run and the app never pretends otherwise.</p>
+  </div>
+  <div class="entrycard" id="the-recovery-timeline">
+    <h2>The recovery timeline</h2>
+    <p class="entrylede">Every stage of your body's recovery, cited to published research. Each stage carries three beats: what is healing, what you might feel, and what helps now. The stage you are standing on is marked, and stages you have passed on an earlier run say so.</p>
+    <p>Each substance has its own road: quitting smoking reads a different timeline from quitting alcohol or caffeine, with stages from the first minutes to the years after. Open any stage and the three beats appear, with the studies named right under them; every claim traces to the app's own research library.</p>
+    <p>The row you are standing on stays pinned open with a you-are-here marker and a live percentage. Rows you have passed compress to a check and a title so the road behind quiets down; tap one to reopen it.</p>
+    <p>If an earlier attempt reached further than this one, those rows say your last run reached here. The app treats that as history worth keeping, not as a debt: new ground is marked the first time you pass your old high-water mark.</p>
+  </div>
+  <div class="entrycard" id="the-craving-histogram">
+    <h2>The craving histogram</h2>
+    <p class="entrylede">Your logged cravings by hour of day, drawn beside the counter once four are logged. It shows your own hours, never a guess about you.</p>
+    <p>Every bar is a count of your own logged cravings in that hour of the day, over the last thirty days. Nothing is smoothed or projected: an empty hour is an empty bar.</p>
+    <p>Below four logged cravings the chart says nothing at all, because two dots are not a pattern. Once your log has earned it, the two hours your cravings cluster in are drawn in amber, and those same two hours drive the risk window on the Log tab.</p>
+  </div>
+  <div class="entrycard" id="the-morning-note">
+    <h2>The morning note</h2>
+    <p class="entrylede">Some mornings, one line at the top of Today saying something your log has newly learned. It speaks only when the answer changed, never repeats a card already on screen, and hedges with "so far", because your log is the experiment.</p>
+    <p>The note has a small pool of readings it can give: a shift in your heaviest trigger, a change in your craving rhythm, a finished month of evening answers. Each is spoken once, the morning it becomes true, and then retired until the answer changes again. A note you saw yesterday will not be today's note.</p>
+    <p>It never duplicates a card already on the screen: if the patterns card is showing the same fact, the note yields. And it speaks in measured language on purpose, because a morning line that overclaims would be the app breaking its own first rule.</p>
+  </div>
+  <div class="entrycard" id="the-evening-review">
+    <h2>The evening review</h2>
+    <p class="entrylede">One question, once a day if you turn its reminder on: any cravings today? A "no" is the first true zero the forecast can count; a skipped evening is a blank, never a broken anything.</p>
+    <p>Without it, a day with no logged cravings is ambiguous: quiet, or just unlogged? Your answer settles it. "No cravings" writes a true zero the patterns can trust; "I had some" invites you to log them; "Not tonight" writes nothing at all.</p>
+    <p>There is no streak attached to answering and nothing breaks when you skip. The review exists to make your quiet days count as evidence, not to become another habit you can fail at.</p>
+  </div>
+  <div class="entrycard" id="celebrations">
+    <h2>Celebrations</h2>
+    <p class="entrylede">Each milestone celebrates once, when your body actually reaches it. A slip moves the clock and keeps the history: your longest run and your attempt count stay yours.</p>
+    <p>A celebration fires at the milestone's real moment on your own clock: the twenty-minute mark twenty minutes after your quit minute, the first day a day after, never batched to the next app open and never repeated.</p>
+    <p>Each one shows what your body just finished doing and quotes your own why back to you. After a slip, milestones you had already banked wait to be earned again on the new clock, and the celebration says so plainly rather than pretending the road reset itself.</p>
+  </div>
+  <div class="entrycard" id="the-sos-button">
+    <h2>The SOS button</h2>
+    <p class="entrylede">Always in the corner. It opens the craving toolkit, and it is the one control that never moves.</p>
+    <p>It floats above every tab in the same corner, because the moment it exists for is not a moment for hunting. One tap opens the toolkit full screen with the wave clock already running.</p>
+    <p>The same door exists outside the app: a Control Center button, the Lock Screen accessory, Siri, and the Watch all reach the same toolkit. During a heavy drinker's first days the SOS screen leads with the crisis lines above every tool, because some moments outrank coping techniques.</p>
+  </div>
+  <nav class="pager" aria-label="Between sections">
+    <span class="spacer"></span>
+    <a href="/manual-log.html" rel="next">The log and patterns &rarr;</a>
+  </nav>
   <footer>
     <p>QuitForecast is not a medical device and does not diagnose or treat
     anything. It holds no advice your own doctor should not overrule.</p>
@@ -216,3 +258,4 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
        <a href="/privacy.html">Privacy</a></p>
   </footer>
 </main>
+</div>

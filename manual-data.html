@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The QuitForecast manual</title>
-<meta name="description" content="What every part of QuitForecast does, where it lives, and the rules it keeps: the forecast, the log, the SOS toolkit, Rebuild, the Watch, Health, and your data.">
+<title>Data, backup and privacy: the QuitForecast manual</title>
+<meta name="description" content="No accounts, nothing to sign into, and your record is yours. This section is the manual for keeping it that way.">
 <meta name="referrer" content="no-referrer">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://quitforecast.com/manual.html">
-<meta property="og:title" content="The QuitForecast manual">
-<meta property="og:description" content="What every part of QuitForecast does, where it lives, and the rules it keeps: the forecast, the log, the SOS toolkit, Rebuild, the Watch, Health, and your data.">
+<meta property="og:url" content="https://quitforecast.com/manual-data.html">
+<meta property="og:title" content="Data, backup and privacy: the QuitForecast manual">
+<meta property="og:description" content="No accounts, nothing to sign into, and your record is yours. This section is the manual for keeping it that way.">
 <meta property="og:site_name" content="QuitForecast">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://quitforecast.com/og.jpg">
@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0C1820">
 <meta name="color-scheme" content="dark">
-<link rel="canonical" href="https://quitforecast.com/manual.html">
+<link rel="canonical" href="https://quitforecast.com/manual-data.html">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
 <link rel="apple-touch-icon" href="/icon-180.png">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -149,6 +149,32 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
 }
 </style>
 <body>
+<div class="withrail">
+  <nav class="rail" aria-label="The manual">
+    <a class="railtitle" href="/manual.html">The manual</a>
+    <ul>
+      <li><a href="/manual-today.html">Today</a>
+      </li>
+      <li><a href="/manual-log.html">The log</a>
+      </li>
+      <li><a href="/manual-sos.html">SOS</a>
+      </li>
+      <li><a href="/manual-rebuild.html">Rebuild</a>
+      </li>
+      <li><a href="/manual-reach.html">Watch and widgets</a>
+      </li>
+      <li><a href="/manual-health.html">Health</a>
+      </li>
+      <li><a href="/manual-data.html" aria-current="page">Your data</a>
+      <ul>
+        <li><a href="#where-your-data-lives">Where your data lives</a></li>
+        <li><a href="#export">Export</a></li>
+        <li><a href="#delete-everything">Delete everything</a></li>
+        <li><a href="#feedback-help-and-requests">Feedback, help and requests</a></li>
+      </ul>
+      </li>
+    </ul>
+  </nav>
 <main class="wrap">
   <a class="lockup" href="/">
     <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
@@ -157,8 +183,6 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
     </svg>
     <span>QuitForecast</span>
   </a>
-  <h1>The manual.</h1>
-  <p class="lede">What every part of the app does, where it lives, and the rules it keeps. One page per part, from the same source as the app's own manual in Settings, so the two can never disagree.</p>
   <nav class="onpage" aria-label="Manual sections">
     <ul role="list">
       <li><a href="/manual-today.html">Today</a></li>
@@ -167,44 +191,39 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
       <li><a href="/manual-rebuild.html">Rebuild</a></li>
       <li><a href="/manual-reach.html">Watch and widgets</a></li>
       <li><a href="/manual-health.html">Health</a></li>
-      <li><a href="/manual-data.html">Your data</a></li>
+      <li><a href="/manual-data.html" aria-current="page">Your data</a></li>
     </ul>
   </nav>
-  <a class="seccard" href="/manual-today.html">
-    <h2>Today and the forecast</h2>
-    <p>Today is the clock and the road: how long you have been clean, what your body is doing right now, and what is coming next.</p>
-    <span class="count">7 entries: The counter, The recovery timeline, The craving histogram&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-log.html">
-    <h2>The log and patterns</h2>
-    <p>The Log tab is where your own evidence accumulates: what set cravings off, when they hit, who you were with, and what all of it adds up to.</p>
-    <span class="count">6 entries: Logging a craving, The trigger chart, The week's shape&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-sos.html">
-    <h2>The SOS toolkit</h2>
-    <p>A craving crests and breaks in a few minutes. The toolkit exists to get you through exactly those minutes, with a shared five minute wave clock across every tool.</p>
-    <span class="count">6 entries: Breathe, Body scan, The games&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-rebuild.html">
-    <h2>Rebuild, moves and badges</h2>
-    <p>Quitting leaves a gap where the habit lived. Rebuild is the catalogue of what goes in its place, and the shelf that remembers what you have already built.</p>
-    <span class="count">5 entries: The catalogue, Your list and the footer, The savings tin&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-reach.html">
-    <h2>Watch, widgets and Control Center</h2>
-    <p>The moments that matter rarely happen with the app open. Every surface below logs the same craving into the same record, one press, nothing asked.</p>
-    <span class="count">5 entries: The Watch app, Home Screen widgets, Control Center and the Lock Screen&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-health.html">
-    <h2>Health and baselines</h2>
-    <p>The forecast says your body recovers. The Health tab is where your own Apple Health data gets to agree, against your own before.</p>
-    <span class="count">3 entries: The five metrics, The baseline, What never leaves the phone&hellip;</span>
-  </a>
-  <a class="seccard" href="/manual-data.html">
-    <h2>Data, backup and privacy</h2>
-    <p>No accounts, nothing to sign into, and your record is yours. This section is the manual for keeping it that way.</p>
-    <span class="count">4 entries: Where your data lives, Export, Delete everything&hellip;</span>
-  </a>
+  <h1>Data, backup and privacy</h1>
+  <p class="lede">No accounts, nothing to sign into, and your record is yours. This section is the manual for keeping it that way.</p>
+  <div class="entrycard" id="where-your-data-lives">
+    <h2>Where your data lives</h2>
+    <p class="entrylede">On your phone, in one file the app owns. The optional iCloud backup carries exactly the fields written down in the app's own allowlist, and Health readings are never among them.</p>
+    <p>Everything the app knows lives in one store on your device: habits, log, slips, tin, badges, settings. There is no account and no server copy unless you turn the iCloud backup on, and that backup goes to your own private iCloud database, which we cannot read.</p>
+    <p>The backup carries an explicit allowlist of fields, held by test, so a new feature cannot quietly start syncing something. Health readings are never in it. Turning the backup off stops new copies; Delete all data removes the stored ones too.</p>
+  </div>
+  <div class="entrycard" id="export">
+    <h2>Export</h2>
+    <p class="entrylede">One tap in Settings hands you everything the app knows as a readable file. Your data is yours; a copy should cost nothing.</p>
+    <p>The export is a readable JSON file of your whole record: habits, cravings with their times and triggers, slips, savings, badges, settings. It goes wherever you send it, and nothing about exporting phones home.</p>
+    <p>Export stays available on every tier and in every state, including after the trial: handing you your own data is not a feature, it is the floor.</p>
+  </div>
+  <div class="entrycard" id="delete-everything">
+    <h2>Delete everything</h2>
+    <p class="entrylede">The other one tap. It takes the habits, the log, the shelf, the backup flags, all of it, and it cannot be undone. Unsent feedback is discarded rather than delivered, because somebody erasing themselves does not want their last message posted afterwards.</p>
+    <p>Delete all data erases three stores at once: the device, your iCloud backup, and everything you sent to the community board, posts, votes and reports alike. If the network is down mid-erase, the app retries the remote deletions until they land.</p>
+    <p>It asks once, plainly, and then it is done: there is no soft delete and no recovery window, which is why Export sits on the same screen. Feedback queued but unsent is discarded rather than delivered.</p>
+  </div>
+  <div class="entrycard" id="feedback-help-and-requests">
+    <h2>Feedback, help and requests</h2>
+    <p class="entrylede">Send feedback is anonymous and read by a person. Get help is a private thread a person answers, usually within a day. Feature requests are the public door: approved requests are visible to everyone and votes steer what gets built. Three doors, and the private two never feed the public one.</p>
+    <p>Send feedback carries the category you picked and the words you wrote, nothing that identifies you, which also means we cannot reply: it is a one-way note a person reads. Get help is the two-way door: a private thread under a random ID your phone invents, answered by a person, usually within a day.</p>
+    <p>Feature requests travel the community board's reviewed pipeline and appear under Your posts once approved; votes steer what gets built next. The private doors never feed the public one: nothing you write in feedback or support can appear on the board.</p>
+  </div>
+  <nav class="pager" aria-label="Between sections">
+    <a href="/manual-health.html" rel="prev">&larr; Health and baselines</a>
+    <span class="spacer"></span>
+  </nav>
   <footer>
     <p>QuitForecast is not a medical device and does not diagnose or treat
     anything. It holds no advice your own doctor should not overrule.</p>
@@ -216,3 +235,4 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
        <a href="/privacy.html">Privacy</a></p>
   </footer>
 </main>
+</div>
