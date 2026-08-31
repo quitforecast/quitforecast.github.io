@@ -1,10 +1,7 @@
 # quitforecast.com
-# Everything here is meant to be read. Nothing is disallowed, because there is
-# nothing on this origin that should not be indexed: two pages and their images.
-# The internal documents that live beside these files in the repo
-# (MESSAGING.md, SHOT-LIST.md, WEB-SCORECARD.md, WEB-BASELINE-*.md,
-# STORY-AND-DECK.md) are NEVER copied into the deploy, so they are not listed
-# here either. A Disallow line would only advertise that they exist.
+# Everything on this origin is meant to be read and indexed: the landing
+# page, the manual, the crisis lines, the privacy policy, and their images.
+# Nothing is disallowed because nothing served here needs hiding.
 
 User-agent: *
 Allow: /
