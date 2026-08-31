@@ -304,14 +304,33 @@ p { text-wrap: pretty; }
 
 /* The section head, in two columns once there is room: the short line on the
    left, what it means on the right. */
-.sechead { display: grid; gap: var(--s-l); grid-template-columns: minmax(0, 1fr); }
+.sechead { display: grid; gap: var(--s-l); grid-template-columns: minmax(0, 1fr);
+           grid-template-areas: "head" "body" "media"; }
+.sechead > :first-child { grid-area: head; }
+.sechead-body { grid-area: body; }
+/* The section's shot rides IN the grid (SITE-RULES.md, layout rule 1): one
+   column stacks it last, where the old stack-block sat; two columns seat it
+   in the left column under its own heading, which used to run empty while
+   the shot floated below the section attached to nothing. */
+.sechead-media { grid-area: media; }
+.sechead-media .figure-label { margin-top: var(--s-m); max-width: 24rem; }
+.sechead-media .shotnote { margin-top: var(--s-l); }
+.sechead-media > * + * { margin-top: var(--s-m); }
 .sechead-body > * + * { margin-top: var(--s-l); }
 .sechead-body { max-width: var(--measure); }
 @media (min-width: 54rem) {
   .sechead { grid-template-columns: minmax(0, 27rem) minmax(0, 1fr);
              gap: clamp(2rem, 5vw, 4rem); align-items: start; }
-  /* The head rides its own body down instead of stranding it. */
-  .sechead > :first-child { position: sticky; top: 5.5rem; }
+  .sechead { grid-template-areas: "head body" "media body"; }
+  /* In-column pairs sit side by side at half measure; singles keep their
+     full frame. Left-aligned: the column is a rail, not a gallery. */
+  .sechead-media .phones { justify-content: flex-start; }
+  .sechead-media .phones > * { width: calc(50% - 1rem); }
+  .sechead-media .devices { justify-content: flex-start; }
+  /* Composed blocks reshape for the rail: a feature's copy stacks above
+     its phone, a figure hugs the left edge. */
+  .sechead-media .feature { grid-template-columns: minmax(0, 1fr); justify-items: start; }
+  .sechead-media .figure { align-items: flex-start; }
 }
 
 /* The App Store badge, in its PRE-LAUNCH state (Steven's Route A,
@@ -764,14 +783,16 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           full library ships in the app under Settings. Where the evidence is
           thin, the app says that too.</p>
         </div>
+      <div class="sechead-media">
+        <div class="phone reveal optional">
+          <picture><source srcset="shots/habits.webp" type="image/webp"><img src="shots/habits.jpg" width="519" height="1130" loading="lazy"
+               decoding="async"
+               alt="The setup screen asking What are you quitting, listing
+                    Smoking, Vaping, Alcohol, Cannabis and Caffeine, each with
+                    its own icon, and closing on the line: What you understand
+                    can't own you."></picture>
+        </div>
       </div>
-      <div class="phone reveal stack-block optional">
-        <picture><source srcset="shots/habits.webp" type="image/webp"><img src="shots/habits.jpg" width="519" height="1130" loading="lazy"
-             decoding="async"
-             alt="The setup screen asking What are you quitting, listing
-                  Smoking, Vaping, Alcohol, Cannabis and Caffeine, each with
-                  its own icon, and closing on the line: What you understand
-                  can't own you."></picture>
       </div>
     </div>
   </section>
@@ -800,23 +821,25 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="micro">Recovery curves are drawn from cited findings and
           interpolated between them, not a measurement of your body.</p>
         </div>
-      </div>
-      <div class="figure reveal stack-block">
-        <div class="phone scrolled">
-          <picture><source srcset="shots/recovery.webp" type="image/webp"><img src="shots/recovery.jpg" width="519" height="1130" loading="lazy"
-               decoding="async"
-               alt="The Recovery systems card on Today. Carbon monoxide
-                    clearance, heart rate and blood pressure, and taste and
-                    smell are marked Recovered; sleep quality reads 88
-                    percent and anxiety settling 75. Nicotinic receptor
-                    reset, at 70 percent, is open to its curve from day zero
-                    to day ninety with a marker labelled you at day 30.
-                    Below it, What it was doing and What's healing explain
-                    the extra receptors and their reset, over the note Day
-                    30 of 90 and Evidence 8."></picture>
+      <div class="sechead-media">
+        <div class="figure reveal">
+          <div class="phone scrolled">
+            <picture><source srcset="shots/recovery.webp" type="image/webp"><img src="shots/recovery.jpg" width="519" height="1130" loading="lazy"
+                 decoding="async"
+                 alt="The Recovery systems card on Today. Carbon monoxide
+                      clearance, heart rate and blood pressure, and taste and
+                      smell are marked Recovered; sleep quality reads 88
+                      percent and anxiety settling 75. Nicotinic receptor
+                      reset, at 70 percent, is open to its curve from day zero
+                      to day ninety with a marker labelled you at day 30.
+                      Below it, What it was doing and What's healing explain
+                      the extra receptors and their reset, over the note Day
+                      30 of 90 and Evidence 8."></picture>
+          </div>
+          <p class="figure-label">One system opened to its road. A demonstration
+          history, not a person's.</p>
         </div>
-        <p class="figure-label">One system opened to its road. A demonstration
-        history, not a person's.</p>
+      </div>
       </div>
     </div>
   </section>
@@ -843,15 +866,17 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p>The top of the screen adds them up. The money and the recovery
           are yours together, even when the roads are separate.</p>
         </div>
+      <div class="sechead-media">
+        <div class="phone reveal optional">
+          <picture><source srcset="shots/two-habits.webp" type="image/webp"><img src="shots/two-habits.jpg" width="519" height="1130" loading="lazy"
+               decoding="async"
+               alt="The Habits screen with two quits. A combined card reads All 2
+                    habits combined, total saved $459 and overall recovery 62
+                    percent. Below it, Smoking at 30 days with its own saved
+                    figure, recovery and next milestone in 12 days, and Alcohol at
+                    11 days with its own, next milestone in 3 days."></picture>
+        </div>
       </div>
-      <div class="phone reveal stack-block optional">
-        <picture><source srcset="shots/two-habits.webp" type="image/webp"><img src="shots/two-habits.jpg" width="519" height="1130" loading="lazy"
-             decoding="async"
-             alt="The Habits screen with two quits. A combined card reads All 2
-                  habits combined, total saved $459 and overall recovery 62
-                  percent. Below it, Smoking at 30 days with its own saved
-                  figure, recovery and next milestone in 12 days, and Alcohol at
-                  11 days with its own, next milestone in 3 days."></picture>
       </div>
     </div>
   </section>
@@ -873,28 +898,30 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           puts that to work: <b>Clear them out first: the pack, the spare in
           the car, the lighters, the ashtrays.</b></p>
         </div>
+      <div class="sechead-media">
+        <div class="feature reveal">
+          <div class="feature-copy">
+            <h3>Every hour of it</h3>
+            <p class="small dim">There on minute one, and it never scolds.</p>
+          </div>
+          <div class="phone scrolled">
+            <picture><source srcset="shots/timeline.webp" type="image/webp"><img src="shots/timeline.jpg" width="519" height="1130" loading="lazy"
+                 decoding="async"
+                 alt="The recovery timeline's twenty-minute milestone, open.
+                      Inside it: What's healing, heart rate and blood pressure
+                      begin dropping back toward your true baseline. What you
+                      might feel, you feel fine, still riding the decision.
+                      What helps now, a paragraph telling you to clear out the
+                      pack, the spare in the car, the lighters and the ashtrays
+                      while you still feel fine, and to decide now what you
+                      will do when the first craving lands. A line beneath
+                      reads Evidence 1, 2, 21, over a Share this win link.
+                      Collapsed below it: one hour, circulation waking up; two
+                      hours, nicotine halved; four hours, three-quarters
+                      gone."></picture>
+          </div>
+        </div>
       </div>
-      <div class="feature reveal stack-block">
-        <div class="feature-copy">
-          <h3>Every hour of it</h3>
-          <p class="small dim">There on minute one, and it never scolds.</p>
-        </div>
-        <div class="phone scrolled">
-          <picture><source srcset="shots/timeline.webp" type="image/webp"><img src="shots/timeline.jpg" width="519" height="1130" loading="lazy"
-               decoding="async"
-               alt="The recovery timeline's twenty-minute milestone, open.
-                    Inside it: What's healing, heart rate and blood pressure
-                    begin dropping back toward your true baseline. What you
-                    might feel, you feel fine, still riding the decision.
-                    What helps now, a paragraph telling you to clear out the
-                    pack, the spare in the car, the lighters and the ashtrays
-                    while you still feel fine, and to decide now what you
-                    will do when the first craving lands. A line beneath
-                    reads Evidence 1, 2, 21, over a Share this win link.
-                    Collapsed below it: one hour, circulation waking up; two
-                    hours, nicotine halved; four hours, three-quarters
-                    gone."></picture>
-        </div>
       </div>
       <div class="closer reveal">
         <p class="small" style="max-width: 26rem;">The timeline starts the
@@ -935,18 +962,20 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           are yours whether you ever pay or not, always one tap away. The
           worst ten minutes of your week are not a sales moment.</p>
         </div>
+      <div class="sechead-media">
+        <div class="phone reveal">
+          <picture><source srcset="shots/sos.webp" type="image/webp"><img src="shots/sos.jpg" width="519" height="1130" loading="lazy"
+               decoding="async"
+               alt="The Craving SOS screen. It opens: this wave will crest and
+                    fade in a few minutes whether or not you fight it. Stay busy
+                    while it dies. Pick a tool. A card headed This wave, timed
+                    shows 4:47 running over the line: one clock rides the whole
+                    wave, you don't get to call it over early; you outlast it.
+                    The research paragraph beneath closes on Evidence 25, 22,
+                    29, 30. Then a group headed Sit with it, its first tools
+                    Breathe and Body scan in frame."></picture>
+        </div>
       </div>
-      <div class="phone reveal stack-block">
-        <picture><source srcset="shots/sos.webp" type="image/webp"><img src="shots/sos.jpg" width="519" height="1130" loading="lazy"
-             decoding="async"
-             alt="The Craving SOS screen. It opens: this wave will crest and
-                  fade in a few minutes whether or not you fight it. Stay busy
-                  while it dies. Pick a tool. A card headed This wave, timed
-                  shows 4:47 running over the line: one clock rides the whole
-                  wave, you don't get to call it over early; you outlast it.
-                  The research paragraph beneath closes on Evidence 25, 22,
-                  29, 30. Then a group headed Sit with it, its first tools
-                  Breathe and Body scan in frame."></picture>
       </div>
     </div>
   </section>
@@ -986,22 +1015,24 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           arrives in an update; today the app is the glance and the moves
           above.</p>
         </div>
+      <div class="sechead-media">
+        <div class="devices reveal">
+          <div class="watch">
+            <picture><source srcset="shots/watch-home.webp" type="image/webp"><img src="shots/watch-home.jpg" width="422" height="514" loading="lazy"
+                 decoding="async"
+                 alt="The watch glance: NICOTINE-FREE, a running count of one
+                      month one day, NEXT: 6 WEEKS with 9 days 7 hours to go, and
+                      a Log craving button."></picture>
+          </div>
+          <div class="watch">
+            <picture><source srcset="shots/watch-sos.webp" type="image/webp"><img src="shots/watch-sos.jpg" width="422" height="514" loading="lazy"
+                 decoding="async"
+                 alt="The watch's breathing circle above the words Breathe with
+                      the circle, and the note: a craving is a wave, it crests and
+                      breaks, usually within a few minutes."></picture>
+          </div>
+        </div>
       </div>
-      <div class="devices reveal stack-block">
-        <div class="watch">
-          <picture><source srcset="shots/watch-home.webp" type="image/webp"><img src="shots/watch-home.jpg" width="422" height="514" loading="lazy"
-               decoding="async"
-               alt="The watch glance: NICOTINE-FREE, a running count of one
-                    month one day, NEXT: 6 WEEKS with 9 days 7 hours to go, and
-                    a Log craving button."></picture>
-        </div>
-        <div class="watch">
-          <picture><source srcset="shots/watch-sos.webp" type="image/webp"><img src="shots/watch-sos.jpg" width="422" height="514" loading="lazy"
-               decoding="async"
-               alt="The watch's breathing circle above the words Breathe with
-                    the circle, and the note: a craving is a wave, it crests and
-                    breaks, usually within a few minutes."></picture>
-        </div>
       </div>
       <div class="closer reveal">
         <p class="small" style="max-width: 26rem;">The wrist is optional; the
@@ -1038,16 +1069,18 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="small dim">A fifth shelf, Spirit, joins the four when a
           faith or philosophy pack is on.</p>
         </div>
+      <div class="sechead-media">
+        <div class="phone reveal">
+          <picture><source srcset="shots/catalogue.webp" type="image/webp"><img src="shots/catalogue.jpg" width="519" height="1130" loading="lazy"
+               decoding="async"
+               alt="The catalogue in its grid view, with section, nerve and
+                    basis filter rows. Cards reading Move your body, 10 min,
+                    Quiet, marked On your list; Get into nature, 20 min,
+                    Quiet; Savor one thing, 1 min, Quiet; Cook a real meal,
+                    45 min, Quiet; Take it cold, 3 min; and Take an awe walk,
+                    15 min."></picture>
+        </div>
       </div>
-      <div class="phone reveal stack-block">
-        <picture><source srcset="shots/catalogue.webp" type="image/webp"><img src="shots/catalogue.jpg" width="519" height="1130" loading="lazy"
-             decoding="async"
-             alt="The catalogue in its grid view, with section, nerve and
-                  basis filter rows. Cards reading Move your body, 10 min,
-                  Quiet, marked On your list; Get into nature, 20 min,
-                  Quiet; Savor one thing, 1 min, Quiet; Cook a real meal,
-                  45 min, Quiet; Take it cold, 3 min; and Take an awe walk,
-                  15 min."></picture>
       </div>
     </div>
   </section>
@@ -1071,38 +1104,40 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           Apple Health on every visit and never stored: no series on your
           phone, none in the backup, nothing to leak.</p>
         </div>
+      <div class="sechead-media">
+        <div class="phones reveal">
+          <div>
+            <div class="phone">
+              <picture><source srcset="shots/health.webp" type="image/webp"><img src="shots/health.jpg" width="520" height="1130" loading="lazy"
+                   decoding="async"
+                   alt="The Health tab. A heading reading There is no improved you
+                        at the end of this, and under it a resting heart rate
+                        card, charting a dashed pre-quit baseline, a marker at the
+                        day you stopped, and a falling line after it."></picture>
+            </div>
+            <p class="shotnote" style="margin-top: var(--s-m);">A demonstration
+            chart: nothing is stored, so there was no saved series to
+            photograph. The chart, the baseline and the citation are real; the
+            numbers are not somebody's.</p>
+          </div>
+          <div class="optional">
+            <div class="phone">
+              <picture><source srcset="shots/health-metric.webp" type="image/webp"><img src="shots/health-metric.jpg" width="520" height="1130"
+                   loading="lazy" decoding="async"
+                   alt="A heart rate variability card with its chart, and beneath
+                        it a block headed What research expects reading: nicotine
+                        suppresses HRV, studies show it climbing within days to
+                        weeks of stopping, one of the earliest measurable wins.
+                        Evidence 26."></picture>
+            </div>
+            <p class="shotnote" style="margin-top: var(--s-m);">The structure is the
+            point: what the research expects sits under the chart, with its source,
+            so the two can be read against each other.</p>
+          </div>
+        </div>
+      </div>
       </div>
 
-      <div class="phones reveal stack-block">
-        <div>
-          <div class="phone">
-            <picture><source srcset="shots/health.webp" type="image/webp"><img src="shots/health.jpg" width="520" height="1130" loading="lazy"
-                 decoding="async"
-                 alt="The Health tab. A heading reading There is no improved you
-                      at the end of this, and under it a resting heart rate
-                      card, charting a dashed pre-quit baseline, a marker at the
-                      day you stopped, and a falling line after it."></picture>
-          </div>
-          <p class="shotnote" style="margin-top: var(--s-m);">A demonstration
-          chart: nothing is stored, so there was no saved series to
-          photograph. The chart, the baseline and the citation are real; the
-          numbers are not somebody's.</p>
-        </div>
-        <div class="optional">
-          <div class="phone">
-            <picture><source srcset="shots/health-metric.webp" type="image/webp"><img src="shots/health-metric.jpg" width="520" height="1130"
-                 loading="lazy" decoding="async"
-                 alt="A heart rate variability card with its chart, and beneath
-                      it a block headed What research expects reading: nicotine
-                      suppresses HRV, studies show it climbing within days to
-                      weeks of stopping, one of the earliest measurable wins.
-                      Evidence 26."></picture>
-          </div>
-          <p class="shotnote" style="margin-top: var(--s-m);">The structure is the
-          point: what the research expects sits under the chart, with its source,
-          so the two can be read against each other.</p>
-        </div>
-      </div>
       <p class="shotcaption">The heading at the top of that tab is the app's
       own: there is no improved you at the end of this. Only you,
       uninterrupted.</p>
@@ -1152,69 +1187,71 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           and again just before they open. Meet the hour knowing it is
           yours.</p>
         </div>
+      <div class="sechead-media">
+        <div class="figure reveal">
+          <p class="figure-label">How the window is found</p>
+          <svg class="chart" viewBox="0 0 340 196" role="img"
+               aria-labelledby="chartTitle chartDesc">
+            <title id="chartTitle">A day of hours as bars, with a craving log
+            drawn on it</title>
+            <desc id="chartDesc">One bar for each hour from midnight to midnight.
+            Most hours are low or empty. Two of them, the 8 PM and 9 PM bars of
+            the 8 to 10 PM stretch, stand well above the rest and turn amber
+            once there are enough logged cravings in them to be worth
+            saying.</desc>
+  
+            <!-- The day's floor. Drawn first, and the line every bar is read
+                 against, the same hairline the app's own histogram gained when a
+                 render showed twenty empty hours reading as debris without it. -->
+            <line class="axis" x1="20" y1="150" x2="320" y2="150"/>
+  
+            <!-- A demonstration log: sixteen cravings over nine days, seven of
+                 them inside the two amber hours. The bars are counts, and they grow
+                 from the floor in clock order, which is the reading the app's own
+                 chart gives: taller is more, and nothing needs a key. An hour with
+                 nothing logged draws NOTHING, the way the app draws it: a stub
+                 would be a mark, and a mark where nothing happened is a claim. -->
+            <rect class="bar" x="122.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.674s"/>
+            <rect class="bar" x="147.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.730s"/>
+            <rect class="bar" x="172.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.786s"/>
+            <rect class="bar" x="184.75" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.814s"/>
+            <rect class="bar" x="209.75" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.870s"/>
+            <rect class="bar" x="234.75" y="98" width="8" height="52" rx="1.5" style="animation-delay:0.926s"/>
+            <rect class="bar" x="247.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.954s"/>
+            <rect class="bar window" x="272.25" y="46" width="8" height="104" rx="1.5" style="animation-delay:1.010s"/>
+            <rect class="bar window" x="284.75" y="72" width="8" height="78" rx="1.5" style="animation-delay:1.038s"/>
+            <rect class="bar" x="297.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:1.066s"/>
+  
+            <text class="hourlabel" x="26.25" y="170">12am</text>
+            <text class="hourlabel" x="101.25" y="170">6am</text>
+            <text class="hourlabel" x="176.25" y="170">12pm</text>
+            <text class="hourlabel" x="251.25" y="170">6pm</text>
+  
+            <!-- The verdict, named in words as well as colour, because the two
+                 amber bars are the whole claim. -->
+            <text class="windowlabel" x="268" y="32">8&#8211;10 PM</text>
+          </svg>
+          <ul class="plainlist small dim" role="list" style="margin-top: var(--s-l);">
+            <li>Until your own log has earned the claim, the app says
+            nothing at all.</li>
+            <li>There is no red on the chart. Only your own hours, and the two
+            the app is willing to name.</li>
+            <li><b>7 of your last 9 days had a craving between 8 PM and 10 PM.</b></li>
+          </ul>
+        </div>
+        <p class="shotnote">A demonstration log, one that happens to peak in the
+        early evening. Yours will name different hours.</p>
+        <div class="phone reveal">
+          <picture><source srcset="shots/window.webp" type="image/webp"><img src="shots/window.jpg" width="519" height="1130" loading="lazy"
+               decoding="async"
+               alt="The Log tab. A heading reading A craving is not a command,
+                    over the explanation that a craving is a learned response
+                    which builds, crests and falls within minutes. Under it,
+                    Past 7 days, 7, was 3; a Risk window card reading 8 PM to
+                    10 PM; and a craving strength chart reading 3.6 of 5 over
+                    the last seven days."></picture>
+        </div>
       </div>
-      <div class="figure reveal stack-block">
-        <p class="figure-label">How the window is found</p>
-        <svg class="chart" viewBox="0 0 340 196" role="img"
-             aria-labelledby="chartTitle chartDesc">
-          <title id="chartTitle">A day of hours as bars, with a craving log
-          drawn on it</title>
-          <desc id="chartDesc">One bar for each hour from midnight to midnight.
-          Most hours are low or empty. Two of them, the 8 PM and 9 PM bars of
-          the 8 to 10 PM stretch, stand well above the rest and turn amber
-          once there are enough logged cravings in them to be worth
-          saying.</desc>
-
-          <!-- The day's floor. Drawn first, and the line every bar is read
-               against, the same hairline the app's own histogram gained when a
-               render showed twenty empty hours reading as debris without it. -->
-          <line class="axis" x1="20" y1="150" x2="320" y2="150"/>
-
-          <!-- A demonstration log: sixteen cravings over nine days, seven of
-               them inside the two amber hours. The bars are counts, and they grow
-               from the floor in clock order, which is the reading the app's own
-               chart gives: taller is more, and nothing needs a key. An hour with
-               nothing logged draws NOTHING, the way the app draws it: a stub
-               would be a mark, and a mark where nothing happened is a claim. -->
-          <rect class="bar" x="122.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.674s"/>
-          <rect class="bar" x="147.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.730s"/>
-          <rect class="bar" x="172.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.786s"/>
-          <rect class="bar" x="184.75" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.814s"/>
-          <rect class="bar" x="209.75" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.870s"/>
-          <rect class="bar" x="234.75" y="98" width="8" height="52" rx="1.5" style="animation-delay:0.926s"/>
-          <rect class="bar" x="247.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.954s"/>
-          <rect class="bar window" x="272.25" y="46" width="8" height="104" rx="1.5" style="animation-delay:1.010s"/>
-          <rect class="bar window" x="284.75" y="72" width="8" height="78" rx="1.5" style="animation-delay:1.038s"/>
-          <rect class="bar" x="297.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:1.066s"/>
-
-          <text class="hourlabel" x="26.25" y="170">12am</text>
-          <text class="hourlabel" x="101.25" y="170">6am</text>
-          <text class="hourlabel" x="176.25" y="170">12pm</text>
-          <text class="hourlabel" x="251.25" y="170">6pm</text>
-
-          <!-- The verdict, named in words as well as colour, because the two
-               amber bars are the whole claim. -->
-          <text class="windowlabel" x="268" y="32">8&#8211;10 PM</text>
-        </svg>
-        <ul class="plainlist small dim" role="list" style="margin-top: var(--s-l);">
-          <li>Until your own log has earned the claim, the app says
-          nothing at all.</li>
-          <li>There is no red on the chart. Only your own hours, and the two
-          the app is willing to name.</li>
-          <li><b>7 of your last 9 days had a craving between 8 PM and 10 PM.</b></li>
-        </ul>
-      </div>
-      <p class="shotnote">A demonstration log, one that happens to peak in the
-      early evening. Yours will name different hours.</p>
-      <div class="phone reveal stack-block">
-        <picture><source srcset="shots/window.webp" type="image/webp"><img src="shots/window.jpg" width="519" height="1130" loading="lazy"
-             decoding="async"
-             alt="The Log tab. A heading reading A craving is not a command,
-                  over the explanation that a craving is a learned response
-                  which builds, crests and falls within minutes. Under it,
-                  Past 7 days, 7, was 3; a Risk window card reading 8 PM to
-                  10 PM; and a craving strength chart reading 3.6 of 5 over
-                  the last seven days."></picture>
       </div>
       <div class="closer reveal">
         <p class="small" style="max-width: 26rem;">The two hours come from
