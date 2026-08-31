@@ -25,7 +25,7 @@
      data rather than as code and never executes, so it needs no grant. If a real
      script is ever added here, this line has to be revisited deliberately rather
      than loosened in passing. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://quitforecast.com/">
 <meta property="og:title" content="QuitForecast: know the hours your cravings come">
@@ -59,7 +59,7 @@
      Spaces are percent-encoded: raw spaces in a data URI are a validator error.
      A real /favicon.ico ships beside it for the agents that request that path
      unconditionally; it used to 404 on every load. -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Ccircle%20cx='16'%20cy='16'%20r='11'%20fill='none'%20stroke='%237FD9C4'%20stroke-width='3'/%3E%3Ccircle%20cx='16'%20cy='5'%20r='3.4'%20fill='%23E5A45C'/%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <!-- Structured data. Every value here is stated in visible copy further down the
      page, which is the rule: Google treats JSON-LD that describes something the
@@ -85,6 +85,8 @@
     "Craving window: the two hours your own log says your cravings gather in"
   ],
   "offers": [
+    { "@type": "Offer", "price": "0", "priceCurrency": "USD",
+      "description": "Free to download; the first week is the whole app." },
     { "@type": "Offer", "name": "Premium, monthly", "price": "9.99", "priceCurrency": "USD" },
     { "@type": "Offer", "name": "Premium, annual", "price": "39.99", "priceCurrency": "USD" },
     { "@type": "Offer", "name": "Premium, one-time", "price": "99.99", "priceCurrency": "USD" }
@@ -450,7 +452,7 @@ a.badge:hover { opacity: 0.88; }
 
 .phone {
   position: relative;
-  width: 16.5rem;
+  width: min(16.5rem, 100%);
   max-width: 100%;
   padding: 0.4rem;
   border-radius: 2.6rem;
@@ -484,7 +486,7 @@ a.badge:hover { opacity: 0.88; }
    the largest Watch, so it is a 2x image at the size it is shown. */
 .watch {
   position: relative;
-  width: 8.5rem; max-width: 100%;
+  width: min(8.5rem, 100%);
   padding: 0.3rem;
   border-radius: 1.9rem;
   background: linear-gradient(155deg, #35454F 0%, #1B2B35 38%, #0E1A22 100%);
@@ -512,7 +514,7 @@ a.badge:hover { opacity: 0.88; }
    phone reader loses nothing but the duplicate. display:none before
    intersection also means the bytes are never fetched on mobile. */
 @media (max-width: 34rem) {
-  .phone { width: 13.75rem; max-width: 100%; }
+  .phone { width: min(13.75rem, 100%); }
   .optional { display: none; }
 }
 
@@ -550,11 +552,11 @@ a.badge:hover { opacity: 0.88; }
 /* One feature, one screen. Copy on the left every time, device on the right
    every time: one edge, and the eye stops re-finding it. */
 .feature { display: grid; gap: clamp(1.75rem, 5vw, 3.5rem); align-items: center;
-           justify-items: center; }
+           justify-items: start; }
 .feature-copy { max-width: var(--measure); }
 .feature-copy > * + * { margin-top: var(--s-l); }
 @media (min-width: 54rem) {
-  .feature { grid-template-columns: minmax(0, 1fr) 16.5rem; justify-items: start; }
+  .feature { grid-template-columns: minmax(0, 1fr) minmax(0, 16.5rem); justify-items: start; }
 }
 
 /* Scroll-driven, and pure CSS: no script runs on this page, so this is an
@@ -633,8 +635,26 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
 }
 
 /* --- Print -------------------------------------------------------------- */
+@media (forced-colors: active) {
+  /* Re-declared here, BELOW the chart's base rules: the earlier block lost
+     the cascade and the central graphic vanished in forced light themes. */
+  .figure svg.chart .bar { fill: CanvasText; opacity: 1; }
+  .figure svg.chart .bar.window { fill: Highlight; }
+  .figure svg.chart .hourlabel { fill: CanvasText; }
+  .figure svg.chart .windowlabel { fill: Highlight; }
+  .figure svg.chart .axis { stroke: CanvasText; }
+  .phone, .watch { border: 1px solid CanvasText; }
+  .lockup svg circle { stroke: CanvasText; }
+}
 @media print {
   body { background: #FFFFFF; color: #111111; }
+  /* Scroll-driven reveals never fire in paged media; print them shown. */
+  .reveal { opacity: 1 !important; transform: none !important;
+            animation: none !important; }
+  section, .card, .band, .prices > div, .statband
+    { background: #FFFFFF !important; box-shadow: none !important; }
+  .lede, .eyebrow, .kicker { color: #333333 !important; }
+  h1, h2, h3, b, strong { color: #111111 !important; }
   .topbar, .badge, .onpage { display: none; }
   a, .dim, .micro, .small.dim, .figure-label, .kicker, .eyebrow,
   .lede.dim, .shotnote, .small, .statband span, .seclink a,
@@ -683,7 +703,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
            away. -->
       <a href="/crisis.html">Crisis lines</a>
       <a href="#price">Price</a>
-      <a class="navcta" href="#price">Price, and the launch</a>
+      <a class="navcta" href="#price">The price</a>
     </nav>
   </div>
 </header>
@@ -732,7 +752,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                       minutes, Window soon 8 to 10 PM, beside a Cravings by
                       hour chart whose evening bars run amber. Under it, a
                       line reading Evenings used to ask the most. Notice how
-                      much quieter this one is. Then the evening check-in,
+                      much quieter this one is. Then the evening review,
                       How did today go, one tap, with No cravings and I had
                       some buttons, and Saved $360.00 at a $4,380 a year
                       pace beside Next milestone 6 weeks, in 11 days 23
@@ -744,8 +764,8 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
             <picture><source srcset="shots/watch-home.webp" type="image/webp"><img src="shots/watch-home.jpg" width="422" height="514"
                  decoding="async"
                  alt="A quit on an Apple Watch. The word NICOTINE-FREE over a
-                      running count of 30 days. The next milestone is a day
-                      away, and a Log craving button waits below."></picture>
+                      running count of 30 days. NEXT: 6 WEEKS, 11 days 23
+                      hours away, and a Log craving button below."></picture>
           </div>
         </div>
         <p class="figure-label">Your clean time, and the two hours your own log
@@ -929,8 +949,8 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         <div class="sechead-body">
           <p class="lede dim">Read day three before you live it.</p>
           <p>Open any stage of the withdrawal: what is healing, what you
-          might feel, and in the hard early hours, what helps now. The studies sit under each
-          one.</p>
+          might feel, and what helps now, at every stage of the road. The
+          studies sit under each one.</p>
           <p class="small dim">Minutes in, you still feel fine, and the app
           puts that to work: <b>Clear them out first: the pack, the spare in
           the car, the lighters, the ashtrays.</b></p>
@@ -1061,9 +1081,9 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <div class="watch">
             <picture><source srcset="shots/watch-home.webp" type="image/webp"><img src="shots/watch-home.jpg" width="422" height="514" loading="lazy"
                  decoding="async"
-                 alt="The watch glance: NICOTINE-FREE, a running count of one
-                      month one day, NEXT: 6 WEEKS with 9 days 7 hours to go, and
-                      a Log craving button."></picture>
+                 alt="The watch glance: NICOTINE-FREE, a running count of 30
+                      days. NEXT: 6 WEEKS, 11 days 23 hours away, over a Log
+                      craving button."></picture>
           </div>
           <div class="watch">
             <picture><source srcset="shots/watch-sos.webp" type="image/webp"><img src="shots/watch-sos.jpg" width="422" height="514" loading="lazy"
@@ -1163,8 +1183,8 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="small">Needs an Apple Watch or similar. Read fresh from
           Apple Health on every visit and never stored: no series on your
           phone, none in the backup, nothing to leak.</p>
-          <p>The charts are live, read fresh from Apple Health each time the
-          tab opens. One example of what was hiding: nicotine suppresses
+          <p>The charts read fresh from Apple Health each time the tab
+          opens, as daily averages against your baseline. One example of what was hiding: nicotine suppresses
           heart rate variability, and studies show it climbing within days
           to weeks of stopping.</p>
           <p class="small seclink"><a href="/manual.html#health">More in the manual: the five metrics</a></p>
@@ -1173,7 +1193,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         <div class="phones reveal">
           <div>
             <div class="phone">
-              <picture><source type="image/webp" srcset="shots/health.webp" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/health.jpg" width="519" height="1130" loading="lazy"
+              <picture><source type="image/webp" srcset="shots/health.webp 519w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/health.jpg" width="519" height="1130" loading="lazy"
                    decoding="async"
                    alt="The Health tab. A heading reading There is no improved you
                         at the end of this, and under it a resting heart rate
@@ -1187,7 +1207,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           </div>
           <div class="optional">
             <div class="phone">
-              <picture><source type="image/webp" srcset="shots/health-metric.webp" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/health-metric.jpg" width="519" height="1130"
+              <picture><source type="image/webp" srcset="shots/health-metric.webp 519w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/health-metric.jpg" width="519" height="1130"
                    loading="lazy" decoding="async"
                    alt="A heart rate variability card with its chart, and beneath
                         it a block headed What research expects reading: nicotine
@@ -1229,8 +1249,8 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="lede dim">Two hours out of your own log, and it would
           rather say nothing than guess.</p>
           <p>Two taps to log a craving. The app finds the hours yours gather,
-          the triggers that cost you most, and the two that tend to arrive
-          together, ranked by how hard they hit and not just how often.
+          the triggers that cost you most, ranked by how hard they hit and
+          not only how often, and the two that tend to arrive together.
           Your top two carry a research-backed play each. Nothing is
           borrowed from an average: it is your record speaking, or nothing.
           <b>Silence is a reading.</b></p>
@@ -1248,14 +1268,15 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           days; a weekday pattern needs your last eight of that weekday.</p>
           <p><b>Your cravings are already on a schedule. You may as well have
           a copy of it.</b></p>
-          <p>Once your hours are real, the app tells you before they arrive,
-          and again just before they open. Meet the hour knowing it is
-          yours.</p>
+          <p>Once your hours are real, the app can tell you before they
+          open: a card on Today always, and a check-in notification if you
+          opt in. Meet the hour knowing it is yours.</p>
           <p class="small dim">The play for Stress, in the app's own words:
           "Build a faster exit than the habit was."</p>
-          <p class="small dim">Two silences are deliberate: a trigger you
-          name yourself borrows no play it has not earned, and the
-          alcohol-specific play is withheld where it does not apply.</p>
+          <p class="small dim">A trigger you name yourself gets the general
+          if-then play. Two silences are deliberate: Other names nothing to
+          plan for, and a play withheld for your substance never returns
+          through a side door.</p>
           <p class="small seclink"><a href="/manual.html#log">More in the manual: the craving log</a></p>
         </div>
       <div class="sechead-media">
@@ -1433,15 +1454,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
         </span>
       </div>
-    
-      <div class="closer reveal">
-        <p class="small" style="max-width: 26rem;">Settings is the whole
-        list; the app works on its defaults from the first minute.</p>
-        <span class="badge" role="img"
-           aria-label="Coming soon to the App Store">
-          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
-        </span>
-      </div>
     </div>
   </section>
 
@@ -1499,14 +1511,14 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
         <div role="listitem">
           <h3>Siri</h3>
-          <p>&ldquo;Craving SOS in QuitForecast&rdquo; opens the breath
+          <p>"Craving SOS in QuitForecast" opens the breath
           directly, with the app closed.</p>
         </div>
         <div role="listitem">
           <h3>Accessibility</h3>
           <p>Dynamic Type at every size, including the accessibility sizes,
           with layouts that reflow instead of truncating. VoiceOver labels
-          and announcements throughout. Reduce Motion honoured, so the
+          and announcements throughout. Reduce Motion honored, so the
           forecast's reveal and the milestone celebrations play without
           motion. The large content viewer on the tab bar. Dark and light
           appearance. No text under 11 points on the
@@ -1601,7 +1613,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       until you cancel, in your Apple account settings; cancel and it runs
       out at the end of the term you paid for. Purchases run under
       <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple's
-      standard licence agreement</a>, the terms of use for the app.</p>
+      standard license agreement</a>, the terms of use for the app.</p>
       <p class="micro measure" style="margin-top: var(--s-l);">If your log never
       clears the bar, no window ever appears, and it is not being withheld from you:
       it does not exist. The rest of Premium stands either way. The window is the

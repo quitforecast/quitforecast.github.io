@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#0C1820">
 <meta name="color-scheme" content="dark">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
 <link rel="canonical" href="https://quitforecast.com/privacy.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://quitforecast.com/privacy.html">
@@ -18,10 +18,24 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://quitforecast.com/og.jpg">
 <meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="QuitForecast: see your recovery coming.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image:alt" content="QuitForecast: see your recovery coming.">
 <link rel="apple-touch-icon" href="/icon-180.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Ccircle%20cx='16'%20cy='16'%20r='11'%20fill='none'%20stroke='%237FD9C4'%20stroke-width='3'/%3E%3Ccircle%20cx='16'%20cy='5'%20r='3.4'%20fill='%23E5A45C'/%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "QuitForecast privacy policy",
+  "url": "https://quitforecast.com/privacy.html",
+  "isPartOf": { "@type": "WebSite", "name": "QuitForecast", "url": "https://quitforecast.com/" },
+  "dateModified": "2026-08-31"
+}
+</script>
 <style>
 /* Same ground, same type, same rules as index.html: one site, not two pages
    that happen to share a domain. Nothing loads from anywhere else here either,
@@ -108,7 +122,7 @@ footer a { color: var(--dim); }
 <main>
   <div class="wrap">
     <h1>Privacy policy</h1>
-    <p class="effective">Effective July 31, 2026, last updated August 30, 2026. QuitForecast is an
+    <p class="effective">Effective August 31, 2026. First version July 31, 2026. QuitForecast is an
     independently developed iOS app. For any question about your data, write to
     <a href="mailto:info@quitforecast.com">info@quitforecast.com</a> and a
     person will answer.</p>
@@ -116,17 +130,19 @@ footer a { color: var(--dim); }
     <div class="summary">
       <h2>The short version</h2>
       <p>Your recovery data lives on your phone. Nothing leaves it unless
-      you choose one of six things. The six: an iCloud backup, a post to
-      the community board, a vote on somebody else's post, a report
-      flagging a post for review, a feedback message, or a support
-      conversation. We run no analytics, no ads, no tracking, and no
-      third-party SDKs.</p>
+      you choose one of six things. The six: an iCloud backup. A post to
+      the community board, a move or a feature request. A vote on
+      somebody else's post. A report flagging a post for review. A
+      feedback message. A support conversation. We run no analytics, no
+      ads, no tracking, and no third-party SDKs.</p>
     </div>
 
     <h2>What stays on your device</h2>
-    <p>Your habits and quit dates, craving log, slip history, savings tin,
-    challenge progress, settings, and anything read from Apple Health. Health
-    data is read-only, displayed to you, and never transmitted anywhere.</p>
+    <p>Everything the app is about stays here: your habits and quit dates,
+    your craving log, your slip history, the savings tin, challenge
+    progress, and settings. Anything read from Apple Health stays too.
+    Health data is read-only, displayed to you, and never transmitted
+    anywhere.</p>
 
     <h2>What leaves your device, only if you choose it</h2>
     <p><strong>iCloud backup (off by default).</strong> If you turn it on, a
@@ -135,15 +151,16 @@ footer a { color: var(--dim); }
     toggle back off stops new copies being made, but it does not remove copies
     already stored; Settings &gt; Delete all data is what removes them, and it
     deletes every copy the app has made.</p>
-    <p><strong>Community board posts.</strong> If you post a move to the board,
-    its text is stored publicly with an anonymous member identifier (a salted
-    one-way hash derived from your iCloud account, never your name or email).
-    Posts are reviewed by a person before appearing. A post that is not
-    approved is never published; it is held out of the public feed, in the
-    board's review store, until you delete your data, which removes it
-    there too. To remove what you
-    posted, use Settings &gt; Delete all data: it erases every post and vote
-    you made on the board.</p>
+    <p><strong>Community board posts.</strong> If you post to the board, a
+    move or a feature request, its text is stored in Apple's public
+    CloudKit database, the board's host. It carries an anonymous member
+    identifier: a scrambled stand-in derived from your iCloud account
+    that cannot be run backwards, never your name or email. Posts are
+    reviewed by a person before appearing. A post that is not approved is
+    never published. It is held out of the public feed, in the board's
+    review store, until you delete your data, which removes it there too.
+    To remove what you posted, use Settings &gt; Delete all data: it
+    erases every post and vote you made on the board.</p>
     <p><strong>Votes.</strong> If you back somebody's post, your vote is stored
     against that post under the same anonymous member identifier, which is what
     lets you take the vote back. Nothing else about you is attached to it.</p>
@@ -151,8 +168,11 @@ footer a { color: var(--dim); }
     stored with the reason you picked and the same anonymous identifier, so a
     person can act on it. Blocking a member is different: that stays on your
     device and is never sent anywhere.</p>
-    <p><strong>Feedback.</strong> If you send feedback from the app, exactly two
-    things travel: the category you picked and the words you wrote. No name, no
+    <p><strong>Feedback.</strong> If you send feedback from the app, the
+    message carries exactly two things you wrote: the category you picked
+    and the words you typed. The app adds one fixed technical token, the
+    same for every copy of the app, which keeps strangers off the pipe
+    and says nothing about you. No name, no
     device identifier, no habit data, nothing that would let us find the message
     again or connect it to you. It is stored on our feedback service, hosted by
     Cloudflare, where a person reads it. Every message is automatically
@@ -169,19 +189,20 @@ footer a { color: var(--dim); }
     within twelve months, or sooner if you ask us to remove it while the
     thread is still open on your phone.</p>
     <p><strong>Reading the board sends nothing</strong> and needs no account.
-    The app does ask iCloud who you are, each time it comes to the front:
-    the backup and the board share that one check, it is Apple answering
-    the app directly, and it writes nothing. If you never post, vote or
-    report, nothing about you is written to the board.</p>
+    Opening a board surface, or running a backup, does ask iCloud who you
+    are. That check is Apple answering the app directly, and it writes
+    nothing. If you never post, vote or report, nothing about you is
+    written to the board.</p>
 
     <h2>What we never do</h2>
     <p>No advertising. No analytics SDKs. No tracking across apps or
     websites. No sale or sharing of data. No accounts, and no passwords.</p>
 
     <h2>This website</h2>
-    <p>These pages set no cookies and load no fonts, scripts or trackers from
-    any other host. Nothing you do here is measured, and there is no form to
-    fill in.</p>
+    <p>These pages set no cookies and load no fonts, scripts or trackers
+    from any other host. We add no measurement of our own, and there is no
+    form to fill in. The host that serves the pages sees requests the way
+    every web host does; none of that reaches us.</p>
 
     <h2>Deleting your data</h2>
     <p>Settings &gt; Delete all data erases three stores at once:
@@ -189,22 +210,22 @@ footer a { color: var(--dim); }
     to the board. The board part means your posts, your votes and your
     reports. Export your data first from the same screen if you want a
     copy.</p>
-    <p>Feedback is the one exception: messages carry no identifier, so Delete
-    all data cannot find yours to delete them. They delete themselves within
-    twelve months, and if you want one gone sooner, write to us and quote it.
-    A support conversation sits in between: Delete all data closes it on your
-    phone, our copy deletes itself within twelve months, and asking us inside
-    the thread deletes it sooner.</p>
+    <p>Feedback is the one exception. Messages carry no identifier, so
+    Delete all data cannot find yours to delete them. They delete
+    themselves within twelve months. If you want one gone sooner, write to
+    us and quote it. A support conversation sits in between: Delete all
+    data closes it on your phone, our copy deletes itself within twelve
+    months, and asking us inside the thread deletes it sooner.</p>
 
     <h2>Children</h2>
     <p>QuitForecast is intended for adults.</p>
 
     <h2>Your rights</h2>
-    <p>Because the app holds no accounts and stores your data on your own
-    device, there is nothing for us to look up, correct or hand over: you
-    already hold all of it, you can export it from Settings, and you can delete
-    it from the same screen. If you have posted to the community board and want
-    a post removed without erasing everything, write to
+    <p>The app holds no accounts, and your data lives on your own device.
+    So there is nothing for us to look up, correct or hand over. You
+    already hold all of it. You can export it from Settings, and delete it
+    from the same screen. If you have posted to the community board and
+    want a post removed without erasing everything, write to
     <a href="mailto:info@quitforecast.com">info@quitforecast.com</a>. A feedback
     message works the same way: quote it to us and we will delete it. Because no
     message carries an identifier, what it said is the only way to find it.</p>
@@ -221,8 +242,9 @@ footer a { color: var(--dim); }
     <p>The feedback and support service runs on Cloudflare's network, so a
     message can be handled outside your own country. Cloudflare's standard
     data protection terms cover that transfer, and they carry the EU's
-    standard contractual clauses. The twelve-month deletion applies
-    wherever the message lands.</p>
+    standard contractual clauses. Write to us for a copy of those
+    clauses. The twelve-month deletion applies wherever the message
+    lands.</p>
     <p>You can take any of these choices back at any time. Stop sending,
     or use the deletion routes above; nothing keeps processing after.</p>
 
