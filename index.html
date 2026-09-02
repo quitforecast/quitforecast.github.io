@@ -153,7 +153,7 @@
   --t-body:  clamp(1.0625rem, 1rem + 0.35vw, 1.28rem); /* desktop ~20.5px, the Apple-Linear range; phones unchanged (candidate 4) */
   --t-lead:  clamp(1.1875rem, 1.1rem + 0.5vw, 1.4375rem);
   --t-h3:    clamp(1.25rem, 1.13rem + 0.55vw, 1.5rem);
-  --t-h2:    clamp(1.75rem, 1.4rem + 1.6vw, 2.625rem);
+  --t-h2:    clamp(1.75rem, 1.2rem + 2.4vw, 3rem); /* desktop ~48px, September 2 layout round; phones unchanged */
   --t-h1:    clamp(2.25rem, 1.7rem + 2.9vw, 3.75rem);
 
   /* Space: 4 / 8 / 12 / 16 / 24 / 32 / 48, the app's own scale, in rem. */
@@ -284,7 +284,7 @@ section { padding-block: clamp(2.5rem, 7vw, 5rem); }
 /* Candidate 1: the references' silence, desktop only; the mobile page
    length, fought for shot by shot, is untouched. */
 @media (min-width: 54rem) {
-  section { padding-block: clamp(5rem, 8vw, 7rem); }
+  section { padding-block: clamp(4rem, 5.5vw, 5rem); } /* September 2: the empty column made the air read as void; a third less */
 }
 /* Clears the sticky desktop bar, so an anchor lands on its heading and not
    under it. */
@@ -359,6 +359,34 @@ p { text-wrap: pretty; }
      its phone, a figure hugs the left edge. */
   .sechead-media .feature { grid-template-columns: minmax(0, 1fr); justify-items: start; }
   .sechead-media .figure { align-items: flex-start; }
+}
+
+/* THE LAYOUT ROUND (September 2, 2026, Steven: "the website is scrolling
+   empty space"). Measured at 1280 before this block: every section carried
+   204px of padding and a media column two to three times taller than its
+   text (ethos 560 against 206), and the five media-less sections ran their
+   heading alone in the rail. Three moves, all here:
+   1. The text column centres against the rail, so the difference splits
+      above and below the prose instead of pooling beneath it.
+   2. Every rail frame is cropped to a fixed height with a fade, the way
+      Apple crops a device at a section's edge: the phone reads as
+      continuing below, and a frame stops being taller than its section.
+   3. A section with no media runs one column (.sechead.single). */
+.sechead-media .phone { max-height: 24rem; overflow: hidden; }
+.sechead-media .phone::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 5rem; background: linear-gradient(to bottom, rgba(12, 24, 32, 0), var(--bg));
+  pointer-events: none; }
+@media (min-width: 54rem) {
+  .sechead { align-items: center; }
+  .sechead-body { align-self: center; }
+  .sechead-media .phone { max-height: 27rem; }
+  .sechead.single { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "body"; row-gap: var(--s-l); }
+  .sechead.single .sechead-body { max-width: 62ch; }
+}
+@media (min-width: 54rem) {
+  .prices:has(.price) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .prices:has(.card):not(:has(.price)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .prices.stack-block { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* The App Store badge, in its PRE-LAUNCH state (Steven's Route A,
@@ -670,6 +698,21 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   .windowlabel { fill: #7A4A00; }
   .bar { fill: #555555; }
   .bar.window { fill: #7A4A00; }
+}
+
+/* Second pass. On a phone a pair no longer stacks two frames: it is a row
+   that swipes, with the second frame peeking, the mobile-native grammar for
+   "there is more". The hero phone takes the same crop on a phone, where it
+   was a full screen of frame. The price cards sit in a row at desktop. */
+@media (max-width: 54rem) {
+  .phones { flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 0.25rem; }
+  .phones::-webkit-scrollbar { display: none; }
+  .phones > * { flex: 0 0 min(13.75rem, 78%); scroll-snap-align: start; }
+  .phones > *:nth-child(2) { margin-top: 0; }
+  .hero .phone { max-height: 24rem; overflow: hidden; }
+  .hero .phone::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5rem;
+    background: linear-gradient(to bottom, rgba(12, 24, 32, 0), var(--bg)); pointer-events: none; }
 }
 </style>
 <body>
@@ -1081,25 +1124,31 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="small seclink"><a href="/manual-rebuild.html">More in the manual: moves and badges</a></p>
         </div>
       <div class="sechead-media">
-        <div class="phone reveal">
-          <picture><source type="image/webp" srcset="shots/catalogue.webp 519w, shots/catalogue@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/catalogue.jpg" width="519" height="1130" loading="lazy"
-               decoding="async"
-               alt="The catalogue in its grid view, with section, nerve and
-                    basis filter rows. Cards reading Move your body, 10 min,
-                    Quiet, marked On your list; Get into nature, 20 min,
-                    Quiet; Savor one thing, 1 min, Quiet; Cook a real meal,
-                    45 min, Quiet; Take it cold, 3 min, Quiet; and Take an
-                    awe walk, 15 min, Quiet."></picture>
-        </div>
-        <div class="phone reveal">
-          <picture><source type="image/webp" srcset="shots/board.webp 519w, shots/board@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/board.jpg" width="519" height="1130" loading="lazy"
-               decoding="async"
-               alt="A demonstration of the Community board, drawn from the
-                    app's own seeded fixtures, not from live posts: the lede
-                    reads Suggest a move, vote up what worked for you, and
-                    add any move to your list straight from its page, over
-                    four sample posts with sample vote counts under the
-                    Competence, Meaning, Connection and Reward categories."></picture>
+        <div class="phones reveal">
+          <div>
+            <div class="phone">
+              <picture><source type="image/webp" srcset="shots/catalogue.webp 519w, shots/catalogue@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/catalogue.jpg" width="519" height="1130" loading="lazy"
+                   decoding="async"
+                   alt="The catalogue in its grid view, with section, nerve and
+                        basis filter rows. Cards reading Move your body, 10 min,
+                        Quiet, marked On your list; Get into nature, 20 min,
+                        Quiet; Savor one thing, 1 min, Quiet; Cook a real meal,
+                        45 min, Quiet; Take it cold, 3 min, Quiet; and Take an
+                        awe walk, 15 min, Quiet."></picture>
+            </div>
+          </div>
+          <div>
+            <div class="phone">
+              <picture><source type="image/webp" srcset="shots/board.webp 519w, shots/board@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/board.jpg" width="519" height="1130" loading="lazy"
+                   decoding="async"
+                   alt="A demonstration of the Community board, drawn from the
+                        app's own seeded fixtures, not from live posts: the lede
+                        reads Suggest a move, vote up what worked for you, and
+                        add any move to your list straight from its page, over
+                        four sample posts with sample vote counts under the
+                        Competence, Meaning, Connection and Reward categories."></picture>
+            </div>
+          </div>
         </div>
         <p class="figure-label">Demo board, demo posts.</p>
       </div>
@@ -1276,7 +1325,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
        privacy.html and SafetyView; change all three the same day or none. -->
   <section class="band" id="privacy">
     <div class="wrap">
-      <div class="sechead">
+      <div class="sechead single">
         <div>
           <p class="kicker">Privacy</p>
           <h2>Nothing leaves unless you send it.</h2>
@@ -1295,7 +1344,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <!-- ===================== 8. SETTINGS ===================== -->
   <section id="settings">
     <div class="wrap">
-      <div class="sechead">
+      <div class="sechead single">
         <div>
           <p class="kicker">Settings</p>
           <h2>Everything loud is off by default.</h2>
@@ -1359,7 +1408,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
        section is wrong; change this section and the project is not. -->
   <section id="works-with">
     <div class="wrap">
-      <div class="sechead">
+      <div class="sechead single">
         <div>
           <p class="kicker">Compatibility</p>
           <h2>What it runs on.</h2>
@@ -1400,7 +1449,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <!-- ===================== 9. PRICE ===================== -->
   <section id="price">
     <div class="wrap">
-      <div class="sechead">
+      <div class="sechead single">
         <div>
           <p class="kicker">Price</p>
           <!-- THE MODEL CHANGED August 3 (Steven's ruling, PAYWALL-SPLIT.md
@@ -1491,7 +1540,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   <!-- ===================== SUPPORT ===================== -->
   <section id="support">
     <div class="wrap">
-      <div class="sechead">
+      <div class="sechead single">
         <h2>A person answers.</h2>
         <div class="sechead-body">
           <p class="lede dim">Inside the app, with no ticket number.</p>
