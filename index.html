@@ -678,6 +678,17 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
    show on phones now ("there is no screenshot ... on the mobile"). */
 .sechead-media .phone.whole { max-height: none; }
 .sechead-media .phone.whole::after { display: none; }
+/* Sixth pass (September 2, Steven: "yes please" to the tight line under
+   the premium card). A card's heading breathes before its first line, the
+   questions sit a step apart, the line after a card grid has its own air,
+   and below desktop the three tiers stack in one column rather than two
+   and an orphan. */
+.card h3 { margin: 0 0 var(--s-m); }
+.card p + p { margin-top: var(--s-s); }
+.prices + .measure { margin-top: var(--s-xl); }
+@media (max-width: 54rem) {
+  .prices:has(.price) { grid-template-columns: minmax(0, 1fr); }
+}
 </style>
 <body>
 <a class="skip" href="#main">Skip to content</a>
