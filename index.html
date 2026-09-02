@@ -499,12 +499,6 @@ a.badge:hover { opacity: 0.88; }
                margin-top: var(--s-xl); max-width: var(--measure);
                margin-inline: auto; text-align: center; }
 
-/* A mid-page action row: the sentence, then the way out. */
-.closer { margin-top: clamp(2.5rem, 6vw, 4rem); padding-top: clamp(1.5rem, 4vw, 2.5rem);
-          border-top: 1px solid var(--line);
-          display: flex; flex-wrap: wrap;
-          gap: var(--s-xl) clamp(1.5rem, 5vw, 3.5rem);
-          align-items: center; justify-content: flex-start; }
 
 /* The plain-noun kicker above each oblique h2: the headline keeps its voice,
    the skimmer gets the noun. Same shape as the hero eyebrow, in dim. */
@@ -690,12 +684,13 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
 </style>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<!-- The App Store badge, drawn ONCE. Every badge anchor references it
-     with <use> (anchors before launch, spans while the badge says
-     Coming soon), which is what let the page grow two more CTA closers
-     without growing the document. The artwork itself is still the
-     recreation the stylesheet header describes; Apple's supplied badge
-     replaces the symbol's contents before launch, in one place now. -->
+<!-- The App Store badge, drawn ONCE and used once, in the hero. The six
+     mid-page badges left on September 2 (Steven: "it kind of breaks the
+     conversational flow of the website ... if they want the app, they'll
+     find the link"); the sticky bar's pill is the persistent route. The
+     artwork is still the recreation the stylesheet header describes;
+     Apple's supplied badge replaces the symbol's contents before launch,
+     in one place. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
 <symbol id="badge-appstore" viewBox="0 0 120 40">
               <rect width="120" height="40" rx="6.5" fill="#FFFFFF"/>
@@ -966,12 +961,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         <p class="figure-label">Every milestone as a row, then one opened. The timeline starts the minute you set a quit date.</p>
       </div>
       </div>
-      <div class="closer reveal">
-        <span class="badge" role="img"
-           aria-label="Coming soon to the App Store">
-          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
-        </span>
-      </div>
     </div>
   </section>
 
@@ -1044,6 +1033,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p>One press on your watch and it's logged. Add how strong it was, what was happening and who was around, or don't.</p>
           
           <p>The SOS breath runs on the watch itself, with no phone in the room.</p>
+          <p class="small">Optional. The app is whole without it.</p>
           
           <p class="small seclink"><a href="/manual-reach.html">More in the manual: watch, widgets and Siri</a></p>
         </div>
@@ -1066,13 +1056,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           </div>
         </div>
       </div>
-      </div>
-      <div class="closer reveal">
-        <p class="small">Optional. The app is whole without it.</p>
-        <span class="badge" role="img"
-           aria-label="Coming soon to the App Store">
-          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
-        </span>
       </div>
     </div>
   </section>
@@ -1169,13 +1152,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       </div>
 
       <p class="shotcaption">In the app's own words: there is no improved you at the end of this. Only you, uninterrupted.</p>
-      <div class="closer reveal">
-        
-        <span class="badge" role="img"
-           aria-label="Coming soon to the App Store">
-          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
-        </span>
-      </div>
     </div>
   </section>
 
@@ -1227,13 +1203,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
         <p class="figure-label">The window, and who was around.</p>
       </div>
-      </div>
-      <div class="closer reveal">
-        
-        <span class="badge" role="img"
-           aria-label="Coming soon to the App Store">
-          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
-        </span>
       </div>
     </div>
   </section>
@@ -1304,13 +1273,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <h3>Yours to take</h3>
           <p>Export a spreadsheet, or delete everything.</p>
         </div>
-      </div>
-      <div class="closer reveal">
-        
-        <span class="badge" role="img"
-           aria-label="Coming soon to the App Store">
-          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
-        </span>
       </div>
     </div>
   </section>
@@ -1443,13 +1405,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <p class="small dim measure" style="margin-top: var(--s-l);">Subscriptions renew until you cancel, in your Apple account settings. Cancel and it runs out at the end of the term you paid for. Purchases run under <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple's standard license agreement</a>, the terms of use for the app.</p>
       
 
-      <div class="closer reveal">
-        <p class="small" style="max-width: 26rem;">Free for the first week.</p>
-        <span class="badge" role="img"
-           aria-label="Coming soon to the App Store">
-          <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
-        </span>
-      </div>
     </div>
   </section>
 
