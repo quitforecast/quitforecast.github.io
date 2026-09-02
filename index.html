@@ -137,11 +137,6 @@
   --dim:     #8FA3A8;
   --accent:  #7FD9C4;   /* the accent: interactive things and data */
   --amber:   #E5A45C;   /* live now-ness only: the window, the now-dot */
-  /* Non-text contrast floor. --line2 measures 1.91:1 against the ground, which
-     is fine for hairline borders and fails SC 1.4.11 for the one graphic that
-     carries meaning. The chart's axis and its empty hours draw in this
-     instead: 3.1:1 measured. */
-  --chartink: #4E6A76;
 
   --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto,
           "Helvetica Neue", Arial, sans-serif;
@@ -294,18 +289,10 @@ section { scroll-margin-top: 4.5rem; }
 a, [tabindex]:not([tabindex="-1"]) { scroll-margin-top: 5.5rem; }
 
 /* Windows High Contrast and forced-colors. The palette is replaced by the
-   reader's own; forced borders keep the cards and bars visible, and the chart
-   adopts the system's own inks rather than colours tuned for a dark ground. The
-   window's two bars take Highlight, because in this mode colour is the ONLY
-   thing left to separate them from the day around them. */
+   reader's own; forced borders keep the cards and frames visible. */
 @media (forced-colors: active) {
   .card, .onpage, .topbar, .price { border: 1px solid CanvasText; }
   .badge svg { forced-color-adjust: none; background: Canvas; }
-  .axis { stroke: CanvasText; }
-  .bar { fill: CanvasText; opacity: 1; }
-  .bar.window { fill: Highlight; }
-  .windowlabel { fill: Highlight; }
-  .hourlabel { fill: CanvasText; }
   a:focus-visible { outline: 2px solid Highlight; }
 }
 section + section { border-top: 1px solid var(--line); }
@@ -428,49 +415,8 @@ a.badge:hover { opacity: 0.88; }
 @media (max-width: 34rem) { .figure { align-items: stretch; } }
 .figure { margin: 0; display: flex; flex-direction: column; align-items: center;
           gap: var(--s-l); }
-/* The floor is in rem on purpose. A px inside a viewBox is a user unit scaled
-   by the element's width, not by the reader's text setting, so the only way the
-   hour labels grow with a larger default is for the ring itself to grow. */
-.figure svg.chart { display: block; width: min(90vw, 30rem);
-                    min-width: min(100%, 17.5rem); height: auto; }
 .figure-label { font-size: var(--t-micro); color: var(--dim); letter-spacing: 0.01em; }
 
-/* Chart parts. Every animated element's BASE state is its FINAL state, and the
-   keyframes run with fill mode `both`, so switching the animations off (Reduce
-   Motion, or a browser that will not run them) leaves the finished drawing
-   rather than an empty frame. Ink is --chartink, not --line2: this is the one
-   graphic on the page that carries meaning, so it clears SC 1.4.11's 3:1 where
-   a hairline border does not have to.
-   THE RING RETIRED HERE (A7, August 11) because the app retired it (Q7): a
-   twenty-four hour dial with a resolving amber arc was selling a drawing the
-   product no longer draws. The bars are the same fact in the shape the app now
-   uses, so the page and the screen agree again. */
-.axis   { stroke: var(--chartink); stroke-width: 1.5; }
-.bar    { fill: var(--accent); opacity: 0.8; }
-.bar.window { fill: var(--amber); opacity: 1; }
-.hourlabel { fill: var(--dim); font-family: var(--sans); font-size: 0.9375rem;
-             text-anchor: middle; dominant-baseline: middle; }
-.windowlabel { fill: var(--amber); font-family: var(--sans); font-size: 0.9375rem;
-               font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
-
-@keyframes drawLine { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
-@keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
-/* Each bar grows from the floor, in clock order, so the day assembles left to
-   right the way a log fills. THE HEARTBEAT IS GONE with the arc it belonged to:
-   it was "straight off WindowDial", and a pulse on this page would now be the
-   site animating something the app holds still. */
-@keyframes growBar  { from { opacity: 0; transform: scaleY(0); }
-                      to   { opacity: 1; transform: scaleY(1); } }
-
-.axis  { stroke-dasharray: 1; animation: drawLine 0.7s ease-out 0.05s both; }
-.hourlabel { animation: fadeIn 0.5s ease-out 0.45s both; }
-.bar   { transform-box: fill-box; transform-origin: bottom;
-         animation: growBar 0.5s ease-out both; }
-/* The two that carry the claim arrive last and alone, after the day is drawn,
-   which is the sequence the feature itself has: the hours are logged first and
-   the app only names them once it is sure. */
-.bar.window { animation-duration: 0.6s; animation-delay: 1.5s; }
-.windowlabel { animation: fadeIn 0.6s ease-out 2.0s both; }
 
 /* --- Cards -------------------------------------------------------------- */
 
@@ -664,19 +610,12 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
     animation: none !important;
     transition: none !important;
   }
-  .axis { stroke-dashoffset: 0; }
-  .bar  { transform: none; opacity: 1; }
 }
 
 /* --- Print -------------------------------------------------------------- */
 @media (forced-colors: active) {
-  /* Re-declared here, BELOW the chart's base rules: the earlier block lost
-     the cascade and the central graphic vanished in forced light themes. */
-  .figure svg.chart .bar { fill: CanvasText; opacity: 1; }
-  .figure svg.chart .bar.window { fill: Highlight; }
-  .figure svg.chart .hourlabel { fill: CanvasText; }
-  .figure svg.chart .windowlabel { fill: Highlight; }
-  .figure svg.chart .axis { stroke: CanvasText; }
+  /* Re-declared here, below the frames' base rules, so the borders keep
+     the cascade in forced light themes. */
   .phone, .watch { border: 1px solid CanvasText; }
   .lockup svg circle { stroke: CanvasText; }
 }
@@ -694,10 +633,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   .lede.dim, .shotnote, .small, .statband span, .seclink a,
   .sechead-media .figure-label { color: #333333; }
   .statband strong, b, strong, h1, h2, h3 { color: #111111; }
-  .hourlabel { fill: #333333; }
-  .windowlabel { fill: #7A4A00; }
-  .bar { fill: #555555; }
-  .bar.window { fill: #7A4A00; }
 }
 
 /* Second pass. On a phone a pair no longer stacks two frames: it is a row
@@ -714,22 +649,13 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   .hero .phone::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5rem;
     background: linear-gradient(to bottom, rgba(12, 24, 32, 0), var(--bg)); pointer-events: none; }
 }
-/* Third pass (September 2, Steven: "continue with the other cuts"). At
-   desktop the log's drawing and its pair share one row under the head, so
-   the rail no longer stacks a chart on a pair; the price's lower card is two
-   cards side by side, still below the offer (the August 3 ruling); on a
-   phone the three tiers are three rows rather than three cards, and the
-   settings and compatibility lists run two columns. */
+/* Third pass (September 2, Steven: "continue with the other cuts"). The
+   price's lower card is two cards side by side, still below the offer (the
+   August 3 ruling); on a phone the three tiers are three rows rather than
+   three cards, and the settings and compatibility lists run two columns.
+   The log's drawn chart, which this pass had seated beside the pair, left
+   the page in the fourth pass: the screenshots carry the same bars. */
 @media (min-width: 54rem) {
-  #log .sechead { grid-template-areas: "head body" "media media"; }
-  #log .sechead-media { display: flex; flex-wrap: wrap; align-items: flex-start;
-                        gap: var(--s-l) clamp(2rem, 4vw, 3rem); }
-  #log .sechead-media > * + * { margin-top: 0; }
-  #log .sechead-media .figure { flex: 1 1 20rem; }
-  #log .sechead-media .figure svg.chart { width: min(100%, 26rem); }
-  #log .sechead-media .phones { flex: 0 0 auto; }
-  #log .sechead-media .phones > * { width: 13.75rem; }
-  #log .sechead-media > .figure-label { flex-basis: 100%; }
   /* The premium card ran at half width beside an empty half (the two-card
      rule outranked the stack rule); full width, its four lines in two
      columns. */
@@ -746,6 +672,15 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   .price span:not(.tag) { margin-left: auto; }
   .price .tag { flex-basis: 100%; }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-l) var(--s-m); }
+}
+/* Fourth pass (September 2, Steven on his iPhone: "the images side by side
+   are on a scroll rather than cleanly on one page"). A pair on a phone is
+   two frames side by side, both on the page, the way a product page shows
+   two screens; nothing swipes. A lone frame keeps its width. */
+@media (max-width: 54rem) {
+  .phones { flex-wrap: wrap; overflow: visible; scroll-snap-type: none; gap: 0.75rem; }
+  .phones > * { flex: 0 1 calc(50% - 0.375rem); min-width: 0; scroll-snap-align: none; }
+  .phones > :only-child, .phones > *:has(+ .optional) { flex-basis: min(13.75rem, 100%); }
 }
 </style>
 <body>
@@ -1265,53 +1200,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="small seclink"><a href="/manual-log.html">More in the manual: the craving log</a></p>
         </div>
       <div class="sechead-media">
-        <div class="figure reveal">
-          <p class="figure-label">How the window is found</p>
-          <svg class="chart" viewBox="0 0 340 196" role="img"
-               aria-labelledby="chartTitle chartDesc">
-            <title id="chartTitle">A day of hours as bars, with a craving log
-            drawn on it</title>
-            <desc id="chartDesc">One bar for each hour from midnight to midnight.
-            Most hours are low or empty. Two of them, the 8 PM and 9 PM bars of
-            the 8 to 10 PM stretch, stand well above the rest and turn amber
-            once there are enough logged cravings in them to be worth
-            saying.</desc>
-  
-            <!-- The day's floor. Drawn first, and the line every bar is read
-                 against, the same hairline the app's own histogram gained when a
-                 render showed twenty empty hours reading as debris without it. -->
-            <line class="axis" x1="20" y1="150" x2="320" y2="150"/>
-  
-            <!-- The log drawn here: sixteen cravings over nine days, seven of
-                 them inside the two amber hours. The bars are counts, and they grow
-                 from the floor in clock order, which is the reading the app's own
-                 chart gives: taller is more, and nothing needs a key. An hour with
-                 nothing logged draws NOTHING, the way the app draws it: a stub
-                 would be a mark, and a mark where nothing happened is a claim. -->
-            <rect class="bar" x="122.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.674s"/>
-            <rect class="bar" x="147.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.730s"/>
-            <rect class="bar" x="172.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.786s"/>
-            <rect class="bar" x="184.75" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.814s"/>
-            <rect class="bar" x="209.75" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.870s"/>
-            <rect class="bar" x="234.75" y="98" width="8" height="52" rx="1.5" style="animation-delay:0.926s"/>
-            <rect class="bar" x="247.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:0.954s"/>
-            <rect class="bar window" x="272.25" y="46" width="8" height="104" rx="1.5" style="animation-delay:1.010s"/>
-            <rect class="bar window" x="284.75" y="72" width="8" height="78" rx="1.5" style="animation-delay:1.038s"/>
-            <rect class="bar" x="297.25" y="124" width="8" height="26" rx="1.5" style="animation-delay:1.066s"/>
-  
-            <text class="hourlabel" x="26.25" y="170">12am</text>
-            <text class="hourlabel" x="101.25" y="170">6am</text>
-            <text class="hourlabel" x="176.25" y="170">12pm</text>
-            <text class="hourlabel" x="251.25" y="170">6pm</text>
-  
-            <!-- The verdict, named in words as well as colour, because the two
-                 amber bars are the whole claim. -->
-            <text class="windowlabel" x="268" y="32">8&#8211;10 PM</text>
-          </svg>
-          <ul class="plainlist small dim" role="list" style="margin-top: var(--s-l);">
-            <li><b>7 of your last 9 days had a craving between 8 PM and 10 PM.</b></li>
-          </ul>
-        </div>
         <div class="phones">
           <div>
             <div class="phone">
