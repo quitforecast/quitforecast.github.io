@@ -291,7 +291,7 @@ a, [tabindex]:not([tabindex="-1"]) { scroll-margin-top: 5.5rem; }
   a:focus-visible { outline: 2px solid Highlight; }
 }
 section + section { border-top: 1px solid var(--line); }
-.hero { padding-top: clamp(1.5rem, 5vw, 3.5rem); padding-bottom: clamp(2rem, 6vw, 4rem); }
+.hero { padding-top: clamp(1.5rem, 4vw, 2.5rem); padding-bottom: clamp(1.5rem, 4vw, 2.5rem); } /* September 2: the fold fits its content */
 
 .lede { font-size: var(--t-lead); line-height: 1.42; color: var(--text);
         text-wrap: pretty; }
@@ -393,7 +393,7 @@ a.badge:hover { opacity: 0.88; }
 .hero .wrap { display: grid; gap: clamp(2rem, 6vw, 3.5rem); }
 .hero-copy > * + * { margin-top: var(--s-xl); }
 @media (min-width: 62rem) {
-  .hero .wrap { grid-template-columns: minmax(0, 1fr) 16.5rem; align-items: center;
+  .hero .wrap { grid-template-columns: minmax(0, 1fr) 15rem; align-items: center;
                 gap: clamp(2rem, 5vw, 4rem); }
   .hero-copy { max-width: 33rem; }
   /* THE WRIST OVERLAPS THE PHONE'S CORNER, and this is measured rather than
@@ -404,7 +404,7 @@ a.badge:hover { opacity: 0.88; }
      Desktop only: below this breakpoint the hero is one column and the watch
      sits under the phone, which is the right answer on a phone. */
   .hero .devices { position: relative; }
-  .hero .devices .watch { position: absolute; left: -4.5rem; bottom: 1.25rem;
+  .hero .devices .watch { position: absolute; left: -6.5rem; bottom: 0.5rem; /* September 2: off the Saved card, on the frame's edge */
                           width: 7rem; }
 }
 @media (max-width: 34rem) { .figure { align-items: stretch; } }
@@ -505,18 +505,6 @@ a.badge:hover { opacity: 0.88; }
 .kicker { font-size: var(--t-micro); font-weight: 650; letter-spacing: 0.14em;
           text-transform: uppercase; color: var(--dim); margin: 0 0 var(--s-m); }
 
-/* The index of the page, in plain nouns. The h2s carry no scent for a reader
-   hunting for the price or Apple Health, so the ordinary words live here.
-   In the hero it spans the full grid row, under the figure, so a phone reader
-   meets the product shot one swipe sooner. */
-.hero .onpage { grid-column: 1 / -1; margin-top: 0; }
-.onpage { margin-top: var(--gap-block); }
-.onpage ul { list-style: none; margin: var(--s-m) 0 0; padding: 0;
-             display: flex; flex-wrap: wrap; gap: var(--s-s); }
-.onpage a { display: inline-block; font-size: var(--t-small); color: var(--text);
-            text-decoration: none; border: 1px solid var(--line2);
-            border-radius: 999px; padding: 0.35rem 0.8rem; }
-.onpage a:hover { border-color: var(--accent); color: var(--accent); }
 
 /* One feature, one screen. Copy on the left every time, device on the right
    every time: one edge, and the eye stops re-finding it. */
@@ -617,7 +605,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
     { background: #FFFFFF !important; box-shadow: none !important; }
   .lede, .eyebrow, .kicker { color: #333333 !important; }
   h1, h2, h3, b, strong { color: #111111 !important; }
-  .topbar, .badge, .onpage { display: none; }
+  .topbar, .badge { display: none; }
   a, .dim, .micro, .small.dim, .figure-label, .kicker, .eyebrow,
   .lede.dim, .shotnote, .small, .statband span, .seclink a,
   .sechead-media .figure-label { color: #333333; }
@@ -634,9 +622,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   .phones::-webkit-scrollbar { display: none; }
   .phones > * { flex: 0 0 min(13.75rem, 78%); scroll-snap-align: start; }
   .phones > *:nth-child(2) { margin-top: 0; }
-  .hero .phone { max-height: 24rem; overflow: hidden; }
-  .hero .phone::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5rem;
-    background: linear-gradient(to bottom, rgba(12, 24, 32, 0), var(--bg)); pointer-events: none; }
 }
 /* Third pass (September 2, Steven: "continue with the other cuts"). The
    price's lower card is two cards side by side, still below the offer (the
@@ -645,9 +630,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
    The log's drawn chart, which this pass had seated beside the pair, left
    the page in the fourth pass: the screenshots carry the same bars. */
 @media (min-width: 54rem) {
-  /* The premium card's four lines in two columns. */
-  #price .prices.stack-block .plainlist { columns: 2; column-gap: var(--s-xxl); }
-  #price .prices.stack-block .plainlist li { break-inside: avoid; }
 }
 @media (max-width: 34rem) {
   .prices:has(.price) { gap: var(--s-s); }
@@ -689,6 +671,27 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
 @media (max-width: 54rem) {
   .prices:has(.price) { grid-template-columns: minmax(0, 1fr); }
 }
+/* Seventh pass (September 2, Steven: the hero and the idea section had
+   "tons of space", the support section could be "drastically reduced").
+   The stat band sits in the idea's text column, two by two; the price line
+   follows its head; the hero hides the wrist on a phone (the watch has its
+   own section) and shows the phone whole; the support section is a slim
+   band, heading and lines on one row at desktop. */
+.sechead-body .statband { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: var(--s-xxl);
+                          gap: var(--s-l) var(--s-xl); }
+.sechead + .measure { margin-top: var(--gap-block); }
+.slim { padding-block: clamp(1.5rem, 3vw, 2rem); }
+.slim h2 { font-size: var(--t-h3); }
+.slim .sechead.single { row-gap: var(--s-s); }
+.slim .sechead-body > * + * { margin-top: var(--s-xs); }
+@media (max-width: 54rem) {
+  .hero .devices .watch { display: none; }
+}
+@media (min-width: 54rem) {
+  .slim .sechead.single { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "head body";
+                          align-items: baseline; column-gap: var(--s-xxxl); }
+  .hero .phone { width: 15rem; }
+}
 </style>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -721,12 +724,16 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <span class="wordmark">QuitForecast</span>
     </a>
     <nav aria-label="Page sections">
-      <!-- Two links: the manual (the proof layer) and the price (hidden
-           pricing reads as a trap). The crisis lines left this bar on
+      <!-- Two links: the manual (the proof layer) and the app (the price
+           section is where it lands). The crisis lines left this bar on
            September 2, 2026 by Steven's ruling: they live on /crisis.html,
            reached from the manual and from inside the app. -->
       <a href="/manual.html">Manual</a>
-      <a class="navcta" href="#price">The price</a>
+      <!-- "Get the app" (Steven, September 2: "i don't recall big companies
+           calling out price buttons"). Until the store id exists it lands on
+           the offer, whose badge says Coming soon; at launch the href becomes
+           the App Store listing. -->
+      <a class="navcta" href="#price">Get the app</a>
     </nav>
   </div>
 </header>
@@ -764,7 +771,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <div class="figure">
         <div class="devices">
           <div class="phone">
-            <picture><source type="image/webp" srcset="shots/today.webp 519w, shots/today@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/today.jpg" width="519" height="1130"
+            <picture><source type="image/webp" srcset="shots/today.webp 519w, shots/today@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/today.jpg" width="519" height="1130" fetchpriority="high"
                  decoding="async" fetchpriority="high"
                  alt="The Today screen. Nicotine-free, 30 days 0 hours 0
                       minutes, Window soon 8 to 10 PM, beside a Cravings by
@@ -788,15 +795,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
         <p class="figure-label">Your clean time, and your two hours.</p>
       </div>
-
-      <nav class="onpage" aria-label="Sections of this page">
-        <ul role="list">
-          <li><a href="#timeline">The timeline</a></li>
-          <li><a href="#sos">SOS</a></li>
-          <li><a href="#log">The log</a></li>
-          <li><a href="#price">Price</a></li>
-        </ul>
-      </nav>
     </div>
   </section>
 
@@ -828,6 +826,12 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                the two drift, so the number on this page is always the number
                in the app. -->
           <p class="micro">Built on 61 cited sources, most of them journal studies, all inside the app.</p>
+          <div class="statband reveal">
+            <div><strong>61</strong><span>sources, every one readable in the app</span></div>
+            <div><strong>5</strong><span>substances, each with its own timeline</span></div>
+            <div><strong>6</strong><span>things that can ever leave your phone, only when you send them</span></div>
+            <div><strong>0</strong><span>accounts. Nothing to sign in to</span></div>
+          </div>
         </div>
       <div class="sechead-media">
         <div class="phone reveal whole">
@@ -845,12 +849,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
            Apple grammar, only true numbers. Every figure is pinned to the
            code by SiteClaimTests; N9 forbids invented proof, not real
            counts set large. -->
-      <div class="statband reveal">
-        <div><strong>61</strong><span>sources, every one readable in the app</span></div>
-        <div><strong>5</strong><span>substances, each with its own timeline</span></div>
-        <div><strong>6</strong><span>things that can ever leave your phone, only when you send them</span></div>
-        <div><strong>0</strong><span>accounts. Nothing to sign in to</span></div>
-      </div>
     </div>
   </section>
 
@@ -1355,21 +1353,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
       </div>
 
-      <div class="prices reveal stack-block">
-        <div class="card">
-          <h3>Premium is the whole app</h3>
-          <ul class="plainlist small dim" role="list">
-            <li>Your two hours: the chart of your own cravings, and the heads-up before they open</li>
-            <li>The full timeline, hour by hour, with the studies under each
-            milestone</li>
-            <li>Every recovery curve, and your five Health cards</li>
-            <li>The full Rebuild catalogue, every SOS tool, and all four
-            faith and philosophy packs</li>
-          </ul>
-        </div>
-      </div>
-
-      <p class="measure">Most of these habits run to thousands a year. The app asks $39.99 of it.</p>
+      <p class="measure">Most of these habits cost thousands a year. This one asks $39.99.</p>
 
       <div class="prices">
         <div class="price best">
@@ -1416,13 +1400,12 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
        tests read that file. -->
 
   <!-- ===================== SUPPORT ===================== -->
-  <section id="support">
+  <section class="band slim" id="support">
     <div class="wrap">
       <div class="sechead single">
         <h2>A person answers.</h2>
         <div class="sechead-body">
-          <p class="lede dim">Inside the app, with no ticket number.</p>
-          <p>Settings, then Get help. Usually within a day.</p>
+          <p class="dim">Inside the app, with no ticket number: Settings, then Get help. Usually within a day.</p>
           <p class="small dim">Not installed yet? Write to <a href="mailto:info@quitforecast.com">info@quitforecast.com</a>.</p>
         </div>
       </div>
