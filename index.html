@@ -270,11 +270,11 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
 /* --- Sections ----------------------------------------------------------- */
 
-section { padding-block: clamp(2.5rem, 7vw, 5rem); }
+section { padding-block: clamp(2rem, 6vw, 3.5rem); } /* September 2, after the badge rows left: less air between sections */
 /* Candidate 1: the references' silence, desktop only; the mobile page
    length, fought for shot by shot, is untouched. */
 @media (min-width: 54rem) {
-  section { padding-block: clamp(4rem, 5.5vw, 5rem); } /* September 2: the empty column made the air read as void; a third less */
+  section { padding-block: clamp(3rem, 4vw, 3.5rem); } /* September 2: a third less than the July page, then less again once the badge rows left */
 }
 /* Clears the sticky desktop bar, so an anchor lands on its heading and not
    under it. */
@@ -367,7 +367,7 @@ p { text-wrap: pretty; }
 }
 @media (min-width: 54rem) {
   .prices:has(.price) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .prices:has(.card):not(:has(.price)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .prices:has(.card):not(:has(.price)) { grid-template-columns: minmax(0, 1fr); }
   .prices.stack-block { grid-template-columns: minmax(0, 1fr); }
 }
 
@@ -645,10 +645,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
    The log's drawn chart, which this pass had seated beside the pair, left
    the page in the fourth pass: the screenshots carry the same bars. */
 @media (min-width: 54rem) {
-  /* The premium card ran at half width beside an empty half (the two-card
-     rule outranked the stack rule); full width, its four lines in two
-     columns. */
-  .prices.stack-block:has(.card) { grid-template-columns: minmax(0, 1fr); }
+  /* The premium card's four lines in two columns. */
   #price .prices.stack-block .plainlist { columns: 2; column-gap: var(--s-xxl); }
   #price .prices.stack-block .plainlist li { break-inside: avoid; }
 }
@@ -1382,23 +1379,17 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <p class="small measure" style="margin-top: var(--s-xl);">No ads, nothing about you for sale. Your subscription is the whole business model.</p>
 
       <!-- BELOW the offer on purpose, mirroring the app's paywall (Steven,
-           August 3): the top of the section sells, and these are not
-           features to sell, they are doors that stay open. A reader gets
-           here deciding, which is when "yours even without it" is true and
-           worth reading. -->
+           August 3): the top of the section sells, and the questions answer
+           a reader who is deciding. The "yours even without it" card left
+           on September 2 (Steven: "just standard ... not really adding
+           value"); the manual's data page carries export, delete and Get
+           help, and the page says what the app costs. -->
       <div class="prices" style="margin-top: var(--s-l);">
         <div class="card">
           <h3>Three questions, answered</h3>
           <p class="small measure"><b>Does it work from day one?</b> The timeline, from minute one. The charts, after about four logs. The window, once your log has earned it.</p>
           <p class="small measure"><b>What if I slip?</b> Restart my clock, keep my history. That is the whole button.</p>
           <p class="small measure"><b>What leaves my phone?</b> Six things, and only when you send them.</p>
-        </div>
-        <div class="card">
-          <h3>Yours even without it</h3>
-          <ul class="plainlist small dim" role="list">
-            <li>Your data: the full export, and delete everything</li>
-            <li>A person answering in Get help</li>
-          </ul>
         </div>
       </div>
 
