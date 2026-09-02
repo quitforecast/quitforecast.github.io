@@ -714,6 +714,39 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   .hero .phone::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5rem;
     background: linear-gradient(to bottom, rgba(12, 24, 32, 0), var(--bg)); pointer-events: none; }
 }
+/* Third pass (September 2, Steven: "continue with the other cuts"). At
+   desktop the log's drawing and its pair share one row under the head, so
+   the rail no longer stacks a chart on a pair; the price's lower card is two
+   cards side by side, still below the offer (the August 3 ruling); on a
+   phone the three tiers are three rows rather than three cards, and the
+   settings and compatibility lists run two columns. */
+@media (min-width: 54rem) {
+  #log .sechead { grid-template-areas: "head body" "media media"; }
+  #log .sechead-media { display: flex; flex-wrap: wrap; align-items: flex-start;
+                        gap: var(--s-l) clamp(2rem, 4vw, 3rem); }
+  #log .sechead-media > * + * { margin-top: 0; }
+  #log .sechead-media .figure { flex: 1 1 20rem; }
+  #log .sechead-media .figure svg.chart { width: min(100%, 26rem); }
+  #log .sechead-media .phones { flex: 0 0 auto; }
+  #log .sechead-media .phones > * { width: 13.75rem; }
+  #log .sechead-media > .figure-label { flex-basis: 100%; }
+  /* The premium card ran at half width beside an empty half (the two-card
+     rule outranked the stack rule); full width, its four lines in two
+     columns. */
+  .prices.stack-block:has(.card) { grid-template-columns: minmax(0, 1fr); }
+  #price .prices.stack-block .plainlist { columns: 2; column-gap: var(--s-xxl); }
+  #price .prices.stack-block .plainlist li { break-inside: avoid; }
+}
+@media (max-width: 34rem) {
+  .prices:has(.price) { gap: var(--s-s); }
+  .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s-m);
+           padding: var(--s-m) var(--s-l); }
+  .price:not(.best)::before { display: none; }
+  .price b { font-size: 1.25rem; }
+  .price span:not(.tag) { margin-left: auto; }
+  .price .tag { flex-basis: 100%; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-l) var(--s-m); }
+}
 </style>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -811,7 +844,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                       hours away, and a Log craving button below."></picture>
           </div>
         </div>
-        <p class="figure-label">Your clean time, and your two hours. Real screens, demo data.</p>
+        <p class="figure-label">Your clean time, and your two hours.</p>
       </div>
 
       <nav class="onpage" aria-label="Sections of this page">
@@ -912,7 +945,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                       the extra receptors and their reset, over the note Day
                       30 of 90."></picture>
           </div>
-          <p class="figure-label">Demo data.</p>
         </div>
       </div>
       </div>
@@ -921,11 +953,11 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
 
   <!-- ===================== 2b. TWO AT ONCE =====================
        Q20, August 11. The page could describe running two quits and had no
-       image of it, because every capture route ships a single habit. Steven's
-       ruling on the caption: the other demonstration figures carry one because
-       they show a LOG or a health curve, where fixture data could read as
-       somebody's outcome. This frame shows the app's behaviour rather than
-       anyone's result, so it stands without one. -->
+       image of it, because every capture route ships a single habit. No figure on
+       the page carries a caption about its data (Steven's ruling, September
+       2: "remove all the demo statements across the site. irrelevant. apple
+       doesn't do that"); the hard rule that remains is that no screen is
+       presented as a person's outcome, and none is. -->
   <section id="together">
     <div class="wrap">
       <div class="sechead">
@@ -948,7 +980,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                     figure, recovery and next milestone in 12 days, and Alcohol at
                     11 days with its own, next milestone in 3 days."></picture>
         </div>
-        <p class="figure-label">Two demo quits.</p>
       </div>
       </div>
     </div>
@@ -975,7 +1006,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
             <div class="phone">
               <picture><source type="image/webp" srcset="shots/timeline-list.webp 519w, shots/timeline-list@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/timeline-list.jpg" width="519" height="1130" loading="lazy"
                    decoding="async"
-                   alt="The recovery timeline with every milestone closed, a demonstration thirty days in so each row is ticked. The first day ends with 20 hours, Almost a full day, and 24 hours, Heart risk already falling. Then The first week: 30 hours, Nicotine essentially gone. 36 hours, Deep in the tunnel. 48 hours, Taste and smell return. 60 hours, Airways relaxing. 72 hours, The peak passes. 4 days, Energy rising. 5 days, The fog lifts. 6 days, Waves flattening. 1 week, The hardest week is behind you."></picture>
+                   alt="The recovery timeline with every milestone closed, thirty days in, so each row is ticked. The first day ends with 20 hours, Almost a full day, and 24 hours, Heart risk already falling. Then The first week: 30 hours, Nicotine essentially gone. 36 hours, Deep in the tunnel. 48 hours, Taste and smell return. 60 hours, Airways relaxing. 72 hours, The peak passes. 4 days, Energy rising. 5 days, The fog lifts. 6 days, Waves flattening. 1 week, The hardest week is behind you."></picture>
             </div>
           </div>
           <div>
@@ -1071,7 +1102,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
         <div class="sechead-body">
           <p class="lede dim">A craving doesn't wait for your phone. Neither does the log.</p>
-          <p>One press on your watch and it's logged. Add how strong it was and what was happening, or don't.</p>
+          <p>One press on your watch and it's logged. Add how strong it was, what was happening and who was around, or don't.</p>
           
           <p>The SOS breath runs on the watch itself, with no phone in the room.</p>
           
@@ -1087,11 +1118,12 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                       craving button."></picture>
           </div>
           <div class="watch">
-            <picture><source srcset="shots/watch-sos.webp" type="image/webp"><img src="shots/watch-sos.jpg" width="422" height="514" loading="lazy"
+            <picture><source srcset="shots/watch-detail.webp" type="image/webp"><img src="shots/watch-detail.jpg" width="422" height="514" loading="lazy"
                  decoding="async"
-                 alt="The watch's breathing circle above the words Breathe with
-                      the circle, and the note: a craving is a wave, it crests and
-                      breaks, usually within a few minutes."></picture>
+                 alt="The watch's Add detail sheet, after the press has logged
+                      the craving: How strong? over five numbered chips, 1 to 5,
+                      then What was happening? with Stress as the first answer,
+                      and a Skip button at the top."></picture>
           </div>
         </div>
       </div>
@@ -1141,16 +1173,14 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
             <div class="phone">
               <picture><source type="image/webp" srcset="shots/board.webp 519w, shots/board@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/board.jpg" width="519" height="1130" loading="lazy"
                    decoding="async"
-                   alt="A demonstration of the Community board, drawn from the
-                        app's own seeded fixtures, not from live posts: the lede
-                        reads Suggest a move, vote up what worked for you, and
-                        add any move to your list straight from its page, over
-                        four sample posts with sample vote counts under the
-                        Competence, Meaning, Connection and Reward categories."></picture>
+                   alt="The Community board. The lede reads Suggest a move,
+                        vote up what worked for you, and add any move to your
+                        list straight from its page, over four posts with their
+                        vote counts under the Competence, Meaning, Connection
+                        and Reward categories."></picture>
             </div>
           </div>
         </div>
-        <p class="figure-label">Demo board, demo posts.</p>
       </div>
       </div>
     </div>
@@ -1182,7 +1212,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                         card, charting a dashed pre-quit baseline, a marker at the
                         day you stopped, and a falling line after it."></picture>
             </div>
-            <p class="shotnote">Demo chart.</p>
           </div>
           <div class="optional">
             <div class="phone">
@@ -1253,7 +1282,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                  render showed twenty empty hours reading as debris without it. -->
             <line class="axis" x1="20" y1="150" x2="320" y2="150"/>
   
-            <!-- A demonstration log: sixteen cravings over nine days, seven of
+            <!-- The log drawn here: sixteen cravings over nine days, seven of
                  them inside the two amber hours. The bars are counts, and they grow
                  from the floor in clock order, which is the reading the app's own
                  chart gives: taller is more, and nothing needs a key. An hour with
@@ -1304,7 +1333,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
             </div>
           </div>
         </div>
-        <p class="figure-label">The window, and who was around. Demo log.</p>
+        <p class="figure-label">The window, and who was around.</p>
       </div>
       </div>
       <div class="closer reveal">
@@ -1375,8 +1404,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p>A widget for your home screen, and a live count on your lock
           screen through the first three days.</p>
         </div>
-        <div role="listitem">
-          </div>
         <div role="listitem">
           <h3>Notifications</h3>
           <p>Opt in. At most one check-in a day per habit, and a switch to hear only the big milestones.</p>
@@ -1511,6 +1538,8 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="small measure"><b>Does it work from day one?</b> The timeline, from minute one. The charts, after about four logs. The window, once your log has earned it.</p>
           <p class="small measure"><b>What if I slip?</b> Restart my clock, keep my history. That is the whole button.</p>
           <p class="small measure"><b>What leaves my phone?</b> Six things, and only when you send them.</p>
+        </div>
+        <div class="card">
           <h3>Yours even without it</h3>
           <ul class="plainlist small dim" role="list">
             <li>Your data: the full export, and delete everything</li>
