@@ -246,11 +246,6 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 .masthead nav a.navcta:hover { color: var(--bg); opacity: 0.88; }
 /* The hero's one real action before launch: the launch-notice mail (the
    badge is a Coming soon symbol by Route A). Same pill as the masthead's. */
-a.cta { display: inline-block; color: var(--bg); background: var(--accent); border-radius: 999px;
-        padding: 0.6rem 1.05rem; font-weight: 600; text-decoration: none; margin-left: 0.75rem;
-        vertical-align: middle; font-size: var(--t-small); }
-a.cta:hover { color: var(--bg); opacity: 0.88; }
-a.cta:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
 @media (max-width: 48rem) {
   .topbar { position: static; }
 }
@@ -682,6 +677,16 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   .phones > * { flex: 0 1 calc(50% - 0.375rem); min-width: 0; scroll-snap-align: none; }
   .phones > :only-child, .phones > *:has(+ .optional) { flex-basis: min(13.75rem, 100%); }
 }
+/* Fifth pass (September 2, Steven: "the mobile health chart cuts off the
+   actual chart that shows the resting heart rate declining, which is the
+   real sell"). A crop is a marketing decision: the sell must sit inside the
+   visible part. Reviewed frame by frame with Scripts/site-crop-sheet.py:
+   health, habits and two-habits carry their point low, so they run whole at
+   every width; recovery keeps its crop (its curve sits above the line);
+   pairs are never cropped in practice. The ethos and two-quits frames also
+   show on phones now ("there is no screenshot ... on the mobile"). */
+.sechead-media .phone.whole { max-height: none; }
+.sechead-media .phone.whole::after { display: none; }
 </style>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -746,7 +751,6 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
              aria-label="Coming soon to the App Store">
             <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
           </span>
-          <a class="cta" href="mailto:info@quitforecast.com?subject=Tell%20me%20at%20launch">Tell me at launch</a>
           <p class="micro" style="margin-top: var(--s-m);">Free to download. Every feature unlocked for your first week. Built on 61 cited sources.</p>
         </div>
 
@@ -823,7 +827,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p class="micro">Built on 61 cited sources, most of them journal studies, all inside the app.</p>
         </div>
       <div class="sechead-media">
-        <div class="phone reveal optional">
+        <div class="phone reveal whole">
           <picture><source type="image/webp" srcset="shots/habits.webp 519w, shots/habits@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/habits.jpg" width="519" height="1130" loading="lazy"
                decoding="async"
                alt="The setup screen asking What are you quitting, listing
@@ -906,7 +910,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
           <p>Up top, the money and the healing add up.</p>
         </div>
       <div class="sechead-media">
-        <div class="phone reveal optional">
+        <div class="phone reveal whole">
           <picture><source type="image/webp" srcset="shots/two-habits.webp 519w, shots/two-habits@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/two-habits.jpg" width="519" height="1130" loading="lazy"
                decoding="async"
                alt="The Habits screen with two quits. A combined card reads All 2
@@ -1139,7 +1143,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
       <div class="sechead-media">
         <div class="phones reveal">
           <div>
-            <div class="phone">
+            <div class="phone whole">
               <picture><source type="image/webp" srcset="shots/health.webp 519w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/health.jpg" width="519" height="1130" loading="lazy"
                    decoding="async"
                    alt="The Health tab. A heading reading There is no improved you
