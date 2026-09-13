@@ -15,8 +15,9 @@
      domain. Without it, a mistyped URL got GitHub's own error page: a different
      typeface, a different ground, no mark, and no route back here. Same tokens as
      index.html, deliberately: a 404 is still the product talking. Anyone who
-     lands here mid-craving gets the crisis lines on this page rather than one
-     click away, which is the only reason this page has content at all. -->
+     lands here gets every route the site has, which is the only reason this
+     page has content at all. (The crisis lines this page carried left the
+     product on September 13, 2026, Steven's ruling.) -->
 <style>
   :root {
     --bg: #0C1820; --card: #122530; --line: #1E3947;
@@ -56,21 +57,13 @@
     list-style: none; margin: 1.5rem 0 0; padding: 0;
     display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem;
   }
-  .crisis {
-    margin-top: 2.25rem; padding: 1rem 1.15rem;
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-  }
-  .crisis p { margin: 0; }
-  .crisis p + p { margin-top: 0.6rem; }
-  .crisis a { color: var(--amber); overflow-wrap: anywhere; }
   @media (forced-colors: active) {
-    .crisis { border: 1px solid CanvasText; }
     a:focus-visible { outline: 2px solid Highlight; }
   }
 @media print {
   body { background: #FFFFFF; color: #111111; }
   a { color: #111111; }
-  .small, .small.dim, .crisis { color: #333333; }
+  .small, .small.dim { color: #333333; }
 }
 </style>
 </head>
@@ -90,26 +83,12 @@
 
   <ul class="routes">
     <li><a href="/">The main page</a></li>
-    <li><a href="/crisis.html">The crisis lines</a></li>
     <li><a href="/manual.html">The manual</a></li>
     <li><a href="/privacy.html">Privacy policy</a></li>
     <li><a href="/#price">Price</a></li>
     <li><a href="/#support">Support</a></li>
   </ul>
 
-  <div class="crisis">
-    <p class="small"><strong>If you came here looking for help right now, do not
-    go hunting through a website.</strong></p>
-    <p class="small">In the US: <a href="tel:988">call 988</a> or
-    <a href="sms:988">text 988</a> for the Suicide and Crisis Lifeline.
-    <a href="tel:+18006624357">1-800-662-4357</a> is the SAMHSA National Helpline,
-    free, confidential and open every day. <a href="tel:+18007848669">1-800-784-8669</a> is
-    1-800-QUIT-NOW, for quitting smoking and vaping. If someone is in immediate danger,
-    <a href="tel:911">call 911</a>.</p>
-    <p class="small dim">Outside the US, your local emergency number works the
-    same way, and <a href="https://findahelpline.com">findahelpline.com</a> lists
-    crisis lines by country.</p>
-  </div>
 </main>
 </body>
 </html>

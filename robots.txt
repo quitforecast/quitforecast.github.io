@@ -1,6 +1,6 @@
 # quitforecast.com
 # Everything on this origin is meant to be read and indexed: the landing
-# page, the manual, the crisis lines, the privacy policy, and their images.
+# page, the manual, the privacy policy, and their images.
 # Nothing is disallowed because nothing served here needs hiding.
 
 User-agent: *

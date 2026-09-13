@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Four pages. A sitemap is optional under 500 URLs, and it is here for one
+<!-- The pages. A sitemap is optional under 500 URLs, and it is here for one
      reason that matters at this size: it is how Search Console learns the
      canonical form of each URL without waiting to discover it. Update lastmod
      when the page changes in a way a reader would notice, not on every commit. -->
@@ -15,12 +15,6 @@
     <lastmod>2026-09-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://quitforecast.com/crisis.html</loc>
-    <lastmod>2026-09-04</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://quitforecast.com/manual.html</loc>
