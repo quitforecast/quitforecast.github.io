@@ -60,10 +60,13 @@
   @media (forced-colors: active) {
     a:focus-visible { outline: 2px solid Highlight; }
   }
+footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+         color: var(--dim); font-size: 0.9rem; }
+footer p { margin: 0.25rem 0; }
 @media print {
   body { background: #FFFFFF; color: #111111; }
   a { color: #111111; }
-  .small, .small.dim { color: #333333; }
+  .small, .small.dim, footer { color: #333333; }
 }
 </style>
 </head>
@@ -89,6 +92,10 @@
     <li><a href="/#support">Support</a></li>
   </ul>
 
+  <footer>
+    <p>QuitForecast is made by Allamanda LLC.</p>
+    <p>&copy; 2026 Allamanda LLC</p>
+  </footer>
 </main>
 </body>
 </html>

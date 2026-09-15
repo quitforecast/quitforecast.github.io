@@ -578,6 +578,7 @@ a.badge:hover { opacity: 0.88; }
 footer { border-top: 1px solid var(--line); padding-block: var(--s-xxl) var(--s-xxxl);
          font-size: var(--t-small); color: var(--dim); }
 footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
+footer .maker { margin: 0 0 var(--s-l); }
 footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
               align-items: center; justify-content: space-between; }
 
@@ -1392,13 +1393,19 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
 </main>
 
 <footer>
-  <div class="wrap row">
-    <p>QuitForecast &nbsp;·&nbsp; &copy; 2026 Allamanda LLC</p>
-    <!-- No launch-notice mail (Steven, September 2: "i don't want any
-         emails regarding launch"; the page is not meant to be seen before
-         the app ships). -->
-    <p><a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
-       <a href="/manual.html">The manual</a></p>
+  <div class="wrap">
+    <!-- The legal person behind the app, in a sentence a reviewer can
+         find (Apple's organization migration, September 14): the same
+         words as the policy's first paragraph. -->
+    <p class="maker">QuitForecast is made by Allamanda LLC.</p>
+    <div class="row">
+      <p>&copy; 2026 Allamanda LLC</p>
+      <!-- No launch-notice mail (Steven, September 2: "i don't want any
+           emails regarding launch"; the page is not meant to be seen before
+           the app ships). -->
+      <p><a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
+         <a href="/manual.html">The manual</a></p>
+    </div>
   </div>
 </footer>
 
