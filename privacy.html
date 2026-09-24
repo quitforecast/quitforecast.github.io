@@ -147,7 +147,9 @@ footer a { color: var(--dim); }
     <h2>What leaves your device, only if you choose it</h2>
     <p><strong>iCloud backup (off by default).</strong> If you turn it on, a
     copy of your app data is stored in your private iCloud database, which
-    Apple secures under your Apple Account. We cannot read it. Turning the
+    Apple secures under your Apple Account. The copy is encrypted on your
+    phone before it is stored, with keys that belong to your account, so
+    neither we nor Apple can read it. Turning the
     toggle back off stops new copies being made, but it does not remove copies
     already stored; Settings &gt; Delete all data is what removes them, and it
     deletes every copy the app has made.</p>
@@ -155,7 +157,11 @@ footer a { color: var(--dim); }
     move or a feature request, its text is stored in Apple's public
     CloudKit database, the board's host. It carries an anonymous member
     identifier: a scrambled stand-in derived from your iCloud account
-    that cannot be run backwards, never your name or email. Posts are
+    that cannot be run backwards, never your name or email. Apple also
+    stamps every record in its public database with an Apple-assigned
+    account id for this app, which travels with each board record; the
+    app never asks Apple to make your account discoverable, so that id
+    resolves to no name or email. Posts are
     reviewed by a person before appearing. A post that is not approved is
     never published. It stays in the same public database, marked as
     unpublished, and the app never shows it; it is deleted when you delete
@@ -210,7 +216,8 @@ footer a { color: var(--dim); }
     everything on the device, your iCloud backup, and everything you sent
     to the board. The board part means your posts, your votes and your
     reports. Export your data first from the same screen if you want a
-    copy.</p>
+    copy. One stamp stays on the phone: the date your free week began,
+    kept so the week cannot be restarted by erasing.</p>
     <p>Feedback is the one exception. Messages carry no identifier, so
     Delete all data cannot find yours to delete them. They delete
     themselves within twelve months. If you want one gone sooner, write to
