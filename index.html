@@ -75,7 +75,7 @@
   "url": "https://quitforecast.com/",
   "applicationCategory": "HealthApplication",
   "operatingSystem": "iOS",
-  "description": "See your recovery coming. Know the hours your cravings come and watch your body heal, day by day, on 61 sources. Separate withdrawal timelines for smoking, vaping, alcohol, cannabis and caffeine.",
+  "description": "See your recovery coming. Know the hours your cravings come and watch your body heal, day by day, on 63 sources. Separate withdrawal timelines for smoking, vaping, alcohol, cannabis and caffeine.",
   "isAccessibleForFree": false,
   "featureList": [
     "Hour-by-hour withdrawal timeline per habit, with the studies under each entry",
@@ -762,7 +762,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
              aria-label="Coming soon to the App Store">
             <svg viewBox="0 0 120 40" aria-hidden="true" focusable="false"><use href="#badge-appstore"/></svg>
           </span>
-          <p class="micro" style="margin-top: var(--s-m);">Free to download. Every feature unlocked for your first week. Built on 61 sources you can read in the app.</p>
+          <p class="micro" style="margin-top: var(--s-m);">Free to download. Every feature unlocked for your first week. Built on 63 sources you can read in the app.</p>
         </div>
 
       </div>
@@ -827,7 +827,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                the two drift, so the number on this page is always the number
                in the app. -->
           <div class="statband reveal">
-            <div><strong>61</strong><span>sources, every one readable in the app</span></div>
+            <div><strong>63</strong><span>sources, every one readable in the app</span></div>
             <div><strong>5</strong><span>substances, each with its own timeline</span></div>
             <div><strong>6</strong><span>things can ever leave your phone, each only when you send it</span></div>
             <div><strong>0</strong><span>accounts. Nothing to sign in to</span></div>
@@ -920,6 +920,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         <div class="sechead-body">
           <p class="lede dim">Every hour of your quit, written out ahead of time. What is healing, what you might feel, and what helps now.</p>
           <p>The studies sit under each entry.</p>
+          <p>You can stand a hard hour you saw coming. It is the one that arrives unannounced that ends in a cigarette. A forecast turns the week from a run of ambushes into a route with a map: you still walk every mile, but you know where the climbs are.</p>
           <p>Each milestone lands at its real minute on your clock and quotes your own why back to you.</p>
           <p class="small">On a patch or gum? Say so. The nicotine part waits, honestly, while the rest of you keeps healing.</p>
           <p class="small dim">The app's first words, at minute one. <b>Clear them out first: the pack, the spare in
@@ -966,7 +967,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
         </div>
         <div class="sechead-body">
           <p class="lede dim">Your watch was keeping a record before you decided. Put it to work.</p>
-          <p>Heart, lungs, breath and blood, charted from your own numbers before you quit, with what the research expects drawn beside them. Your chart is allowed to disagree. Heart rate variability moves first, within days to weeks of stopping.</p>
+          <p>Heart, lungs, breath and blood, charted from your own numbers before you quit, with what the research expects drawn beside them. Your chart is allowed to disagree. Heart rate variability is one to watch once you stop.</p>
           <p class="small">Needs an Apple Watch or similar. Read fresh from Apple Health, never stored.</p>
           
           <p class="small seclink"><a href="/manual-health.html">More in the manual: the five metrics</a></p>
@@ -989,8 +990,7 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                    loading="lazy" decoding="async"
                    alt="A heart rate variability card with its chart, and beneath
                         it a block headed What research expects reading: nicotine
-                        suppresses HRV, studies show it climbing within days to
-                        weeks of stopping, one of the earliest measurable wins.
+                        suppresses HRV, watch for it climbing after you stop.
                         Evidence 26."></picture>
             </div>
             
@@ -1209,6 +1209,45 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
        "who else sees this" has to be answered on the page. The
        six-count is pinned by a test in FeedbackPipeTests across this file,
        privacy.html and SafetyView; change all three the same day or none. -->
+  <!-- ===================== VOICE ===================== -->
+  <!-- Steven, September 24: a section showing the voice and pack options,
+       with screenshots. The three voices and the four packs are read from
+       Sources/Models (Tone.selectable, MotivationPack.allCases); the shots
+       are the two Settings pickers, taken by testShootVoiceShots. -->
+  <section id="voice">
+    <div class="wrap">
+      <div class="sechead">
+        <div>
+          <p class="kicker">Your voice</p>
+          <h2>Pick who talks to you.</h2>
+        </div>
+        <div class="sechead-body">
+          <p class="lede dim">Every line the app says comes in three voices. Normal says it plainly. Cheeky says it with a grin. Strict coach says it once and expects you to move.</p>
+          <p>Four packs add a daily verse or passage to Today from a tradition you choose: Stoic, Christian, Islamic or Jewish. Off is the first row, and the app never picks one for you.</p>
+          <p class="small dim">The same forecast, the same milestones, the same sources under them. Only the manner changes.</p>
+        </div>
+      <div class="sechead-media">
+        <div class="phones reveal">
+          <div>
+            <div class="phone">
+              <picture><source type="image/webp" srcset="shots/voices.webp 519w, shots/voices@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/voices.jpg" width="519" height="1130" loading="lazy"
+                   decoding="async"
+                   alt="Settings, with the Voice menu open over the list: Normal, ticked, then Cheeky and Strict coach. Above the menu, the app icon choice in Ocean, Midnight and Forest, and the counter format set to days, hours and minutes. Below it, the line that explains the voice: it sets the voice for notifications, the SOS screen and celebrations."></picture>
+            </div>
+          </div>
+          <div>
+            <div class="phone">
+              <picture><source type="image/webp" srcset="shots/packs.webp 519w, shots/packs@2x.webp 1038w" sizes="(max-width: 34rem) 13.75rem, 16.5rem"><img src="shots/packs.jpg" width="519" height="1130" loading="lazy"
+                   decoding="async"
+                   alt="Settings, with the Motivation pack menu open: Off, then Stoic wisdom, ticked, then Christian scripture, Islamic scripture and Jewish scripture. Around the menu, the Milestone chime and Discreet labels switches, and the line under the pack row: optional, adds a daily verse or philosophical passage to your Today tab, from the tradition you choose."></picture>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
   <section class="band" id="privacy">
     <div class="wrap">
       <div class="sechead single">
