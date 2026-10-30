@@ -613,25 +613,15 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
   .statband strong, b, strong, h1, h2, h3 { color: #111111; }
 }
 
-/* Second pass. On a phone a pair no longer stacks two frames: it is a row
-   that swipes, with the second frame peeking, the mobile-native grammar for
-   "there is more". The hero phone takes the same crop on a phone, where it
-   was a full screen of frame. The price cards sit in a row at desktop. */
-@media (max-width: 54rem) {
-  .phones { flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 0.25rem; }
-  .phones::-webkit-scrollbar { display: none; }
-  .phones > * { flex: 0 0 min(13.75rem, 78%); scroll-snap-align: start; }
-  .phones > *:nth-child(2) { margin-top: 0; }
-}
+/* Second pass (September 2): a pair on a phone was a row that swipes with the
+   second frame peeking. The fourth pass below overrode every one of its
+   rules, and the dead block was removed October 30 (the September debt). */
 /* Third pass (September 2, Steven: "continue with the other cuts"). The
    price's lower card is two cards side by side, still below the offer (the
    August 3 ruling); on a phone the three tiers are three rows rather than
    three cards, and the settings and compatibility lists run two columns.
    The log's drawn chart, which this pass had seated beside the pair, left
    the page in the fourth pass: the screenshots carry the same bars. */
-@media (min-width: 54rem) {
-}
 @media (max-width: 34rem) {
   .prices:has(.price) { gap: var(--s-s); }
   .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s-m);
@@ -1145,8 +1135,8 @@ footer .row { display: flex; flex-wrap: wrap; gap: var(--s-l) var(--s-xl);
                  decoding="async"
                  alt="The watch's Add detail sheet, after the press has logged
                       the craving: How strong? over five numbered chips, 1 to 5,
-                      then What was happening? with Stress as the first answer,
-                      and a Skip button at the top."></picture>
+                      then What was happening? with Evenings, this person's own
+                      trigger, as the first row, and a Skip button at the top."></picture>
           </div>
         </div>
       </div>
