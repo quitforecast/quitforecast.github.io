@@ -172,7 +172,8 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
       <ul>
         <li><a href="#the-counter">The counter</a></li>
         <li><a href="#the-recovery-timeline">The recovery timeline</a></li>
-        <li><a href="#the-craving-histogram">The craving histogram</a></li>
+        <li><a href="#what-is-coming">What is coming</a></li>
+        <li><a href="#the-day-s-passage">The day's passage</a></li>
         <li><a href="#the-morning-note">The morning note</a></li>
         <li><a href="#the-evening-review">The evening review</a></li>
         <li><a href="#celebrations">Celebrations</a></li>
@@ -229,7 +230,8 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
     <p>The clock counts from the exact minute you set, not from midnight. A 9 PM quit shows its first full day at 9 PM the next evening. Backdating is allowed at setup: if you quit last Tuesday, tell it so, and the counter, the timeline and the milestones all start from there.</p>
     <p>The format setting offers days-hours-minutes, weeks, or a plain day count. Whatever you pick, every surface repeats it: the widget, the Lock Screen, the Watch glance. One clock, one format, everywhere.</p>
     <p>A slip restarts this clock and nothing else. Your history, your best run, your savings and your badges all survive. The counter alone goes back to zero: it measures the current run, and the app never pretends otherwise.</p>
-    <p>Recording a slip takes one screen, from the button under the counter or at the head of the Log's entries. Its button says when the clock restarts from: now, or the time you last used if the slip was earlier. If a slip turns into days, record it when you stop and give that time, and the clock counts from there. Undo stays under the counter until you leave the app, and on the slip's row in the Log for three days.</p>
+    <p>Recording a slip takes one screen, from its button on Today or at the head of the Log's entries. Its button says when the clock restarts from: now, or the time you last used if the slip was earlier. If a slip turns into days, record it when you stop and give that time, and the clock counts from there. Undo stays on Today, under the picture, until you leave the app, and on the slip's row in the Log for three days.</p>
+    <p>After a slip, a row on Today asks what led up to it and who was around. It is optional. It stays for three days or until you write something, and what you write is read back to you in the Log as your own words, never as a verdict.</p>
   </div>
   <div class="entrycard" id="the-recovery-timeline">
     <h2>The recovery timeline</h2>
@@ -238,11 +240,22 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
     <p>The row you are standing on stays pinned open with a you-are-here marker and a live percentage. Rows you have passed compress to a check and a title so the road behind quiets down; tap one to reopen it.</p>
     <p>If an earlier attempt reached further than this one, those rows say your last run reached here. The app treats that as history worth keeping, not as a debt: new ground is marked the first time you pass your old high-water mark.</p>
   </div>
-  <div class="entrycard" id="the-craving-histogram">
-    <h2>The craving histogram</h2>
-    <p class="entrylede">Your logged cravings by hour of day, drawn beside the counter once four are logged. It shows your own hours, never a guess about you.</p>
-    <p>Every bar is a count of your own logged cravings in that hour of the day, over the last thirty days. Nothing is smoothed or projected: an empty hour is an empty bar.</p>
-    <p>Below four logged cravings the chart says nothing at all, because two dots are not a pattern. Once your log has earned it, the two hours your cravings cluster in are drawn in amber. Those same two hours drive the craving window on the Log tab.</p>
+  <div class="entrycard" id="what-is-coming">
+    <h2>What is coming</h2>
+    <p class="entrylede">Under the counter, the stage you are in by name, and a picture of what comes next. The medal for your next stop rises over a horizon as you near it. Every stop after it stands on the same line, with what it marks and when it lands. Slide the picture to the left to look further ahead.</p>
+    <p>The next stop's medal stands as far over the line as you have come toward it, and stands clear the moment you arrive. It comes up over the line each time you open Today, unless Reduce Motion is on. Under it: what the stop marks, the time left, and how far you have come, as a percent.</p>
+    <p>The stops after it are quiet outlines with their number on them. Under each: what it marks, then when it lands. One that lands today shows its time. One that lands tomorrow shows the day and the time. Later ones show their date. One eleven months off or more shows its month and year.</p>
+    <p>Tap any medal to open that stop on the timeline.</p>
+    <p>When your log has found your craving window and it is near or open, an amber mark stands first in the picture. It reads Craving window, then its hours, then soon or now. A tap explains it. At other hours the picture carries no mark.</p>
+    <p>Each star in the sky is a medal you have reached. A slip takes none of them away.</p>
+    <p>What helps now opens one thing to do in the stretch you are in, with its research cited. It is the same advice the timeline shows under you are here.</p>
+  </div>
+  <div class="entrycard" id="the-day-s-passage">
+    <h2>The day's passage</h2>
+    <p class="entrylede">With a faith or philosophy pack on, the day's passage stands under the picture, whole. A tap opens it in plain words.</p>
+    <p>The passage turns over at midnight, and its source is named under it. The plain words are labelled as such, and open in place. A slip does not send the pack back to its first passage: it keeps its place.</p>
+    <p>When the app has words of its own, they lead. That is a morning note from your log, the evening's one question and its answer, or a slip just recorded. The passage waits behind its reference then, one tap away.</p>
+    <p>With no pack chosen, a line of the app's own stands there instead.</p>
   </div>
   <div class="entrycard" id="the-morning-note">
     <h2>The morning note</h2>
@@ -265,16 +278,17 @@ footer a { color: var(--dim); display: inline-block; padding-block: 0.2rem; }
   </div>
   <div class="entrycard" id="awards">
     <h2>Awards</h2>
-    <p class="entrylede">Every milestone on your timeline is a medal, and one wall holds them all. Some you have reached, one is next, the rest are still ahead. The four badges sit under them. The medal in Today's top corner opens it.</p>
+    <p class="entrylede">Every milestone on your timeline is a medal, and one wall holds them all. Some you have reached, one is next, the rest are still ahead. The badges sit under them. The medal in Today's top corner opens it.</p>
     <p>The medals follow your timeline in four stretches: the first day, the first week, the first month, the long road. Each stretch has a crest of its own. The medal that is next shows how long is left. A tap on any medal opens the stage it marks. Once you have reached it, the page says the day and the hour.</p>
     <p>A medal is yours for good. A slip moves the clock and takes nothing off the wall. Every medal an earlier run reached stays lit. The mark for what is next moves to the next stop of the run you are on.</p>
   </div>
   <div class="entrycard" id="badges">
     <h2>Badges</h2>
-    <p class="entrylede">Earned by what you do, never by the clock: a pattern found, ten waves ridden, a week of your own data, a slip told fast. They sit on the Awards wall, under the medals. No badge is ever taken back, because the learning it marks already happened. No points, no levels.</p>
-    <p>Every badge marks an act of self-knowledge, not a length of abstinence. There are four: a pattern your log earned, ten waves ridden in SOS, a week of your own readings, a slip told within the hour. The clock has its medals; a badge is for something you did.</p>
+    <p class="entrylede">Earned by what you do, never by the clock: a pattern found, a move kept, a wave ridden, a slip told fast. They sit on the Awards wall, under the medals. No badge is ever taken back, because the learning it marks already happened. No points, no levels.</p>
+    <p>Every badge marks something you did, not a length of abstinence. There are thirteen. Four come from the log. They are a pattern your log earned, a week of your own readings, thirty evenings answered, and a craving window you got ready for. Three come from the SOS tools: ten rides, fifty rides, five tools tried. Four come from Rebuild: a first move kept, a planned week met, a return after a week away, a move approved on the board. Two stand beside a slip: one told within the hour, and what led up to it written the same day. The clock has its medals; a badge is for something you did.</p>
+    <p>No badge counts days in a row. A planned week is any one week, and it never has to follow another. The badge for coming back marks the move you make after a week with none.</p>
     <p>A badge is permanent. A slip takes back nothing, because the learning a badge marks already happened and un-happening is not a thing. A tap on a badge says what it marks. A badge not yet earned says plainly what would earn it, never how close you are.</p>
-    <p>The week of your own readings is read from Apple Health, so it takes a watch or band that shares its readings there. The wall says so under that badge until it is earned. The other three need nothing but the app.</p>
+    <p>The week of your own readings is read from Apple Health, so it takes a watch or band that shares its readings there. The wall says so under that badge until it is earned. The rest need no other device.</p>
     <p>Telling a slip fast earns one, on purpose: the app rewards honesty at the exact moment shame usually wins.</p>
   </div>
   <div class="entrycard" id="the-sos-button">
